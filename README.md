@@ -6,6 +6,7 @@ Implementing a simple 'Scale everything but the player' technique to surpass the
 
 ### Demonstration
 ![Game Gif](solarsytem.gif)
+
 (The trail shows what's actually happening)
 
 ### Acknowledgment
