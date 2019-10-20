@@ -5,7 +5,7 @@ Final project to finish IFMS' technical course in Brazil.
 Implementing a simple 'Scale everything but the player' technique to surpass the kraken (Floating Point Arithmetic Imprecision).
 
 ### Demonstration
-![Game Gif](solarsystem.gif)
+![Game Gif](solarsytem.gif)
 (The trail shows what's actually happening)
 
 ### Acknowledgment
