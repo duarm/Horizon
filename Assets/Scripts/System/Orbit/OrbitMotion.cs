@@ -22,6 +22,7 @@ public class OrbitMotion : MonoBehaviour
 
     float minOrbitDistance;
     float maxOrbitDistance;
+    float orbitVelocity;
 
     Coroutine orbitMotionRoutine;
 
@@ -52,15 +53,24 @@ public class OrbitMotion : MonoBehaviour
         maxOrbitDistance = orbit.XAxis * SolarSystemController.GetOrbitScale();
     }
 
-    public void IncreaseOrbit (float direction, float rate)
+    public float IncreaseOrbit (float direction, float rate)
     {
-        var newOrbit = orbit.XAxis + (((rate / 100) * maxOrbitDistance) * direction);
+        var increasedBy = rate * maxOrbitDistance * direction;
+        var newOrbit = orbit.XAxis + increasedBy;
+
         if (newOrbit < minOrbitDistance)
+        {
+            increasedBy = minOrbitDistance - orbit.XAxis;
             newOrbit = minOrbitDistance;
+        }
         else if (newOrbit > maxOrbitDistance)
+        {
+            increasedBy = orbit.XAxis - maxOrbitDistance;
             newOrbit = maxOrbitDistance;
+        }
 
         orbit.SetOrbit (newOrbit);
+        return increasedBy;
     }
 
     void SetOrbitingObjectPosition ()
@@ -74,7 +84,7 @@ public class OrbitMotion : MonoBehaviour
         if (period < 0.1f)
             period = 0.1f;
 
-        float orbitVelocity = 1f / period * timeScale;
+        orbitVelocity = 1f / period * timeScale;
 
         while (!lockOrbit)
         {

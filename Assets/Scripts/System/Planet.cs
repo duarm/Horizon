@@ -7,8 +7,8 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
 {
     public string planetName;
     [SerializeField] Camera mainCamera;
-    [SerializeField] Gradient gradient = new Gradient ();
-    [SerializeField] List<Planet> moons;
+    [SerializeField] List<LocalController> moons;
+    [SerializeField] TrailRenderer trail;
     [SerializeField] float sizeScaling = 1.1f;
 
     float originalSize;
@@ -38,7 +38,7 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
 
     public void Scale (float direction, float rate)
     {
-        var size = transform.localScale.x + (((rate / 100) * maxSize) * direction);
+        var size = transform.localScale.x + (rate * maxSize * direction);
         if (size > maxSize)
             size = maxSize;
         else if (size < originalSize)

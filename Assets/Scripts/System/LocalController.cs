@@ -5,19 +5,19 @@ public class LocalController : MonoBehaviour
 {
     public Planet planet;
     public OrbitMotion orbit;
-    [Autohook] LineRenderer orbitLine;
+    [Autohook] public OrbitRenderer orbitRenderer;
 
     private void OnValidate ()
     {
         planet = GetComponentInChildren<Planet> ();
         orbit = GetComponentInChildren<OrbitMotion> ();
-        orbitLine = orbit?.GetComponent<LineRenderer> ();
+        orbitRenderer = GetComponentInChildren<OrbitRenderer> ();
     }
     
     public void SetOrbitVisiblity (bool value)
     {
-        if (orbitLine)
-            orbitLine.enabled = value;
+        if (orbitRenderer)
+            orbitRenderer.SetOrbitVisiblity(value);
     }
 
     public void SetTimeScale (float value)

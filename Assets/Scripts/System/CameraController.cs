@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private static CameraController Instance;
     public LayerMask focusMask;
     public Transform worldCoordinatesOverride;
 
@@ -33,39 +32,19 @@ public class CameraController : MonoBehaviour
     float velocityX = 0.0f;
     float velocityY = 0.0f;
     float velocityZoom = 0.0f;
-    int zoomValue = 0;
 
     new Camera camera;
     Coroutine transition;
-    public OrbitMotion follow;
-
-    private void Awake ()
-    {
-        Instance = this;
-    }
+    OrbitMotion follower;
+    LocalController sun;
 
     private void Start ()
     {
         currentPos = transform.localPosition;
         currentZoomPos = transform.localPosition;
         oldPos = transform.localPosition;
-
         camera = Camera.main;
-    }
-
-    public void MoveCamera (Vector3 input)
-    {
-        Vector3 fowardMovement = worldCoordinatesOverride.forward * movementSpeed * input.y;
-        Vector3 rightMovement = transform.right * movementSpeed * input.x;
-        newPos = (fowardMovement + rightMovement) * Time.fixedDeltaTime;
-
-        if (input != Vector3.zero)
-            follow = null;
-    }
-
-    public void ZoomCamera (float input)
-    {
-        velocityZoom = input;
+        sun = SolarSystemController.Sun ();
     }
 
     //TODO: UPDATE MANAGER
@@ -75,26 +54,39 @@ public class CameraController : MonoBehaviour
         HandleRotation ();
         HandleZoom ();
 
-        if(!follow)
-        {
+        if (!follower)
             transform.SetPositionAndRotation (currentPos, currentRotation);
-        }
         else
-        {
-            transition = transition ?? StartCoroutine(Transition());
-        }
+            transition = transition ?? StartCoroutine (Transition ());
 
         worldCoordinatesOverride.eulerAngles = new Vector3 (0, currentRotation.eulerAngles.y, 0);
         velocityX = Mathf.Lerp (velocityX, 0, Time.fixedDeltaTime * smoothTime);
         velocityY = Mathf.Lerp (velocityY, 0, Time.fixedDeltaTime * smoothTime);
     }
 
+    public void MoveCamera (Vector3 input)
+    {
+        //slow down the movement as the zoom increases to give the impression of a bigger universe
+        var speed = (movementSpeed - (SolarSystemController.GetZoomValue () * movementSlowDownRate));
+        Vector3 fowardMovement = worldCoordinatesOverride.forward * speed * input.y;
+        Vector3 rightMovement = transform.right * speed * input.x;
+        newPos = (fowardMovement + rightMovement) * Time.fixedDeltaTime;
+
+        if (input != Vector3.zero)
+            follower = null;
+    }
+
+    public void ZoomCamera (float input)
+    {
+        velocityZoom = input;
+    }
+
     IEnumerator Transition ()
     {
         Vector3 velocity = Vector3.zero;
-        while (follow != null)
+        while (follower != null)
         {
-            transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, follow.transform.position, ref velocity, transitionSmoothTime), currentRotation);
+            transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, follower.transform.position, ref velocity, transitionSmoothTime), currentRotation);
             yield return 0;
         }
 
@@ -111,9 +103,9 @@ public class CameraController : MonoBehaviour
         {
             //TODO: PHYSICS CACHING
             OrbitMotion planet = hit.transform.GetComponent<OrbitMotion> ();
-            Debug.Log ("Focusing:" + planet.name);
             transform.position = hit.transform.position;
-            follow = planet;
+            follower = planet;
+
         }
     }
 
@@ -122,18 +114,16 @@ public class CameraController : MonoBehaviour
         if (velocityZoom != 0)
         {
             var velocity = velocityZoom > 0 ? 1 : -1;
-            zoomValue += velocity;
-            if (zoomValue < 0)
-                zoomValue = 0;
 
-            SolarSystemController.StartZoom (velocity, zoomValue);
+            SolarSystemController.StartZoom (velocity, follower);
         }
     }
 
     public void HandleMovement ()
     {
         oldPos = transform.localPosition;
-        currentPos = oldPos + newPos;
+        var pos = oldPos + newPos;
+        currentPos = new Vector3(pos.x, sun.transform.position.y, pos.z);
     }
 
     public void HandleRotation ()
