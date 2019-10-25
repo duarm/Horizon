@@ -5,7 +5,7 @@ public class LocalController : MonoBehaviour
 {
     public Planet planet;
     public OrbitMotion orbit;
-    [Autohook] public OrbitRenderer orbitRenderer;
+    public OrbitRenderer orbitRenderer;
 
     private void OnValidate ()
     {
@@ -18,6 +18,11 @@ public class LocalController : MonoBehaviour
     {
         if (orbitRenderer)
             orbitRenderer.SetOrbitVisiblity(value);
+    }
+
+    public void SetFocus(bool value)
+    {
+        planet.SetFocus(value);
     }
 
     public void SetTimeScale (float value)

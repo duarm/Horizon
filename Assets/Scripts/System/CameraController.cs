@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
 
     new Camera camera;
     Coroutine transition;
-    OrbitMotion follower;
+    LocalController follower;
     LocalController sun;
 
     private void Start ()
@@ -86,7 +86,7 @@ public class CameraController : MonoBehaviour
         Vector3 velocity = Vector3.zero;
         while (follower != null)
         {
-            transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, follower.transform.position, ref velocity, transitionSmoothTime), currentRotation);
+            transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, follower.orbit.transform.position, ref velocity, transitionSmoothTime), currentRotation);
             yield return 0;
         }
 
@@ -102,10 +102,11 @@ public class CameraController : MonoBehaviour
         if (Physics.Raycast (ray, out var hit, 100000, focusMask))
         {
             //TODO: PHYSICS CACHING
-            OrbitMotion planet = hit.transform.GetComponent<OrbitMotion> ();
+            LocalController planet = hit.transform.GetComponentInParent<LocalController> ();
             transform.position = hit.transform.position;
+            follower?.SetFocus(false);
             follower = planet;
-
+            follower.SetFocus(true);
         }
     }
 

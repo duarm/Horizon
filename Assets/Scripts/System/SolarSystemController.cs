@@ -12,14 +12,18 @@ public class SolarSystemController : MonoBehaviour
     [SerializeField] LocalController[] planets;
     [SerializeField] LocalController sun;
 
+    [Header("Simulation")]
+    [SerializeField] float timeScale = 1;
+
     [Header ("Configuration")]
     [Range (0, 1)]
     [SerializeField] float sizeScalePercentage = .05f;
     [Range (0, 1)]
     [SerializeField] float orbitScalePercentage = .1f;
-    [SerializeField] float timeScale = 1;
     [SerializeField] float sizeScale = 5f;
     [SerializeField] float orbitScale = 5f;
+    [Space]
+    [SerializeField] Texture2D focusTexture;
 
     public bool ShowingOrbit
     {
@@ -42,7 +46,7 @@ public class SolarSystemController : MonoBehaviour
     public static float GetSizeScale () => s_Instance.orbitScale;
     public static float GetZoomValue () => s_Instance.zoomValue;
     public static LocalController Sun () => s_Instance.sun;
-
+    public static Texture2D FocusTexture () => s_Instance.focusTexture;
     #region Debug
     [ContextMenu ("Update Orbit Scale")]
     public void UpdateOrbitScales ()
@@ -135,7 +139,7 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    void Zoom (float direction, OrbitMotion follower)
+    void Zoom (float direction, LocalController follower)
     {
         /*if (zoomDistance >= 1 && ShowingOrbit)
         {
@@ -168,7 +172,7 @@ public class SolarSystemController : MonoBehaviour
         sun.planet.Scale (direction, sizeScalePercentage);
     }
 
-    void ExpandUniverse (float direction, OrbitMotion follower)
+    void ExpandUniverse (float direction, LocalController follower)
     {
         LocalController previousPlanet = null;
         float difference = 0;
@@ -181,7 +185,7 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    public static void StartZoom (float zoomRate, OrbitMotion follower)
+    public static void StartZoom (float zoomRate, LocalController follower)
     {
         s_Instance.Zoom (zoomRate, follower);
     }

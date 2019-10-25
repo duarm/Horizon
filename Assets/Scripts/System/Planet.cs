@@ -8,14 +8,15 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
     public string planetName;
     [SerializeField] Camera mainCamera;
     [SerializeField] List<LocalController> moons;
-    [SerializeField] TrailRenderer trail;
     [SerializeField] float sizeScaling = 1.1f;
 
     float originalSize;
     float maxSize;
     bool showName = true;
+    public bool beingFocused = false;
 
-    GUIStyle guiStyle = new GUIStyle (); //create a new variable
+    static Texture2D focusTexture;
+    static readonly GUIStyle guiStyle = new GUIStyle (); //create a new variable
 
     private void OnValidate ()
     {
@@ -27,13 +28,14 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
 
     private void Start ()
     {
-        CalculateScales();
+        focusTexture = SolarSystemController.FocusTexture ();
+        CalculateScales ();
     }
 
-    public void CalculateScales()
+    public void CalculateScales ()
     {
         originalSize = transform.localScale.x;
-        maxSize = transform.localScale.x * SolarSystemController.GetSizeScale();
+        maxSize = transform.localScale.x * SolarSystemController.GetSizeScale ();
     }
 
     public void Scale (float direction, float rate)
@@ -46,20 +48,30 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
         transform.localScale = new Vector3 (size, size, size);
     }
 
-    public void SetNameVisilibity(bool value)
+    public void SetNameVisilibity (bool value)
     {
         showName = value;
     }
 
+    public void SetFocus(bool value)
+    {
+        beingFocused = value;
+    }
+
     void OnGUI ()
     {
-        if(showName)
+        var planetPos = mainCamera.WorldToScreenPoint (transform.position);
+        if (showName)
         {
-            var objectPos = mainCamera.WorldToScreenPoint (transform.position);
-            if (objectPos.z > 0)
+            if (planetPos.z > 0)
             {
-                GUI.Label (new Rect (objectPos.x, Screen.height - objectPos.y - 20, 40, 20), planetName, guiStyle);
+                GUI.Label (new Rect (planetPos.x, Screen.height - planetPos.y - 20, 40, 20), planetName, guiStyle);
             }
+        }
+
+        if (beingFocused)
+        {
+            GUI.DrawTexture (new Rect (planetPos.x - 20, Screen.height - planetPos.y - 20, 30, 30), focusTexture);
         }
     }
 
