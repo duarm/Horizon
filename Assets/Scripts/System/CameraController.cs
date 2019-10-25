@@ -68,6 +68,7 @@ public class CameraController : MonoBehaviour
     {
         //slow down the movement as the zoom increases to give the impression of a bigger universe
         var speed = (movementSpeed - (SolarSystemController.GetZoomValue () * movementSlowDownRate));
+        speed = speed < 0 ? 0 : speed;
         Vector3 fowardMovement = worldCoordinatesOverride.forward * speed * input.y;
         Vector3 rightMovement = transform.right * speed * input.x;
         newPos = (fowardMovement + rightMovement) * Time.fixedDeltaTime;

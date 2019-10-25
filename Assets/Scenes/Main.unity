@@ -485,7 +485,6 @@ MonoBehaviour:
   planetName: Jupiter
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!1 &74929927
@@ -788,7 +787,6 @@ MonoBehaviour:
   planetName: Marte
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!1 &93489344
@@ -843,7 +841,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!114 &93489347
@@ -1118,6 +1115,7 @@ MonoBehaviour:
   sizeScale: 10
   orbitScale: 10
   focusTexture: {fileID: 2800000, guid: 331de250aba2ed24d8d8e4e09a2c11ff, type: 3}
+  zoomValue: 0
 --- !u!1 &153138329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,7 +1772,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!1 &198327778
@@ -1899,7 +1896,6 @@ MonoBehaviour:
   planetName: Sol
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!23 &198917677
@@ -2418,7 +2414,6 @@ MonoBehaviour:
   planetName: Deimos
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!120 &347629222
@@ -3061,7 +3056,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 8af93fd4f6c86fc42b6aef63d6133fa6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4254,7 +4249,6 @@ MonoBehaviour:
   planetName: Venus
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!1 &677926912
@@ -4971,7 +4965,6 @@ MonoBehaviour:
   planetName: Netuno
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!1 &779695953
@@ -5773,7 +5766,6 @@ MonoBehaviour:
   planetName: Saturn
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!1 &838408129
@@ -7316,7 +7308,6 @@ MonoBehaviour:
   planetName: Uranus
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!1 &1185248366
@@ -7368,7 +7359,6 @@ MonoBehaviour:
   planetName: Mars
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!23 &1185248369
@@ -8862,7 +8852,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e756ac196ebe8d249a961958c2cdd4b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9148,7 +9138,7 @@ MonoBehaviour:
     m_Bits: 4096
   worldCoordinatesOverride: {fileID: 123268375}
   movementSpeed: 500
-  movementSlowDownRate: 0.49
+  movementSlowDownRate: 12
   transitionDuration: 2.5
   transitionSmoothTime: 0.5
   xSpeed: 1000
@@ -9917,7 +9907,6 @@ MonoBehaviour:
   planetName: Terra
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
 --- !u!1 &1680968685
@@ -11712,6 +11701,5 @@ MonoBehaviour:
   planetName: Mercurio
   mainCamera: {fileID: 963194227}
   moons: []
-  trail: {fileID: 0}
   sizeScaling: 1.1
   beingFocused: 0
