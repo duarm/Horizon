@@ -9,7 +9,7 @@ public class OrbitRenderer : MonoBehaviour
     LineRenderer orbitRenderer;
     TrailRenderer trailRenderer;
 
-    [Range (3, 36)]
+    [Range (3, 360)]
     public int segments;
 
     private void OnValidate ()

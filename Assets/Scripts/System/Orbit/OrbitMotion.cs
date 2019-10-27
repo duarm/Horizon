@@ -16,12 +16,15 @@ public class OrbitMotion : MonoBehaviour
     [Tooltip ("How much time in seconds to complete the orbit")]
     public float period = 3f;
 
-    public float timeScale = 1f;
 
     public bool lockOrbit = false;
 
-    float minOrbitDistance;
-    float maxOrbitDistance;
+    float timeScale = 1f;
+
+    float minOrbit;
+    float maxOrbit;
+    float orbitDifference;
+
     float orbitVelocity;
 
     Coroutine orbitMotionRoutine;
@@ -42,41 +45,38 @@ public class OrbitMotion : MonoBehaviour
         }
 
         SetOrbitingObjectPosition ();
-        CalculateScales();
-
         orbitMotionRoutine = StartCoroutine (AnimateOrbit ());
     }
 
-    public void CalculateScales()
+    public void CalculateScales(float scale)
     {
-        minOrbitDistance = orbit.XAxis;
-        maxOrbitDistance = orbit.XAxis * SolarSystemController.GetOrbitScale();
+        minOrbit = orbit.XAxis;
+        maxOrbit = orbit.XAxis * scale;
+        orbitDifference = maxOrbit - minOrbit;
     }
 
-    public float IncreaseOrbit (float direction, float rate)
+    public void IncreaseOrbit (float direction, float rate)
     {
-        var increasedBy = rate * maxOrbitDistance * direction;
+        var increasedBy = rate * orbitDifference * direction;
         var newOrbit = orbit.XAxis + increasedBy;
 
-        if (newOrbit < minOrbitDistance)
-        {
-            increasedBy = minOrbitDistance - orbit.XAxis;
-            newOrbit = minOrbitDistance;
-        }
-        else if (newOrbit > maxOrbitDistance)
-        {
-            increasedBy = orbit.XAxis - maxOrbitDistance;
-            newOrbit = maxOrbitDistance;
-        }
+        if (newOrbit < minOrbit)
+            newOrbit = minOrbit;
+        else if (newOrbit > maxOrbit)
+            newOrbit = maxOrbit;
 
         orbit.SetOrbit (newOrbit);
-        return increasedBy;
     }
 
     void SetOrbitingObjectPosition ()
     {
         Vector2 orbitPos = orbit.Evaluate (progress);
         orbitingObject.localPosition = new Vector3 (orbitPos.x, 0, orbitPos.y);
+    }
+
+    public void SetTimeScale(float value)
+    {
+        timeScale = value;
     }
 
     IEnumerator AnimateOrbit ()

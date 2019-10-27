@@ -10,18 +10,13 @@ public class SolarSystemController : MonoBehaviour
     [Header ("References")]
     [SerializeField] new CameraController camera;
     [SerializeField] LocalController[] planets;
+    [Space]
     [SerializeField] LocalController sun;
 
-    [Header("Simulation")]
+    [Header ("Simulation")]
     [SerializeField] float timeScale = 1;
 
     [Header ("Configuration")]
-    [Range (0, 1)]
-    [SerializeField] float sizeScalePercentage = .05f;
-    [Range (0, 1)]
-    [SerializeField] float orbitScalePercentage = .1f;
-    [SerializeField] float sizeScale = 5f;
-    [SerializeField] float orbitScale = 5f;
     [Space]
     [SerializeField] Texture2D focusTexture;
 
@@ -40,41 +35,9 @@ public class SolarSystemController : MonoBehaviour
 
     bool showingOrbit = true;
     bool upwardMotion = true;
-    float zoomValue = 0;
 
-    public static float GetOrbitScale () => s_Instance.sizeScale;
-    public static float GetSizeScale () => s_Instance.orbitScale;
-    public static float GetZoomValue () => s_Instance.zoomValue;
     public static LocalController Sun () => s_Instance.sun;
     public static Texture2D FocusTexture () => s_Instance.focusTexture;
-    #region Debug
-    [ContextMenu ("Update Orbit Scale")]
-    public void UpdateOrbitScales ()
-    {
-        for (int i = 0; i < planets.Length; i++)
-        {
-            planets[i].orbit.CalculateScales ();
-        }
-    }
-
-    [ContextMenu ("Update Size Scale")]
-    public void UpdateSizeScales ()
-    {
-        for (int i = 0; i < planets.Length; i++)
-        {
-            planets[i].planet.CalculateScales ();
-        }
-    }
-
-    [ContextMenu ("Update Speed Scale")]
-    public void SetSpeedScale ()
-    {
-        for (int i = 0; i < planets.Length; i++)
-        {
-            planets[i].SetTimeScale (timeScale);
-        }
-    }
-    #endregion
 
     void OnValidate ()
     {
@@ -89,10 +52,30 @@ public class SolarSystemController : MonoBehaviour
         s_Instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start ()
+    public static void Initialize (float scale)
     {
-        //EventManager.StartListening ("UpdateLineRenderer", onEnterUpdateBounds);
+        s_Instance.UpdateScales (scale);
+    }
+
+    [ContextMenu ("Update Scales")]
+    public void UpdateScales (float scale)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            planets[i].orbit.CalculateScales (scale);
+            planets[i].planet.CalculateScales (scale);
+        }
+
+        sun.planet.CalculateScales(scale);
+    }
+
+    [ContextMenu ("Update Speed Scale")]
+    public void SetSpeedScale ()
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            planets[i].SetTimeScale (timeScale);
+        }
     }
 
     private void FixedUpdate ()
@@ -103,7 +86,7 @@ public class SolarSystemController : MonoBehaviour
 
     public void ToggleUpwardMotion ()
     {
-        sun.transform.localPosition = new Vector3 (0, sun.transform.localPosition.y + (10 * Time.deltaTime), 0);
+        sun.rb.position = new Vector3 (0, sun.transform.localPosition.y + (10 * Time.deltaTime), 0);
 
         for (int i = 0; i < planets.Length; i++)
         {
@@ -139,19 +122,10 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    void Zoom (float direction, LocalController follower)
+    void Zoom (float direction, float percentage)
     {
-        /*if (zoomDistance >= 1 && ShowingOrbit)
-        {
-            //ShowingOrbit = false;
-        }
-        else if (zoomDistance == 0 && !ShowingOrbit)
-        {
-            //ShowingOrbit = true;
-        }*/
-
-        ScalePlanets (direction);
-        ExpandUniverse (direction, follower);
+        ScalePlanets (direction, percentage);
+        ExpandUniverse (direction, percentage);
     }
 
     void SetOrbitVisiblity (bool value)
@@ -162,31 +136,29 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    void ScalePlanets (float direction)
+    void ScalePlanets (float direction, float percentage)
     {
         for (int i = 0; i < planets.Length; i++)
         {
-            planets[i].planet.Scale (direction, sizeScalePercentage);
+            planets[i].planet.Scale (direction, percentage);
         }
 
-        sun.planet.Scale (direction, sizeScalePercentage);
+        sun.planet.Scale (direction, percentage);
     }
 
-    void ExpandUniverse (float direction, LocalController follower)
+    void ExpandUniverse (float direction, float percentage)
     {
         LocalController previousPlanet = null;
-        float difference = 0;
 
         for (int i = 0; i < planets.Length; i++)
         {
-            difference = planets[i].orbit.IncreaseOrbit (direction, orbitScalePercentage);
+            planets[i].orbit.IncreaseOrbit (direction, percentage);
             previousPlanet = planets[i];
-            zoomValue += difference != 0 ? direction : 0;
         }
     }
 
-    public static void StartZoom (float zoomRate, LocalController follower)
+    public static void StartZoom (float direction, float percentage)
     {
-        s_Instance.Zoom (zoomRate, follower);
+        s_Instance.Zoom (direction, percentage);
     }
 }

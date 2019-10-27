@@ -6,12 +6,16 @@ public class LocalController : MonoBehaviour
     public Planet planet;
     public OrbitMotion orbit;
     public OrbitRenderer orbitRenderer;
+    public Rigidbody rb;
 
     private void OnValidate ()
     {
-        planet = GetComponentInChildren<Planet> ();
-        orbit = GetComponentInChildren<OrbitMotion> ();
-        orbitRenderer = GetComponentInChildren<OrbitRenderer> ();
+        if(!planet)
+            planet = GetComponentInChildren<Planet> ();
+        if(!orbit)
+            orbit = GetComponentInChildren<OrbitMotion> ();
+        if(!orbitRenderer)
+            orbitRenderer = GetComponentInChildren<OrbitRenderer> ();
     }
     
     public void SetOrbitVisiblity (bool value)
@@ -29,7 +33,11 @@ public class LocalController : MonoBehaviour
     {
         if (orbit != null)
         {
-            orbit.timeScale = value;
+            orbit.SetTimeScale(value);
         }
+    }
+    
+    public override string ToString(){
+        return this.planet.planetName;
     }
 }

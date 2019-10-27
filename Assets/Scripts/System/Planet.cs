@@ -10,13 +10,15 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
     [SerializeField] List<LocalController> moons;
     [SerializeField] float sizeScaling = 1.1f;
 
-    float originalSize;
-    float maxSize;
     bool showName = true;
-    public bool beingFocused = false;
+    bool beingFocused = false;
+
+    [SerializeField, ReadOnly] float minSize;
+    [SerializeField, ReadOnly] float maxSize;
+    [SerializeField, ReadOnly] float sizeDifference;
 
     static Texture2D focusTexture;
-    static readonly GUIStyle guiStyle = new GUIStyle (); //create a new variable
+    static readonly GUIStyle guiStyle = new GUIStyle ();
 
     private void OnValidate ()
     {
@@ -29,23 +31,25 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
     private void Start ()
     {
         focusTexture = SolarSystemController.FocusTexture ();
-        CalculateScales ();
     }
 
-    public void CalculateScales ()
+    public void CalculateScales (float scale)
     {
-        originalSize = transform.localScale.x;
-        maxSize = transform.localScale.x * SolarSystemController.GetSizeScale ();
+        minSize = transform.localScale.x;
+        maxSize = transform.localScale.x * scale;
+        sizeDifference = maxSize - minSize;
+        Debug.Log("Calculating Scales");
     }
 
     public void Scale (float direction, float rate)
     {
-        var size = transform.localScale.x + (rate * maxSize * direction);
-        if (size > maxSize)
-            size = maxSize;
-        else if (size < originalSize)
-            size = originalSize;
-        transform.localScale = new Vector3 (size, size, size);
+        var increasedBy = rate * sizeDifference * direction;
+        var newSize = transform.localScale.x + increasedBy;
+        if (newSize > maxSize)
+            newSize = maxSize;
+        else if (newSize < minSize)
+            newSize = minSize;
+        transform.localScale = new Vector3 (newSize, newSize, newSize);
     }
 
     public void SetNameVisilibity (bool value)
@@ -53,7 +57,7 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
         showName = value;
     }
 
-    public void SetFocus(bool value)
+    public void SetFocus (bool value)
     {
         beingFocused = value;
     }
