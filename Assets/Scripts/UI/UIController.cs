@@ -2,19 +2,28 @@
 
 public class UIController : MonoBehaviour
 {
-    Vector2 referenceResolution;
-    float scalerMatchWidthOrHeight = .5f;
+    private static UIController Instance;
+    [SerializeField] Vector2 referenceResolution;
+    [SerializeField] float scalerMatchWidthOrHeight = .5f;
 
-    public static float Scale;
+    [SerializeField, ReadOnly] float scale;
+    public static float Scale { get { return Instance.scale; } }
 
-    private void Awake() {
-        //resolution change event
-        RecalculateScale();
+    private void OnValidate ()
+    {
+        RecalculateScale ();
     }
 
-    public void RecalculateScale()
+    private void Awake ()
     {
-        Scale = GetScale();
+        Instance = this;
+        //resolution change event
+        RecalculateScale ();
+    }
+
+    public void RecalculateScale ()
+    {
+        scale = GetScale ();
     }
 
     private float GetScale ()

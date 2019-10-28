@@ -5,6 +5,7 @@ using UnityEngine.Profiling;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] SolarSystemController solarSystem;
     [SerializeField] LayerMask focusMask;
     [SerializeField] Transform worldCoordinatesOverride;
 
@@ -43,7 +44,13 @@ public class CameraController : MonoBehaviour
     LocalController sun;
     [ReadOnly, SerializeField] int zoomMax;
     [ReadOnly, SerializeField] int zoomMin;
-    [ReadOnly, SerializeField] float zoomLevel = 0;
+    [ReadOnly, SerializeField] int zoomLevel = 0;
+
+    private void OnValidate ()
+    {
+        if (!solarSystem)
+            solarSystem = FindObjectOfType<SolarSystemController> ();
+    }
 
     private void Start ()
     {
@@ -51,9 +58,9 @@ public class CameraController : MonoBehaviour
         currentZoomPos = transform.localPosition;
         oldPos = transform.localPosition;
         camera = Camera.main;
-        sun = SolarSystemController.Sun ();
+        sun = solarSystem.Sun;
 
-        SolarSystemController.Initialize (scale);
+        solarSystem.Initialize (scale);
 
         zoomMin = 0;
         zoomMax = Mathf.CeilToInt (1 / circularOrbitScalePercentage);
@@ -139,19 +146,40 @@ public class CameraController : MonoBehaviour
             if (zoomLevel < zoomMax)
             {
                 velocity = 1;
-                SolarSystemController.StartZoom (velocity, circularOrbitScalePercentage);
+                solarSystem.Zoom (velocity, circularOrbitScalePercentage);
+            }
+            else if (follower)
+            {
+                if (zoomLevel == zoomMax)
+                    solarSystem.Focus (follower, true);
+
+                velocity = 1;
+                Zoom (velocity);
             }
         }
         else if (velocityZoom < 0)
         {
-            if (zoomLevel > zoomMin)
+            if (zoomLevel > zoomMin && zoomLevel <= zoomMax)
             {
                 velocity = -1;
-                SolarSystemController.StartZoom (velocity, circularOrbitScalePercentage);
+                solarSystem.Zoom (velocity, circularOrbitScalePercentage);
+            }
+            else if (follower)
+            {
+                if (zoomLevel == (zoomMax + 1))
+                    solarSystem.Focus (follower, false);
+
+                velocity = -1;
+                Zoom (velocity);
             }
         }
 
         zoomLevel += velocity;
+    }
+
+    public void Zoom (int direction)
+    {
+
     }
 
     public void HandleMovement ()

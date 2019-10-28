@@ -269,7 +269,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -301,12 +300,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 93489345}
+  rb: {fileID: 0}
   orbit:
     xAxis: 3
     yAxis: 3
   progress: 0
   period: 3
   lockOrbit: 0
+  debug: 0
 --- !u!120 &93489349
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -598,6 +599,7 @@ MonoBehaviour:
   - {fileID: 2116921385}
   - {fileID: 586278742}
   sun: {fileID: 803631787}
+  upwardMotionSpeed: 10
   timeScale: 1
   focusTexture: {fileID: 2800000, guid: 331de250aba2ed24d8d8e4e09a2c11ff, type: 3}
 --- !u!1 &180701748
@@ -735,7 +737,7 @@ Transform:
   m_LocalScale: {x: 13.92, y: 13.92, z: 13.92}
   m_Children: []
   m_Father: {fileID: 803631786}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &198917676
 MonoBehaviour:
@@ -752,7 +754,6 @@ MonoBehaviour:
   planetName: Sun
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -850,7 +851,6 @@ MonoBehaviour:
   planetName: Uranus
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -861,7 +861,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245412569}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1072,8 +1072,8 @@ GameObject:
   - component: {fileID: 462952845}
   - component: {fileID: 462952844}
   - component: {fileID: 462952843}
-  - component: {fileID: 462952842}
   - component: {fileID: 462952841}
+  - component: {fileID: 462952842}
   m_Layer: 12
   m_Name: Saturn Orbit
   m_TagString: Untagged
@@ -1191,8 +1191,8 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!65 &462952842
-BoxCollider:
+--- !u!135 &462952842
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1202,7 +1202,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 75, y: 75, z: 75}
+  m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &462952843
 MonoBehaviour:
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitMotion: {fileID: 462952844}
-  segments: 24
+  segments: 40
 --- !u!114 &462952844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,12 +1232,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 462952840}
+  rb: {fileID: 0}
   orbit:
     xAxis: 2087.4
     yAxis: 2087.4
   progress: 0
   period: 10755.7
   lockOrbit: 0
+  debug: 0
 --- !u!120 &462952845
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1277,33 +1279,49 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 2087.4}
-  - {x: 540.25885, y: 0, z: 2016.2734}
-  - {x: 1043.7, y: 0, z: 1807.7413}
+  - {x: 326.54132, y: 0, z: 2061.7007}
+  - {x: 645.04205, y: 0, z: 1985.2354}
+  - {x: 947.65985, y: 0, z: 1859.887}
+  - {x: 1226.9429, y: 0, z: 1688.7421}
   - {x: 1476.0146, y: 0, z: 1476.0146}
-  - {x: 1807.7415, y: 0, z: 1043.6998}
-  - {x: 2016.2734, y: 0, z: 540.2589}
+  - {x: 1688.7422, y: 0, z: 1226.9427}
+  - {x: 1859.887, y: 0, z: 947.6598}
+  - {x: 1985.2354, y: 0, z: 645.042}
+  - {x: 2061.7007, y: 0, z: 326.54135}
   - {x: 2087.4, y: 0, z: -0.00009124315}
-  - {x: 2016.2734, y: 0, z: -540.25885}
-  - {x: 1807.7413, y: 0, z: -1043.7001}
+  - {x: 2061.7004, y: 0, z: -326.5415}
+  - {x: 1985.2352, y: 0, z: -645.04236}
+  - {x: 1859.8871, y: 0, z: -947.65955}
+  - {x: 1688.7421, y: 0, z: -1226.9427}
   - {x: 1476.0146, y: 0, z: -1476.0146}
-  - {x: 1043.7001, y: 0, z: -1807.7413}
-  - {x: 540.2586, y: 0, z: -2016.2736}
+  - {x: 1226.9427, y: 0, z: -1688.7422}
+  - {x: 947.6594, y: 0, z: -1859.8871}
+  - {x: 645.0421, y: 0, z: -1985.2352}
+  - {x: 326.54126, y: 0, z: -2061.7007}
   - {x: -0.0001824863, y: 0, z: -2087.4}
-  - {x: -540.2594, y: 0, z: -2016.2733}
-  - {x: -1043.6998, y: 0, z: -1807.7413}
+  - {x: -326.5411, y: 0, z: -2061.7007}
+  - {x: -645.0425, y: 0, z: -1985.2351}
+  - {x: -947.65985, y: 0, z: -1859.887}
+  - {x: -1226.9435, y: 0, z: -1688.7415}
   - {x: -1476.0149, y: 0, z: -1476.0144}
-  - {x: -1807.7415, y: 0, z: -1043.6997}
-  - {x: -2016.2736, y: 0, z: -540.2587}
+  - {x: -1688.7417, y: 0, z: -1226.9432}
+  - {x: -1859.8872, y: 0, z: -947.6591}
+  - {x: -1985.2352, y: 0, z: -645.04224}
+  - {x: -2061.7007, y: 0, z: -326.5404}
   - {x: -2087.4, y: 0, z: 0.000024891995}
-  - {x: -2016.2732, y: 0, z: 540.2597}
-  - {x: -1807.7415, y: 0, z: 1043.6997}
+  - {x: -2061.7004, y: 0, z: 326.54144}
+  - {x: -1985.2352, y: 0, z: 645.0423}
+  - {x: -1859.8867, y: 0, z: 947.6601}
+  - {x: -1688.7417, y: 0, z: 1226.9434}
   - {x: -1476.0142, y: 0, z: 1476.0151}
-  - {x: -1043.6995, y: 0, z: 1807.7417}
-  - {x: -540.2584, y: 0, z: 2016.2736}
+  - {x: -1226.943, y: 0, z: 1688.742}
+  - {x: -947.6589, y: 0, z: 1859.8873}
+  - {x: -645.04193, y: 0, z: 1985.2354}
+  - {x: -326.54108, y: 0, z: 2061.7007}
   - {x: 0, y: 0, z: 2087.4}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 3
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1499,10 +1517,10 @@ GameObject:
   - component: {fileID: 503747253}
   - component: {fileID: 503747252}
   - component: {fileID: 503747251}
-  - component: {fileID: 503747254}
   - component: {fileID: 503747255}
+  - component: {fileID: 503747254}
   m_Layer: 12
-  m_Name: MarsOrbit
+  m_Name: Mars Orbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1536,7 +1554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitMotion: {fileID: 503747252}
-  segments: 24
+  segments: 26
 --- !u!114 &503747252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,12 +1569,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 503747250}
+  rb: {fileID: 0}
   orbit:
     xAxis: 306.2
     yAxis: 306.2
   progress: 0
   period: 686.98
   lockOrbit: 0
+  debug: 0
 --- !u!120 &503747253
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1596,33 +1616,35 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 306.2}
-  - {x: 79.2504, y: 0, z: 295.7665}
-  - {x: 153.1, y: 0, z: 265.17697}
-  - {x: 216.5161, y: 0, z: 216.5161}
-  - {x: 265.177, y: 0, z: 153.09999}
-  - {x: 295.7665, y: 0, z: 79.250404}
-  - {x: 306.2, y: 0, z: -0.000013384428}
-  - {x: 295.7665, y: 0, z: -79.2504}
-  - {x: 265.17697, y: 0, z: -153.10002}
-  - {x: 216.5161, y: 0, z: -216.5161}
-  - {x: 153.10002, y: 0, z: -265.17697}
-  - {x: 79.25036, y: 0, z: -295.7665}
+  - {x: 73.278465, y: 0, z: 297.3024}
+  - {x: 142.29825, y: 0, z: 271.12665}
+  - {x: 203.04817, y: 0, z: 229.19402}
+  - {x: 251.99767, y: 0, z: 173.94142}
+  - {x: 286.302, y: 0, z: 108.58002}
+  - {x: 303.96747, y: 0, z: 36.908333}
+  - {x: 303.96747, y: 0, z: -36.908363}
+  - {x: 286.30197, y: 0, z: -108.58004}
+  - {x: 251.99763, y: 0, z: -173.94147}
+  - {x: 203.04817, y: 0, z: -229.19402}
+  - {x: 142.2982, y: 0, z: -271.12668}
+  - {x: 73.278465, y: 0, z: -297.3024}
   - {x: -0.000026768856, y: 0, z: -306.2}
-  - {x: -79.25047, y: 0, z: -295.76648}
-  - {x: -153.09999, y: 0, z: -265.17697}
-  - {x: -216.51614, y: 0, z: -216.51607}
-  - {x: -265.177, y: 0, z: -153.09998}
-  - {x: -295.7665, y: 0, z: -79.250374}
-  - {x: -306.2, y: 0, z: 0.0000036513986}
-  - {x: -295.76645, y: 0, z: 79.25052}
-  - {x: -265.177, y: 0, z: 153.09998}
-  - {x: -216.51602, y: 0, z: 216.51617}
-  - {x: -153.09993, y: 0, z: 265.17703}
-  - {x: -79.25033, y: 0, z: 295.7665}
+  - {x: -73.27851, y: 0, z: -297.3024}
+  - {x: -142.29825, y: 0, z: -271.12665}
+  - {x: -203.0482, y: 0, z: -229.19397}
+  - {x: -251.99771, y: 0, z: -173.94138}
+  - {x: -286.302, y: 0, z: -108.579926}
+  - {x: -303.96747, y: 0, z: -36.908344}
+  - {x: -303.96747, y: 0, z: 36.90835}
+  - {x: -286.30197, y: 0, z: 108.58007}
+  - {x: -251.99763, y: 0, z: 173.94151}
+  - {x: -203.0482, y: 0, z: 229.19397}
+  - {x: -142.29825, y: 0, z: 271.12665}
+  - {x: -73.278435, y: 0, z: 297.3024}
   - {x: 0, y: 0, z: 306.2}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 3
+    widthMultiplier: 0.8
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1675,8 +1697,8 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!65 &503747254
-BoxCollider:
+--- !u!135 &503747254
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1686,7 +1708,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25, y: 25, z: 25}
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &503747255
 TrailRenderer:
@@ -1912,7 +1934,7 @@ Transform:
   m_Children:
   - {fileID: 1670278376}
   m_Father: {fileID: 803631786}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &572659040
 MonoBehaviour:
@@ -1929,7 +1951,6 @@ MonoBehaviour:
   planet: {fileID: 602214473}
   orbit: {fileID: 1670278380}
   orbitRenderer: {fileID: 1670278379}
-  rb: {fileID: 0}
 --- !u!1 &576517794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,7 +2018,7 @@ Transform:
   m_Children:
   - {fileID: 626801727}
   m_Father: {fileID: 803631786}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &586278742
 MonoBehaviour:
@@ -2014,7 +2035,6 @@ MonoBehaviour:
   planet: {fileID: 1373198989}
   orbit: {fileID: 626801731}
   orbitRenderer: {fileID: 626801730}
-  rb: {fileID: 0}
 --- !u!1 &602214471
 GameObject:
   m_ObjectHideFlags: 0
@@ -2063,7 +2083,6 @@ MonoBehaviour:
   planetName: Earth
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -2074,7 +2093,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602214471}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2281,8 +2300,8 @@ GameObject:
   - component: {fileID: 626801732}
   - component: {fileID: 626801731}
   - component: {fileID: 626801730}
-  - component: {fileID: 626801729}
   - component: {fileID: 626801728}
+  - component: {fileID: 626801729}
   m_Layer: 12
   m_Name: Neptune Orbit
   m_TagString: Untagged
@@ -2400,8 +2419,8 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!65 &626801729
-BoxCollider:
+--- !u!135 &626801729
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2411,7 +2430,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 125, y: 125, z: 125}
+  m_Radius: 150
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &626801730
 MonoBehaviour:
@@ -2426,7 +2445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitMotion: {fileID: 626801731}
-  segments: 24
+  segments: 48
 --- !u!114 &626801731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2441,12 +2460,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 626801727}
+  rb: {fileID: 0}
   orbit:
     xAxis: 6129
     yAxis: 6129
   progress: 0
   period: 60190.03
   lockOrbit: 0
+  debug: 0
 --- !u!120 &626801732
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2486,33 +2507,57 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 6129}
+  - {x: 799.99506, y: 0, z: 6076.566}
   - {x: 1586.3019, y: 0, z: 5920.159}
+  - {x: 2345.4668, y: 0, z: 5662.4575}
   - {x: 3064.5, y: 0, z: 5307.8696}
+  - {x: 3731.0989, y: 0, z: 4862.4624}
   - {x: 4333.8574, y: 0, z: 4333.8574}
+  - {x: 4862.4624, y: 0, z: 3731.0989}
   - {x: 5307.87, y: 0, z: 3064.4998}
+  - {x: 5662.4575, y: 0, z: 2345.4668}
   - {x: 5920.159, y: 0, z: 1586.3021}
+  - {x: 6076.566, y: 0, z: 799.9946}
   - {x: 6129, y: 0, z: -0.0002679071}
+  - {x: 6076.5654, y: 0, z: -799.9959}
   - {x: 5920.159, y: 0, z: -1586.3019}
+  - {x: 5662.4575, y: 0, z: -2345.4673}
   - {x: 5307.8696, y: 0, z: -3064.5002}
+  - {x: 4862.4624, y: 0, z: -3731.0989}
   - {x: 4333.8574, y: 0, z: -4333.8574}
+  - {x: 3731.0977, y: 0, z: -4862.4634}
   - {x: 3064.5002, y: 0, z: -5307.8696}
+  - {x: 2345.4658, y: 0, z: -5662.458}
   - {x: 1586.3011, y: 0, z: -5920.1597}
+  - {x: 799.9943, y: 0, z: -6076.566}
   - {x: -0.0005358142, y: 0, z: -6129}
+  - {x: -799.9954, y: 0, z: -6076.5654}
   - {x: -1586.3036, y: 0, z: -5920.159}
+  - {x: -2345.4668, y: 0, z: -5662.4575}
   - {x: -3064.4998, y: 0, z: -5307.8696}
+  - {x: -3731.0999, y: 0, z: -4862.462}
   - {x: -4333.858, y: 0, z: -4333.8564}
+  - {x: -4862.462, y: 0, z: -3731.099}
   - {x: -5307.87, y: 0, z: -3064.4995}
+  - {x: -5662.4585, y: 0, z: -2345.4648}
   - {x: -5920.1597, y: 0, z: -1586.3015}
+  - {x: -6076.566, y: 0, z: -799.99335}
   - {x: -6129, y: 0, z: 0.00007308759}
+  - {x: -6076.5654, y: 0, z: 799.99634}
   - {x: -5920.1587, y: 0, z: 1586.3044}
+  - {x: -5662.457, y: 0, z: 2345.4678}
   - {x: -5307.87, y: 0, z: 3064.4995}
+  - {x: -4862.462, y: 0, z: 3731.0996}
   - {x: -4333.856, y: 0, z: 4333.859}
+  - {x: -3731.0984, y: 0, z: 4862.463}
   - {x: -3064.4985, y: 0, z: 5307.8706}
+  - {x: -2345.4668, y: 0, z: 5662.458}
   - {x: -1586.3007, y: 0, z: 5920.1597}
+  - {x: -799.9923, y: 0, z: 6076.566}
   - {x: 0, y: 0, z: 6129}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 3
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2644,7 +2689,6 @@ MonoBehaviour:
   planetName: Venus
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -2655,7 +2699,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656416563}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2753,7 +2797,7 @@ Transform:
   m_Children:
   - {fileID: 503747250}
   m_Father: {fileID: 803631786}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &694140937
 MonoBehaviour:
@@ -2770,7 +2814,6 @@ MonoBehaviour:
   planet: {fileID: 1185248368}
   orbit: {fileID: 503747252}
   orbitRenderer: {fileID: 503747251}
-  rb: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3114,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -3103,12 +3145,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 730807268}
+  rb: {fileID: 0}
   orbit:
     xAxis: 3
     yAxis: 3
   progress: 0
   period: 3
   lockOrbit: 0
+  debug: 0
 --- !u!120 &730807272
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3287,7 +3331,6 @@ MonoBehaviour:
   planet: {fileID: 7335486784101977008}
   orbit: {fileID: 1449127913}
   orbitRenderer: {fileID: 1449127914}
-  rb: {fileID: 0}
 --- !u!4 &789840104
 Transform:
   m_ObjectHideFlags: 0
@@ -3301,7 +3344,7 @@ Transform:
   m_Children:
   - {fileID: 1449127912}
   m_Father: {fileID: 803631786}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &803631785
 GameObject:
@@ -3313,7 +3356,6 @@ GameObject:
   m_Component:
   - component: {fileID: 803631786}
   - component: {fileID: 803631787}
-  - component: {fileID: 803631788}
   m_Layer: 12
   m_Name: Sun Local
   m_TagString: Untagged
@@ -3332,6 +3374,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1063620452}
   - {fileID: 198917675}
   - {fileID: 789840104}
   - {fileID: 2046886078}
@@ -3357,25 +3400,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 198917676}
-  orbit: {fileID: 1449127913}
-  orbitRenderer: {fileID: 1449127914}
-  rb: {fileID: 803631788}
---- !u!54 &803631788
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803631785}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 0
+  orbit: {fileID: 1063620454}
+  orbitRenderer: {fileID: 0}
 --- !u!1 &877128583
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,8 +3414,8 @@ GameObject:
   - component: {fileID: 877128589}
   - component: {fileID: 877128588}
   - component: {fileID: 877128587}
-  - component: {fileID: 877128586}
   - component: {fileID: 877128585}
+  - component: {fileID: 877128586}
   m_Layer: 12
   m_Name: Venus Orbit
   m_TagString: Untagged
@@ -3508,8 +3534,8 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!65 &877128586
-BoxCollider:
+--- !u!135 &877128586
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3519,7 +3545,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25, y: 25, z: 25}
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &877128587
 MonoBehaviour:
@@ -3549,12 +3575,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 877128584}
+  rb: {fileID: 0}
   orbit:
     xAxis: 158.49
     yAxis: 158.49
   progress: 0
   period: 224.7
   lockOrbit: 0
+  debug: 0
 --- !u!120 &877128589
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3620,7 +3648,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 158.49}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 3
+    widthMultiplier: 0.8
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -4143,8 +4171,8 @@ GameObject:
   - component: {fileID: 1042749834}
   - component: {fileID: 1042749833}
   - component: {fileID: 1042749832}
-  - component: {fileID: 1042749831}
   - component: {fileID: 1042749830}
+  - component: {fileID: 1042749831}
   m_Layer: 12
   m_Name: Uranus Orbit
   m_TagString: Untagged
@@ -4262,8 +4290,8 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!65 &1042749831
-BoxCollider:
+--- !u!135 &1042749831
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4273,7 +4301,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 100, z: 100}
+  m_Radius: 125
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1042749832
 MonoBehaviour:
@@ -4288,7 +4316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitMotion: {fileID: 1042749833}
-  segments: 24
+  segments: 44
 --- !u!114 &1042749833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4303,12 +4331,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1042749829}
+  rb: {fileID: 0}
   orbit:
     xAxis: 4321
     yAxis: 4321
   progress: 0
   period: 30687.15
   lockOrbit: 0
+  debug: 0
 --- !u!120 &1042749834
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -4348,33 +4378,53 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 4321}
-  - {x: 1118.357, y: 0, z: 4173.7656}
-  - {x: 2160.5, y: 0, z: 3742.0957}
-  - {x: 3055.4084, y: 0, z: 3055.4084}
-  - {x: 3742.096, y: 0, z: 2160.4998}
-  - {x: 4173.7656, y: 0, z: 1118.3572}
+  - {x: 614.94244, y: 0, z: 4277.0186}
+  - {x: 1217.3666, y: 0, z: 4145.969}
+  - {x: 1795.0084, y: 0, z: 3930.5198}
+  - {x: 2336.1091, y: 0, z: 3635.0564}
+  - {x: 2829.6536, y: 0, z: 3265.5938}
+  - {x: 3265.594, y: 0, z: 2829.653}
+  - {x: 3635.0564, y: 0, z: 2336.1091}
+  - {x: 3930.52, y: 0, z: 1795.008}
+  - {x: 4145.969, y: 0, z: 1217.3662}
+  - {x: 4277.0186, y: 0, z: 614.942}
   - {x: 4321, y: 0, z: -0.0001888769}
-  - {x: 4173.7656, y: 0, z: -1118.357}
-  - {x: 3742.0957, y: 0, z: -2160.5002}
-  - {x: 3055.4084, y: 0, z: -3055.4084}
-  - {x: 2160.5002, y: 0, z: -3742.0957}
-  - {x: 1118.3566, y: 0, z: -4173.7656}
+  - {x: 4277.0186, y: 0, z: -614.94293}
+  - {x: 4145.969, y: 0, z: -1217.3661}
+  - {x: 3930.5198, y: 0, z: -1795.0083}
+  - {x: 3635.0566, y: 0, z: -2336.109}
+  - {x: 3265.5935, y: 0, z: -2829.6538}
+  - {x: 2829.653, y: 0, z: -3265.5942}
+  - {x: 2336.109, y: 0, z: -3635.0566}
+  - {x: 1795.0083, y: 0, z: -3930.5198}
+  - {x: 1217.3656, y: 0, z: -4145.969}
+  - {x: 614.94183, y: 0, z: -4277.0186}
   - {x: -0.0003777538, y: 0, z: -4321}
-  - {x: -1118.3583, y: 0, z: -4173.765}
-  - {x: -2160.4998, y: 0, z: -3742.0957}
-  - {x: -3055.409, y: 0, z: -3055.4077}
-  - {x: -3742.096, y: 0, z: -2160.4995}
-  - {x: -4173.7656, y: 0, z: -1118.3568}
+  - {x: -614.9426, y: 0, z: -4277.0186}
+  - {x: -1217.3673, y: 0, z: -4145.9688}
+  - {x: -1795.0089, y: 0, z: -3930.5195}
+  - {x: -2336.1084, y: 0, z: -3635.0566}
+  - {x: -2829.6536, y: 0, z: -3265.5938}
+  - {x: -3265.594, y: 0, z: -2829.6533}
+  - {x: -3635.057, y: 0, z: -2336.1082}
+  - {x: -3930.5198, y: 0, z: -1795.0085}
+  - {x: -4145.969, y: 0, z: -1217.3658}
+  - {x: -4277.0186, y: 0, z: -614.9411}
   - {x: -4321, y: 0, z: 0.000051527408}
-  - {x: -4173.765, y: 0, z: 1118.3589}
-  - {x: -3742.096, y: 0, z: 2160.4995}
-  - {x: -3055.4072, y: 0, z: 3055.4094}
-  - {x: -2160.499, y: 0, z: 3742.0964}
-  - {x: -1118.3562, y: 0, z: 4173.7656}
+  - {x: -4277.0186, y: 0, z: 614.94324}
+  - {x: -4145.9688, y: 0, z: 1217.3679}
+  - {x: -3930.5198, y: 0, z: 1795.0087}
+  - {x: -3635.057, y: 0, z: 2336.1082}
+  - {x: -3265.594, y: 0, z: 2829.6533}
+  - {x: -2829.6528, y: 0, z: 3265.5945}
+  - {x: -2336.1074, y: 0, z: 3635.0574}
+  - {x: -1795.0079, y: 0, z: 3930.52}
+  - {x: -1217.3652, y: 0, z: 4145.969}
+  - {x: -614.9404, y: 0, z: 4277.0186}
   - {x: 0, y: 0, z: 4321}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 3
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -4502,6 +4552,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056247057}
   m_CullTransparentMesh: 0
+--- !u!1 &1063620451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1063620452}
+  - component: {fileID: 1063620454}
+  - component: {fileID: 1063620453}
+  m_Layer: 12
+  m_Name: Sun Orbit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1063620452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063620451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 803631786}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1063620453
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063620451}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1063620454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063620451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead1ca3c5b89c5941872f3ead1254957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityHandle: {fileID: 0}
+  orbitingObject: {fileID: 0}
+  rb: {fileID: 1063620453}
+  orbit:
+    xAxis: 0
+    yAxis: 0
+  progress: 0
+  period: 3
+  lockOrbit: 0
+  debug: 0
 --- !u!1 &1089583606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4554,7 +4674,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -4586,12 +4705,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1089583607}
+  rb: {fileID: 0}
   orbit:
     xAxis: 3
     yAxis: 3
   progress: 0
   period: 3
   lockOrbit: 0
+  debug: 0
 --- !u!120 &1089583611
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -5158,7 +5279,7 @@ GameObject:
   - component: {fileID: 1185248369}
   - component: {fileID: 1185248368}
   m_Layer: 12
-  m_Name: MarsPlanet
+  m_Name: Mars Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5194,7 +5315,6 @@ MonoBehaviour:
   planetName: Mars
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -5205,7 +5325,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185248366}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -5525,7 +5645,7 @@ Transform:
   m_Children:
   - {fileID: 462952840}
   m_Father: {fileID: 803631786}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1327179694
 MonoBehaviour:
@@ -5542,7 +5662,6 @@ MonoBehaviour:
   planet: {fileID: 1456839045}
   orbit: {fileID: 462952844}
   orbitRenderer: {fileID: 462952843}
-  rb: {fileID: 0}
 --- !u!1 &1336402347
 GameObject:
   m_ObjectHideFlags: 0
@@ -5626,7 +5745,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -5658,12 +5776,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1348221515}
+  rb: {fileID: 0}
   orbit:
     xAxis: 3
     yAxis: 3
   progress: 0
   period: 3
   lockOrbit: 0
+  debug: 0
 --- !u!120 &1348221519
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -5963,7 +6083,6 @@ MonoBehaviour:
   planetName: Neptune
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -5974,7 +6093,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373198987}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6241,8 +6360,8 @@ GameObject:
   - component: {fileID: 1449127915}
   - component: {fileID: 1449127914}
   - component: {fileID: 1449127913}
-  - component: {fileID: 1449127916}
   - component: {fileID: 1449127917}
+  - component: {fileID: 1449127916}
   m_Layer: 12
   m_Name: MercuryOrbit
   m_TagString: Untagged
@@ -6279,12 +6398,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1449127912}
+  rb: {fileID: 0}
   orbit:
     xAxis: 87.97
     yAxis: 87.97
   progress: 0
   period: 87.97
   lockOrbit: 0
+  debug: 0
 --- !u!114 &1449127914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6364,7 +6485,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 87.97}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 3
+    widthMultiplier: 0.7
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -6417,8 +6538,8 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!65 &1449127916
-BoxCollider:
+--- !u!135 &1449127916
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6428,7 +6549,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25, y: 25, z: 25}
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &1449127917
 TrailRenderer:
@@ -6574,7 +6695,6 @@ MonoBehaviour:
   planetName: Saturn
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -6585,7 +6705,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456839043}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6695,6 +6815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a1c98852074474d80426cab3f52a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  solarSystem: {fileID: 123825905}
   focusMask:
     serializedVersion: 2
     m_Bits: 4096
@@ -6900,7 +7021,7 @@ Transform:
   m_Children:
   - {fileID: 1819923333}
   m_Father: {fileID: 803631786}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1506379877
 MonoBehaviour:
@@ -6917,7 +7038,6 @@ MonoBehaviour:
   planet: {fileID: 1864047940}
   orbit: {fileID: 1819923337}
   orbitRenderer: {fileID: 1819923336}
-  rb: {fileID: 0}
 --- !u!1 &1506766699
 GameObject:
   m_ObjectHideFlags: 0
@@ -7243,7 +7363,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -7275,12 +7394,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1663775194}
+  rb: {fileID: 0}
   orbit:
     xAxis: 3
     yAxis: 3
   progress: 0
   period: 3
   lockOrbit: 0
+  debug: 0
 --- !u!120 &1663775198
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -7439,8 +7560,8 @@ GameObject:
   - component: {fileID: 1670278381}
   - component: {fileID: 1670278380}
   - component: {fileID: 1670278379}
-  - component: {fileID: 1670278378}
   - component: {fileID: 1670278377}
+  - component: {fileID: 1670278378}
   m_Layer: 12
   m_Name: EarthOrbit
   m_TagString: Untagged
@@ -7559,8 +7680,8 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!65 &1670278378
-BoxCollider:
+--- !u!135 &1670278378
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7570,7 +7691,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25, y: 25, z: 25}
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1670278379
 MonoBehaviour:
@@ -7585,7 +7706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitMotion: {fileID: 1670278380}
-  segments: 24
+  segments: 26
 --- !u!114 &1670278380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7600,12 +7721,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1670278376}
+  rb: {fileID: 0}
   orbit:
     xAxis: 191
     yAxis: 191
   progress: 0
   period: 365.26
   lockOrbit: 0
+  debug: 0
 --- !u!120 &1670278381
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -7645,33 +7768,35 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 191}
-  - {x: 49.434437, y: 0, z: 184.49184}
-  - {x: 95.5, y: 0, z: 165.41084}
-  - {x: 135.05739, y: 0, z: 135.05739}
-  - {x: 165.41086, y: 0, z: 95.49999}
-  - {x: 184.49184, y: 0, z: 49.434444}
-  - {x: 191, y: 0, z: -0.000008348875}
-  - {x: 184.49184, y: 0, z: -49.434437}
-  - {x: 165.41084, y: 0, z: -95.50001}
-  - {x: 135.05739, y: 0, z: -135.05739}
-  - {x: 95.50001, y: 0, z: -165.41084}
-  - {x: 49.434414, y: 0, z: -184.49184}
+  - {x: 45.709293, y: 0, z: 185.44989}
+  - {x: 88.76213, y: 0, z: 169.1221}
+  - {x: 126.656425, y: 0, z: 142.96556}
+  - {x: 157.18991, y: 0, z: 108.50036}
+  - {x: 178.5881, y: 0, z: 67.72953}
+  - {x: 189.60739, y: 0, z: 23.022507}
+  - {x: 189.60739, y: 0, z: -23.022524}
+  - {x: 178.5881, y: 0, z: -67.729546}
+  - {x: 157.1899, y: 0, z: -108.50039}
+  - {x: 126.656425, y: 0, z: -142.96556}
+  - {x: 88.7621, y: 0, z: -169.12212}
+  - {x: 45.709293, y: 0, z: -185.44989}
   - {x: -0.00001669775, y: 0, z: -191}
-  - {x: -49.43449, y: 0, z: -184.49182}
-  - {x: -95.49999, y: 0, z: -165.41084}
-  - {x: -135.05742, y: 0, z: -135.05737}
-  - {x: -165.41086, y: 0, z: -95.499985}
-  - {x: -184.49184, y: 0, z: -49.434425}
-  - {x: -191, y: 0, z: 0.0000022776521}
-  - {x: -184.4918, y: 0, z: 49.434517}
-  - {x: -165.41086, y: 0, z: 95.499985}
-  - {x: -135.05734, y: 0, z: 135.05743}
-  - {x: -95.499954, y: 0, z: 165.41089}
-  - {x: -49.4344, y: 0, z: 184.49184}
+  - {x: -45.709324, y: 0, z: -185.44987}
+  - {x: -88.76213, y: 0, z: -169.1221}
+  - {x: -126.65645, y: 0, z: -142.96553}
+  - {x: -157.18994, y: 0, z: -108.500336}
+  - {x: -178.58812, y: 0, z: -67.72948}
+  - {x: -189.60739, y: 0, z: -23.022512}
+  - {x: -189.60739, y: 0, z: 23.022518}
+  - {x: -178.5881, y: 0, z: 67.72956}
+  - {x: -157.1899, y: 0, z: 108.50041}
+  - {x: -126.65645, y: 0, z: 142.96553}
+  - {x: -88.76213, y: 0, z: 169.1221}
+  - {x: -45.70928, y: 0, z: 185.44989}
   - {x: 0, y: 0, z: 191}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 3
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -7776,7 +7901,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -7808,12 +7932,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1704347517}
+  rb: {fileID: 0}
   orbit:
     xAxis: 3
     yAxis: 3
   progress: 0
   period: 3
   lockOrbit: 0
+  debug: 0
 --- !u!120 &1704347521
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8255,7 +8381,6 @@ MonoBehaviour:
   planetName: Phobos
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -8287,12 +8412,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1804186554}
+  rb: {fileID: 0}
   orbit:
     xAxis: 3
     yAxis: 3
   progress: 0
   period: 3
   lockOrbit: 0
+  debug: 0
 --- !u!120 &1804186558
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8481,8 +8608,8 @@ GameObject:
   - component: {fileID: 1819923338}
   - component: {fileID: 1819923337}
   - component: {fileID: 1819923336}
-  - component: {fileID: 1819923335}
   - component: {fileID: 1819923334}
+  - component: {fileID: 1819923335}
   m_Layer: 12
   m_Name: Jupiter Orbit
   m_TagString: Untagged
@@ -8600,8 +8727,8 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!65 &1819923335
-BoxCollider:
+--- !u!135 &1819923335
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8611,7 +8738,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 50, z: 50}
+  m_Radius: 80
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1819923336
 MonoBehaviour:
@@ -8626,7 +8753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitMotion: {fileID: 1819923337}
-  segments: 24
+  segments: 38
 --- !u!114 &1819923337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8641,12 +8768,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityHandle: {fileID: 0}
   orbitingObject: {fileID: 1819923333}
+  rb: {fileID: 0}
   orbit:
     xAxis: 1329.3
     yAxis: 1329.3
   progress: 0
   period: 4332.82
   lockOrbit: 0
+  debug: 0
 --- !u!120 &1819923338
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8686,33 +8815,47 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 1329.3}
-  - {x: 344.04816, y: 0, z: 1284.0052}
-  - {x: 664.65, y: 0, z: 1151.2076}
-  - {x: 939.9571, y: 0, z: 939.9571}
-  - {x: 1151.2076, y: 0, z: 664.64996}
-  - {x: 1284.0052, y: 0, z: 344.04822}
-  - {x: 1329.3, y: 0, z: -0.00005810555}
-  - {x: 1284.0052, y: 0, z: -344.04816}
-  - {x: 1151.2076, y: 0, z: -664.6501}
-  - {x: 939.9571, y: 0, z: -939.9571}
-  - {x: 664.6501, y: 0, z: -1151.2076}
-  - {x: 344.048, y: 0, z: -1284.0052}
+  - {x: 218.79562, y: 0, z: 1311.1702}
+  - {x: 431.62305, y: 0, z: 1257.2749}
+  - {x: 632.6769, y: 0, z: 1169.0845}
+  - {x: 816.473, y: 0, z: 1049.0045}
+  - {x: 977.9979, y: 0, z: 900.3104}
+  - {x: 1112.8455, y: 0, z: 727.0583}
+  - {x: 1217.3375, y: 0, z: 533.97375}
+  - {x: 1288.6239, y: 0, z: 326.32373}
+  - {x: 1324.7598, y: 0, z: 109.77259}
+  - {x: 1324.7598, y: 0, z: -109.772865}
+  - {x: 1288.6239, y: 0, z: -326.32385}
+  - {x: 1217.3375, y: 0, z: -533.9737}
+  - {x: 1112.8453, y: 0, z: -727.05835}
+  - {x: 977.9978, y: 0, z: -900.3104}
+  - {x: 816.4729, y: 0, z: -1049.0046}
+  - {x: 632.67664, y: 0, z: -1169.0846}
+  - {x: 431.6229, y: 0, z: -1257.275}
+  - {x: 218.79532, y: 0, z: -1311.1702}
   - {x: -0.0001162111, y: 0, z: -1329.3}
-  - {x: -344.04852, y: 0, z: -1284.0051}
-  - {x: -664.64996, y: 0, z: -1151.2076}
-  - {x: -939.9572, y: 0, z: -939.9569}
-  - {x: -1151.2076, y: 0, z: -664.6499}
-  - {x: -1284.0052, y: 0, z: -344.0481}
-  - {x: -1329.3, y: 0, z: 0.000015851745}
-  - {x: -1284.0051, y: 0, z: 344.04874}
-  - {x: -1151.2076, y: 0, z: 664.6499}
-  - {x: -939.9567, y: 0, z: 939.9574}
-  - {x: -664.6497, y: 0, z: 1151.2079}
-  - {x: -344.04788, y: 0, z: 1284.0052}
+  - {x: -218.79587, y: 0, z: -1311.17}
+  - {x: -431.6228, y: 0, z: -1257.275}
+  - {x: -632.6768, y: 0, z: -1169.0845}
+  - {x: -816.4733, y: 0, z: -1049.0043}
+  - {x: -977.9978, y: 0, z: -900.3105}
+  - {x: -1112.8456, y: 0, z: -727.0581}
+  - {x: -1217.3376, y: 0, z: -533.9735}
+  - {x: -1288.6238, y: 0, z: -326.3241}
+  - {x: -1324.7598, y: 0, z: -109.77279}
+  - {x: -1324.7598, y: 0, z: 109.77283}
+  - {x: -1288.6238, y: 0, z: 326.3241}
+  - {x: -1217.3376, y: 0, z: 533.9736}
+  - {x: -1112.8451, y: 0, z: 727.05865}
+  - {x: -977.9974, y: 0, z: 900.311}
+  - {x: -816.4728, y: 0, z: 1049.0046}
+  - {x: -632.6766, y: 0, z: 1169.0846}
+  - {x: -431.6225, y: 0, z: 1257.275}
+  - {x: -218.79552, y: 0, z: 1311.1702}
   - {x: 0, y: 0, z: 1329.3}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 3
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -8814,7 +8957,6 @@ MonoBehaviour:
   planetName: Jupiter
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0
@@ -8825,7 +8967,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864047938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9477,7 +9619,7 @@ Transform:
   m_Children:
   - {fileID: 877128584}
   m_Father: {fileID: 803631786}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2046886079
 MonoBehaviour:
@@ -9494,7 +9636,6 @@ MonoBehaviour:
   planet: {fileID: 656416565}
   orbit: {fileID: 877128588}
   orbitRenderer: {fileID: 877128587}
-  rb: {fileID: 0}
 --- !u!1 &2071277576
 GameObject:
   m_ObjectHideFlags: 0
@@ -9774,7 +9915,7 @@ Transform:
   m_Children:
   - {fileID: 1042749829}
   m_Father: {fileID: 803631786}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2116921385
 MonoBehaviour:
@@ -9791,7 +9932,6 @@ MonoBehaviour:
   planet: {fileID: 245412571}
   orbit: {fileID: 1042749833}
   orbitRenderer: {fileID: 1042749832}
-  rb: {fileID: 0}
 --- !u!33 &7335486784101977000
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9821,7 +9961,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7335486784101977007}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9885,7 +10025,6 @@ MonoBehaviour:
   planetName: Mercury
   mainCamera: {fileID: 963194227}
   moons: []
-  sizeScaling: 1.1
   minSize: 0
   maxSize: 0
   sizeDifference: 0

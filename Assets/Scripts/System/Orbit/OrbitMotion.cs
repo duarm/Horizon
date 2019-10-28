@@ -6,35 +6,33 @@ public class OrbitMotion : MonoBehaviour
 {
     [SerializeField] Transform velocityHandle;
     [SerializeField] Transform orbitingObject;
+    [SerializeField] Rigidbody rb;
     public Orbit orbit;
 
     [Header ("Debug")]
     [Range (0f, 1f)]
     [Tooltip ("Current orbit progress. (0 to 1)")]
-    public float progress = 0f;
+    [SerializeField] float progress = 0f;
 
     [Tooltip ("How much time in seconds to complete the orbit")]
-    public float period = 3f;
-
+    [SerializeField] float period = 3f;
 
     public bool lockOrbit = false;
+    [SerializeField] bool debug = false;
 
     float timeScale = 1f;
-
     float minOrbit;
     float maxOrbit;
     float orbitDifference;
 
-    float orbitVelocity;
-
-    Coroutine orbitMotionRoutine;
 
     private void OnValidate ()
     {
-        SetOrbitingObjectPosition ();
+        if(debug)
+            SetOrbitingObjectPosition ();
     }
 
-    private void Start ()
+    private void Awake ()
     {
         transform.position = Vector3.zero;
 
@@ -43,16 +41,30 @@ public class OrbitMotion : MonoBehaviour
             lockOrbit = true;
             return;
         }
-
-        SetOrbitingObjectPosition ();
-        orbitMotionRoutine = StartCoroutine (AnimateOrbit ());
     }
 
-    public void CalculateScales(float scale)
+    public void Initialize (float scale)
+    {
+        CalculateScales (scale);
+        SetOrbitingObjectPosition ();
+        StartCoroutine (AnimateOrbit ());
+    }
+
+    void CalculateScales (float scale)
     {
         minOrbit = orbit.XAxis;
         maxOrbit = orbit.XAxis * scale;
         orbitDifference = maxOrbit - minOrbit;
+    }
+
+    public void SetPosition (Vector3 newPos)
+    {
+        rb.position = newPos;
+    }
+
+    public void SetTimeScale (float value)
+    {
+        timeScale = value;
     }
 
     public void IncreaseOrbit (float direction, float rate)
@@ -74,21 +86,16 @@ public class OrbitMotion : MonoBehaviour
         orbitingObject.localPosition = new Vector3 (orbitPos.x, 0, orbitPos.y);
     }
 
-    public void SetTimeScale(float value)
-    {
-        timeScale = value;
-    }
-
     IEnumerator AnimateOrbit ()
     {
         if (period < 0.1f)
             period = 0.1f;
 
-        orbitVelocity = 1f / period * timeScale;
+        var orbitVelocity = 1f / period;
 
         while (!lockOrbit)
         {
-            progress += Time.deltaTime * orbitVelocity;
+            progress += Time.deltaTime * orbitVelocity * timeScale;
             progress %= 1f;
             SetOrbitingObjectPosition ();
             yield return null;

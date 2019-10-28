@@ -3,10 +3,6 @@ using UnityEngine;
 using UnityEngine.Events;
 public class SolarSystemController : MonoBehaviour
 {
-    #region Singleton
-    private static SolarSystemController s_Instance;
-    #endregion
-
     [Header ("References")]
     [SerializeField] new CameraController camera;
     [SerializeField] LocalController[] planets;
@@ -14,11 +10,17 @@ public class SolarSystemController : MonoBehaviour
     [SerializeField] LocalController sun;
 
     [Header ("Simulation")]
+    [SerializeField] float upwardMotionSpeed = 10f;
     [SerializeField] float timeScale = 1;
 
     [Header ("Configuration")]
     [Space]
     [SerializeField] Texture2D focusTexture;
+
+    bool showingOrbit = true;
+    bool upwardMotion = true;
+    float resolution;
+
 
     public bool ShowingOrbit
     {
@@ -33,11 +35,7 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    bool showingOrbit = true;
-    bool upwardMotion = true;
-
-    public static LocalController Sun () => s_Instance.sun;
-    public static Texture2D FocusTexture () => s_Instance.focusTexture;
+    public LocalController Sun { get { return sun; } }
 
     void OnValidate ()
     {
@@ -47,26 +45,16 @@ public class SolarSystemController : MonoBehaviour
             camera = FindObjectOfType<CameraController> ();
     }
 
-    void Awake ()
+    public void Initialize (float scale)
     {
-        s_Instance = this;
-    }
+        resolution = UIController.Scale;
 
-    public static void Initialize (float scale)
-    {
-        s_Instance.UpdateScales (scale);
-    }
-
-    [ContextMenu ("Update Scales")]
-    public void UpdateScales (float scale)
-    {
         for (int i = 0; i < planets.Length; i++)
         {
-            planets[i].orbit.CalculateScales (scale);
-            planets[i].planet.CalculateScales (scale);
+            planets[i].Initialize (scale, focusTexture, resolution);
         }
 
-        sun.planet.CalculateScales(scale);
+        sun.planet.InitializeAsPlanet (scale, focusTexture, resolution);
     }
 
     [ContextMenu ("Update Speed Scale")]
@@ -86,7 +74,7 @@ public class SolarSystemController : MonoBehaviour
 
     public void ToggleUpwardMotion ()
     {
-        sun.rb.position = new Vector3 (0, sun.transform.localPosition.y + (10 * Time.deltaTime), 0);
+        sun.orbit.SetPosition (new Vector3 (0, sun.transform.localPosition.y + (upwardMotionSpeed * Time.deltaTime), 0));
 
         for (int i = 0; i < planets.Length; i++)
         {
@@ -103,7 +91,7 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    public void ToggleNameVisiblity (bool value)
+    /*public void SetAllNamesVisibility (bool value)
     {
         for (int i = 0; i < planets.Length; i++)
         {
@@ -122,7 +110,33 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    void Zoom (float direction, float percentage)
+    public void HideAllOrbitsExcept (Planet planet)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].planet.Equals (planet))
+                continue;
+
+            planets[i].orbitRenderer.SetOrbitVisiblity (false);
+        }
+    }*/
+
+    public void Focus (LocalController local, bool value)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].planet.Equals (local.planet))
+            {
+                local.planet.SetMoonsVisibility(value);
+                continue;
+            }
+
+            planets[i].planet.SetNameVisilibity (!value);
+            planets[i].orbitRenderer.SetOrbitVisiblity (!value);
+        }
+    }
+
+    public void Zoom (float direction, float percentage)
     {
         ScalePlanets (direction, percentage);
         ExpandUniverse (direction, percentage);
@@ -155,10 +169,5 @@ public class SolarSystemController : MonoBehaviour
             planets[i].orbit.IncreaseOrbit (direction, percentage);
             previousPlanet = planets[i];
         }
-    }
-
-    public static void StartZoom (float direction, float percentage)
-    {
-        s_Instance.Zoom (direction, percentage);
     }
 }
