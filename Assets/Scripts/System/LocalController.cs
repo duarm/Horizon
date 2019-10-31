@@ -1,6 +1,6 @@
-﻿using SimpleKeplerOrbits;
-using UnityEngine;
+﻿using UnityEngine;
 
+//TODO: SPLIT MOON/PLANET
 public class LocalController : MonoBehaviour
 {
     public Planet planet;
@@ -23,10 +23,42 @@ public class LocalController : MonoBehaviour
         }
     }
 
-    public void Initialize (float scale, Texture2D texture, float resolution)
+    public void EnterLocalSpace (bool value)
     {
-        planet.InitializeAsPlanet (scale, texture, resolution);
-        orbit.Initialize (scale);
+        planet.EnterLocalSpace (value);
+    }
+
+    public void OnLocalSpace (bool value)
+    {
+        planet.OnLocalSpace (value);
+        orbitRenderer.OnLocalSpace (value);
+    }
+
+    public void SetMoonVisibility (bool on)
+    {
+        planet.StateAsMoon (on);
+        orbitRenderer.StateAsMoon (on);
+        gameObject.SetActive (on);
+    }
+
+    public void InitializeAsPlanet (float scale, Texture2D texture, float resolution)
+    {
+        planet.InitializeAsPlanet (scale, resolution, texture);
+        orbit.InitializeAsPlanet (scale);
+        orbitRenderer.InitializeAsPlanet ();
+    }
+
+    public void InitializeAsMoon (float resolution)
+    {
+        planet.InitializeAsMoon (resolution);
+        orbit.InitializeAsMoon ();
+        orbitRenderer.InitializeAsMoon ();
+    }
+
+    public void Zoom (float direction, float percentage)
+    {
+        orbit.IncreaseOrbit (direction, percentage);
+        planet.Scale (direction, percentage);
     }
 
     public void SetOrbitVisiblity (bool value)
@@ -53,3 +85,12 @@ public class LocalController : MonoBehaviour
         return this.planet.planetName;
     }
 }
+
+// Solar System > delegates ==> Local controller > delegates ==> motion,renderer,planet
+//TODO: STATE CONTROL
+/*
+public enum States 
+{
+    OUT_LOCAL_SPACE,
+    IN_LOCAL_SPACE,
+}*/

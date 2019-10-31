@@ -20,9 +20,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] float yMinLimit = -90f;
     [SerializeField] float yMaxLimit = 90f;
     [SerializeField] float smoothTime = 2f;
-
     [Header ("Zoom")]
-    public int orbitShowThreshold = 10;
+    public int zoomThreshold = 10;
+    public float zoomSpeed = 10f;
+
     [Range (0, 1)]
     [SerializeField] float circularOrbitScalePercentage = .05f;
     [SerializeField] float scale = 9f;
@@ -30,7 +31,8 @@ public class CameraController : MonoBehaviour
     Vector3 newPos;
     Vector3 oldPos;
     Vector3 currentZoomPos;
-    Vector3 currentPos;
+    Vector3 currentPosition;
+    Vector3 currentVelocity;
     Quaternion currentRotation;
     float rotationYAxis = 0.0f;
     float rotationXAxis = 0.0f;
@@ -42,9 +44,14 @@ public class CameraController : MonoBehaviour
     Coroutine transition;
     LocalController follower;
     LocalController sun;
+    new Rigidbody rigidbody;
     [ReadOnly, SerializeField] int zoomMax;
     [ReadOnly, SerializeField] int zoomMin;
     [ReadOnly, SerializeField] int zoomLevel = 0;
+
+    public void SetPosition (Vector3 newPos) => currentPosition = newPos;
+    public void Follow (Transform planet) => currentPosition = planet.position;
+    public void ZoomCamera (float input) => velocityZoom = input;
 
     private void OnValidate ()
     {
@@ -54,10 +61,11 @@ public class CameraController : MonoBehaviour
 
     private void Start ()
     {
-        currentPos = transform.localPosition;
+        currentPosition = transform.localPosition;
         currentZoomPos = transform.localPosition;
         oldPos = transform.localPosition;
         camera = Camera.main;
+        rigidbody = GetComponent<Rigidbody> ();
         sun = solarSystem.Sun;
 
         solarSystem.Initialize (scale);
@@ -75,23 +83,26 @@ public class CameraController : MonoBehaviour
 
         if (follower)
         {
-            transition = transition ?? StartCoroutine (Transition ());
+            var target = follower.orbit.transform.position;
+            transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, target, ref currentVelocity, transitionSmoothTime), currentRotation);
+            //transition = transition ?? StartCoroutine (Transition ());
         }
         else
         {
             HandleMovement ();
-            transform.SetPositionAndRotation (currentPos, currentRotation);
+            //rigidbody.MovePosition (currentPosition);
+            //rigidbody.MoveRotation (currentRotation);
+            rigidbody.position = currentPosition;
+            rigidbody.rotation = currentRotation;
+            //camera.transform.SetPositionAndRotation(currentPosition , currentRotation);
+            //transform.SetPositionAndRotation (currentPosition, currentRotation);
         }
 
         worldCoordinatesOverride.eulerAngles = new Vector3 (0, currentRotation.eulerAngles.y, 0);
-        velocityX = Mathf.Lerp (velocityX, 0, Time.fixedDeltaTime * smoothTime);
-        velocityY = Mathf.Lerp (velocityY, 0, Time.fixedDeltaTime * smoothTime);
+        velocityX = Mathf.Lerp (velocityX, 0, Time.deltaTime * smoothTime);
+        velocityY = Mathf.Lerp (velocityY, 0, Time.deltaTime * smoothTime);
         //Profiler.EndSample();
     }
-
-    public void SetPosition (Vector3 newPos) => currentPos = newPos;
-    public void Follow (Transform planet) => currentPos = planet.position;
-    public void ZoomCamera (float input) => velocityZoom = input;
 
     public void MoveCamera (Vector3 input)
     {
@@ -100,7 +111,7 @@ public class CameraController : MonoBehaviour
         speed = speed < 0 ? 0 : speed;
         Vector3 fowardMovement = worldCoordinatesOverride.forward * speed * input.y;
         Vector3 rightMovement = transform.right * speed * input.x;
-        newPos = (fowardMovement + rightMovement) * Time.fixedDeltaTime;
+        newPos = (fowardMovement + rightMovement) * Time.deltaTime;
 
         if (input != Vector3.zero)
             FocusOn (null);
@@ -111,7 +122,8 @@ public class CameraController : MonoBehaviour
         Vector3 velocity = Vector3.zero;
         while (follower != null)
         {
-            transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, follower.orbit.transform.position, ref velocity, transitionSmoothTime), currentRotation);
+            var target = follower.orbit.transform.position;
+            transform.SetPositionAndRotation (target, currentRotation);
             yield return 0;
         }
 
@@ -143,18 +155,21 @@ public class CameraController : MonoBehaviour
 
         if (velocityZoom > 0)
         {
-            if (zoomLevel < zoomMax)
+            if (zoomLevel < zoomMax && zoomLevel >= zoomMin)
             {
                 velocity = 1;
                 solarSystem.Zoom (velocity, circularOrbitScalePercentage);
             }
-            else if (follower)
+            else
             {
-                if (zoomLevel == zoomMax)
-                    solarSystem.Focus (follower, true);
+                if (zoomLevel == zoomMax && follower)
+                    solarSystem.EnterLocalSpace (follower, true);
 
-                velocity = 1;
-                Zoom (velocity);
+                if ((zoomMax + zoomThreshold) > zoomLevel)
+                {
+                    velocity = 1;
+                    Zoom (velocity);
+                }
             }
         }
         else if (velocityZoom < 0)
@@ -164,13 +179,16 @@ public class CameraController : MonoBehaviour
                 velocity = -1;
                 solarSystem.Zoom (velocity, circularOrbitScalePercentage);
             }
-            else if (follower)
+            else
             {
                 if (zoomLevel == (zoomMax + 1))
-                    solarSystem.Focus (follower, false);
+                    solarSystem.EnterLocalSpace (follower, false);
 
-                velocity = -1;
-                Zoom (velocity);
+                if ((zoomMin - zoomThreshold) < zoomLevel)
+                {
+                    velocity = -1;
+                    Zoom (velocity);
+                }
             }
         }
 
@@ -179,14 +197,15 @@ public class CameraController : MonoBehaviour
 
     public void Zoom (int direction)
     {
-
+        var pos = camera.transform.localPosition;
+        camera.transform.position += camera.transform.forward * zoomSpeed * direction;
     }
 
     public void HandleMovement ()
     {
         oldPos = transform.localPosition;
         var pos = oldPos + newPos;
-        currentPos = new Vector3 (pos.x, sun.transform.position.y, pos.z);
+        currentPosition = new Vector3 (pos.x, sun.transform.position.y, pos.z);
     }
 
     public void HandleRotation ()

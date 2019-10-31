@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (Rigidbody))]
 public class OrbitMotion : MonoBehaviour
 {
-    [SerializeField] Transform velocityHandle;
-    [SerializeField] Transform orbitingObject;
+    //[SerializeField] Transform velocityHandle;
     [SerializeField] Rigidbody rb;
     public Orbit orbit;
 
@@ -25,31 +25,54 @@ public class OrbitMotion : MonoBehaviour
     float maxOrbit;
     float orbitDifference;
 
+    Vector3 velocity;
+    [SerializeField] float smoothTime = .5f;
 
     private void OnValidate ()
     {
-        if(debug)
+        if (!rb)
+        {
+            //rb = GetComponent<Rigidbody>();
+            //rb.isKinematic = true;
+            //rb.useGravity = false;
+        }
+
+        if (debug)
             SetOrbitingObjectPosition ();
     }
 
     private void Awake ()
     {
-        transform.position = Vector3.zero;
+        transform.localPosition = Vector3.zero;
 
-        if (!orbitingObject)
+        if (!rb)
         {
             lockOrbit = true;
             return;
         }
     }
 
-    public void Initialize (float scale)
+    // STATE
+
+    public void InitializeAsPlanet (float scale)
     {
         CalculateScales (scale);
         SetOrbitingObjectPosition ();
         StartCoroutine (AnimateOrbit ());
     }
 
+    public void InitializeAsMoon ()
+    {
+        SetOrbitingObjectPosition ();
+        StartCoroutine (AnimateOrbit ());
+    }
+
+    public void OutOfLocalSpace ()
+    {
+
+    }
+
+    // ORBIT MOTION
     void CalculateScales (float scale)
     {
         minOrbit = orbit.XAxis;
@@ -59,7 +82,7 @@ public class OrbitMotion : MonoBehaviour
 
     public void SetPosition (Vector3 newPos)
     {
-        rb.position = newPos;
+        transform.localPosition = newPos;
     }
 
     public void SetTimeScale (float value)
@@ -82,8 +105,8 @@ public class OrbitMotion : MonoBehaviour
 
     void SetOrbitingObjectPosition ()
     {
-        Vector2 orbitPos = orbit.Evaluate (progress);
-        orbitingObject.localPosition = new Vector3 (orbitPos.x, 0, orbitPos.y);
+        var orbitPos = orbit.Evaluate (progress);
+        transform.localPosition = new Vector3 (orbitPos.x, 0, orbitPos.y);
     }
 
     IEnumerator AnimateOrbit ()
@@ -93,12 +116,16 @@ public class OrbitMotion : MonoBehaviour
 
         var orbitVelocity = 1f / period;
 
-        while (!lockOrbit)
+        while (true)
         {
-            progress += Time.deltaTime * orbitVelocity * timeScale;
+            progress += Time.fixedDeltaTime * orbitVelocity * timeScale;
             progress %= 1f;
+
+            if (lockOrbit)
+                continue;
+
             SetOrbitingObjectPosition ();
-            yield return null;
+            yield return new WaitForEndOfFrame ();
         }
     }
 }

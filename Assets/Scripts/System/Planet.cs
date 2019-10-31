@@ -7,6 +7,7 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
 {
     public string planetName;
     [SerializeField] Camera mainCamera;
+    [SerializeField] Transform moonsParent;
     [SerializeField] List<LocalController> moons;
 
     bool showName = true;
@@ -26,26 +27,53 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
             mainCamera = Camera.main;
         if (mesh == null)
             mesh = GetComponent<MeshRenderer> ();
+
+        if (moonsParent != null)
+        {
+            if (moonsParent.childCount != moons.Count)
+            {
+                foreach (Transform moon in moonsParent)
+                {
+                    moons.Add (moon.GetComponent<LocalController> ());
+                }
+            }
+        }
+    }
+
+    private void Start() {
         guiStyle.normal.textColor = new Color (1, 0.53f, 0);
     }
 
-    public void InitializeAsPlanet (float scale, Texture2D texture, float resolution)
+    public void InitializeAsPlanet (float scale, float resolution, Texture2D texture)
     {
+        Initialize (scale, resolution, texture);
         CalculateScales (scale);
         focusTexture = texture;
-        guiStyle.fontSize = Mathf.FloorToInt(15 * resolution);
-        Debug.Log(resolution);
+        InitializeMoons (resolution);
     }
 
-    public void InitializeAsMoon ()
+    private void InitializeMoons (float resolution)
     {
-
+        foreach (var moon in moons)
+        {
+            moon.InitializeAsMoon (resolution);
+        }
     }
 
-    public void Disable ()
+    public void StateAsMoon (bool on)
     {
-        mesh.enabled = false;
+        SetNameVisilibity (on);
+    }
+
+    public void InitializeAsMoon (float resolution)
+    {
         showName = false;
+        mesh.enabled = false;
+    }
+
+    private void Initialize (float scale, float resolution, Texture2D texture)
+    {
+        guiStyle.fontSize = Mathf.FloorToInt (15 * resolution);
     }
 
     void CalculateScales (float scale)
@@ -66,14 +94,25 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
         transform.localScale = new Vector3 (newSize, newSize, newSize);
     }
 
-    public void SetMeshVisibility (bool value)
+    public void OnLocalSpace (bool value)
     {
-        mesh.enabled = value;
+        SetNameVisilibity (value);
     }
 
-    public void SetNameVisilibity (bool value)
+    public void EnterLocalSpace (bool value)
     {
-        showName = value;
+        SetMoonsVisibility (value);
+        SetMeshVisibility (value);
+    }
+
+    public void SetMeshVisibility (bool show)
+    {
+        mesh.enabled = show;
+    }
+
+    public void SetNameVisilibity (bool show)
+    {
+        showName = show;
     }
 
     public void SetFocus (bool value)
@@ -81,11 +120,11 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
         beingFocused = value;
     }
 
-    public void SetMoonsVisibility (bool value)
+    public void SetMoonsVisibility (bool on)
     {
         for (int i = 0; i < moons.Count; i++)
         {
-            moons[i].planet.InitializeAsMoon ();
+            moons[i].SetMoonVisibility (on);
         }
     }
 

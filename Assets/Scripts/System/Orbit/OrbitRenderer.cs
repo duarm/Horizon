@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent (typeof (OrbitMotion), typeof(LineRenderer), typeof(TrailRenderer))]
+[RequireComponent (typeof (OrbitMotion))]
 public class OrbitRenderer : MonoBehaviour
 {
     [SerializeField] OrbitMotion orbitMotion;
-    LineRenderer orbitRenderer;
-    TrailRenderer trailRenderer;
+    [SerializeField] LineRenderer orbitRenderer;
+    [SerializeField] TrailRenderer trailRenderer;
 
     [Range (3, 360)]
     public int segments;
+    bool anyRenderer = false;
 
     private void OnValidate ()
     {
@@ -19,7 +18,7 @@ public class OrbitRenderer : MonoBehaviour
 
         if (!orbitRenderer)
             orbitRenderer = GetComponent<LineRenderer> ();
-            
+
         if (!trailRenderer)
             trailRenderer = GetComponent<TrailRenderer> ();
 
@@ -28,33 +27,68 @@ public class OrbitRenderer : MonoBehaviour
 
     void Awake ()
     {
-        orbitMotion.orbit.OnOrbitUpdate += CalculateOrbit;
+        if (orbitRenderer || trailRenderer)
+        {
+            anyRenderer = true;
+            orbitMotion.orbit.OnOrbitUpdate += CalculateOrbit;
+        }
+    }
+
+    //STATE
+
+    public void InitializeAsPlanet ()
+    {
+        SetOrbitVisiblity (true);
+        SetTrailVisiblity (false);
+    }
+
+    public void InitializeAsMoon ()
+    {
+
+    }
+
+    public void OnLocalSpace (bool value)
+    {
+        SetOrbitVisiblity (value);
+    }
+
+    public void StateAsMoon (bool on)
+    {
+        SetOrbitVisiblity (on);
+        SetTrailVisiblity (on);
     }
 
     public void SetOrbitVisiblity (bool value)
     {
-        orbitRenderer.enabled = value;
+        if (orbitRenderer)
+            orbitRenderer.enabled = value;
     }
 
     public void SetTrailVisiblity (bool value)
     {
-        trailRenderer.enabled = value;
+        if (trailRenderer)
+            trailRenderer.enabled = value;
     }
 
-    public void Redraw()
+    //RENDERER
+
+    public void Redraw ()
     {
-        CalculateOrbit();
+        CalculateOrbit ();
     }
 
     void CalculateOrbit ()
     {
+        if (!anyRenderer)
+            return;
+
         //+1 to close the circle
         var points = new Vector3[segments + 1];
 
         for (int i = 0; i < segments; i++)
         {
             var pos = orbitMotion.orbit.Evaluate ((float) i / (float) segments);
-            points[i] = new Vector3 (pos.x, transform.position.y, pos.y);
+            points[i] = new Vector3 (pos.x, transform.localPosition.y, pos.y);
         }
 
         points[segments] = points[0];

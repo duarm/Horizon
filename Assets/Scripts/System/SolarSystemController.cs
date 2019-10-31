@@ -1,6 +1,4 @@
-﻿using Kurenaiz.Management.Events;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 public class SolarSystemController : MonoBehaviour
 {
     [Header ("References")]
@@ -20,7 +18,6 @@ public class SolarSystemController : MonoBehaviour
     bool showingOrbit = true;
     bool upwardMotion = true;
     float resolution;
-
 
     public bool ShowingOrbit
     {
@@ -51,12 +48,19 @@ public class SolarSystemController : MonoBehaviour
 
         for (int i = 0; i < planets.Length; i++)
         {
-            planets[i].Initialize (scale, focusTexture, resolution);
+            planets[i].InitializeAsPlanet (scale, focusTexture, resolution);
         }
 
-        sun.planet.InitializeAsPlanet (scale, focusTexture, resolution);
+        sun.planet.InitializeAsPlanet (scale, resolution, focusTexture);
     }
 
+
+    private void FixedUpdate ()
+    {
+        if (upwardMotion)
+            ToggleUpwardMotion ();
+    }
+    
     [ContextMenu ("Update Speed Scale")]
     public void SetSpeedScale ()
     {
@@ -66,15 +70,9 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate ()
-    {
-        if (upwardMotion)
-            ToggleUpwardMotion ();
-    }
-
     public void ToggleUpwardMotion ()
     {
-        sun.orbit.SetPosition (new Vector3 (0, sun.transform.localPosition.y + (upwardMotionSpeed * Time.deltaTime), 0));
+        sun.orbit.SetPosition (new Vector3 (0, sun.transform.localPosition.y + (upwardMotionSpeed * Time.fixedDeltaTime), 0));
 
         for (int i = 0; i < planets.Length; i++)
         {
@@ -121,25 +119,27 @@ public class SolarSystemController : MonoBehaviour
         }
     }*/
 
-    public void Focus (LocalController local, bool value)
+    public void EnterLocalSpace (LocalController local, bool value)
     {
         for (int i = 0; i < planets.Length; i++)
         {
             if (planets[i].planet.Equals (local.planet))
             {
-                local.planet.SetMoonsVisibility(value);
+                local.EnterLocalSpace (value);
                 continue;
             }
 
-            planets[i].planet.SetNameVisilibity (!value);
-            planets[i].orbitRenderer.SetOrbitVisiblity (!value);
+            planets[i].OnLocalSpace (!value);
         }
     }
 
     public void Zoom (float direction, float percentage)
     {
-        ScalePlanets (direction, percentage);
-        ExpandUniverse (direction, percentage);
+        for (int i = 0; i < planets.Length; i++)
+        {
+            planets[i].Zoom (direction, percentage);
+        }
+        sun.Zoom (direction, percentage);
     }
 
     void SetOrbitVisiblity (bool value)
@@ -147,27 +147,6 @@ public class SolarSystemController : MonoBehaviour
         for (int i = 0; i < planets.Length; i++)
         {
             planets[i].SetOrbitVisiblity (value);
-        }
-    }
-
-    void ScalePlanets (float direction, float percentage)
-    {
-        for (int i = 0; i < planets.Length; i++)
-        {
-            planets[i].planet.Scale (direction, percentage);
-        }
-
-        sun.planet.Scale (direction, percentage);
-    }
-
-    void ExpandUniverse (float direction, float percentage)
-    {
-        LocalController previousPlanet = null;
-
-        for (int i = 0; i < planets.Length; i++)
-        {
-            planets[i].orbit.IncreaseOrbit (direction, percentage);
-            previousPlanet = planets[i];
         }
     }
 }
