@@ -60,7 +60,7 @@ public class Planet : MonoBehaviour
         {
             if (moon == null)
                 break;
-                
+
             moon.InitializeAsMoon (resolution);
         }
     }
@@ -73,7 +73,7 @@ public class Planet : MonoBehaviour
     public void InitializeAsMoon (float resolution)
     {
         showName = false;
-        mesh.enabled = false;
+        SetMeshVisibility (false);
     }
 
     private void Initialize (float scale, float resolution, Texture2D texture)
@@ -112,7 +112,8 @@ public class Planet : MonoBehaviour
 
     public void SetMeshVisibility (bool show)
     {
-        mesh.enabled = show;
+        if(mesh)
+            mesh.enabled = show;
     }
 
     public void SetNameVisilibity (bool show)

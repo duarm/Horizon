@@ -216,8 +216,8 @@ public class CameraController : MonoBehaviour
             velocityY += ySpeed * Input.GetAxis ("Mouse Y") * 0.02f;
         }
 
-        rotationYAxis += velocityX * Time.fixedDeltaTime;
-        rotationXAxis -= velocityY * Time.fixedDeltaTime;
+        rotationYAxis += velocityX * Time.deltaTime;
+        rotationXAxis -= velocityY * Time.deltaTime;
         rotationXAxis = ClampAngle (rotationXAxis, yMinLimit, yMaxLimit);
         Quaternion toRotation = Quaternion.Euler (rotationXAxis, rotationYAxis, 0);
         currentRotation = toRotation;
