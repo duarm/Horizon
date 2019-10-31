@@ -9,7 +9,6 @@ public class OrbitRenderer : MonoBehaviour
 
     [Range (3, 360)]
     public int segments;
-    bool anyRenderer = false;
 
     private void OnValidate ()
     {
@@ -22,9 +21,11 @@ public class OrbitRenderer : MonoBehaviour
         if (!trailRenderer)
             trailRenderer = GetComponent<TrailRenderer> ();
 
-        CalculateOrbit ();
+        CalculateOrbit (segments);
     }
 
+// DYNAMIC SIMULATION PUT ON HOLD
+/*
     void Awake ()
     {
         if (orbitRenderer || trailRenderer)
@@ -33,7 +34,7 @@ public class OrbitRenderer : MonoBehaviour
             orbitMotion.orbit.OnOrbitUpdate += CalculateOrbit;
         }
     }
-
+*/
     //STATE
 
     public void InitializeAsPlanet ()
@@ -52,7 +53,7 @@ public class OrbitRenderer : MonoBehaviour
         SetOrbitVisiblity (value);
     }
 
-    public void StateAsMoon (bool on)
+    public void Toggle (bool on)
     {
         SetOrbitVisiblity (on);
         SetTrailVisiblity (on);
@@ -64,23 +65,31 @@ public class OrbitRenderer : MonoBehaviour
             orbitRenderer.enabled = value;
     }
 
-    public void SetTrailVisiblity (bool value)
+    public void SetTrailVisiblity (bool on)
     {
         if (trailRenderer)
-            trailRenderer.enabled = value;
+        {
+            if(on)
+                trailRenderer.Clear();
+                
+            trailRenderer.enabled = on;
+        }
     }
 
     //RENDERER
 
-    public void Redraw ()
+    public void Redraw (int segments = 0)
     {
-        CalculateOrbit ();
+        CalculateOrbit (segments);
     }
 
-    void CalculateOrbit ()
+    void CalculateOrbit (int segments)
     {
-        if (!anyRenderer)
+        if (!orbitRenderer)
             return;
+
+        if(segments == 0)
+            segments = this.segments;
 
         //+1 to close the circle
         var points = new Vector3[segments + 1];
@@ -93,6 +102,25 @@ public class OrbitRenderer : MonoBehaviour
 
         points[segments] = points[0];
         orbitRenderer.positionCount = segments + 1;
+        orbitRenderer.SetPositions (points);
+    }
+
+    void CalculateOrbit ()
+    {
+        if (!orbitRenderer)
+            return;
+
+        //+1 to close the circle
+        var points = new Vector3[this.segments + 1];
+
+        for (int i = 0; i < this.segments; i++)
+        {
+            var pos = orbitMotion.orbit.Evaluate ((float) i / (float) this.segments);
+            points[i] = new Vector3 (pos.x, transform.localPosition.y, pos.y);
+        }
+
+        points[this.segments] = points[0];
+        orbitRenderer.positionCount = this.segments + 1;
         orbitRenderer.SetPositions (points);
     }
 

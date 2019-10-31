@@ -48,10 +48,10 @@ public class SolarSystemController : MonoBehaviour
 
         for (int i = 0; i < planets.Length; i++)
         {
-            planets[i].InitializeAsPlanet (scale, focusTexture, resolution);
+            planets[i].InitializeAsPlanet (scale, resolution, focusTexture);
         }
 
-        sun.planet.InitializeAsPlanet (scale, resolution, focusTexture);
+        sun.InitializeAsPlanet (scale, resolution, focusTexture);
     }
 
 
@@ -60,7 +60,7 @@ public class SolarSystemController : MonoBehaviour
         if (upwardMotion)
             ToggleUpwardMotion ();
     }
-    
+
     [ContextMenu ("Update Speed Scale")]
     public void SetSpeedScale ()
     {
@@ -123,7 +123,7 @@ public class SolarSystemController : MonoBehaviour
     {
         for (int i = 0; i < planets.Length; i++)
         {
-            if (planets[i].planet.Equals (local.planet))
+            if (planets[i].Equals (local))
             {
                 local.EnterLocalSpace (value);
                 continue;

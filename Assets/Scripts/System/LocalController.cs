@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 //TODO: SPLIT MOON/PLANET
-public class LocalController : MonoBehaviour
+public class LocalController : MonoBehaviour, IEquatable<LocalController>
 {
-    public Planet planet;
+    [SerializeField] Planet planet;
     public OrbitMotion orbit;
     public OrbitRenderer orbitRenderer;
 
@@ -36,16 +37,22 @@ public class LocalController : MonoBehaviour
 
     public void SetMoonVisibility (bool on)
     {
-        planet.StateAsMoon (on);
-        orbitRenderer.StateAsMoon (on);
         gameObject.SetActive (on);
+        planet.Toggle (on);
+        orbitRenderer.Toggle (on);
+        orbit.Toggle (on);
     }
 
-    public void InitializeAsPlanet (float scale, Texture2D texture, float resolution)
+    public void InitializeAsPlanet (float scale, float resolution, Texture2D texture)
     {
-        planet.InitializeAsPlanet (scale, resolution, texture);
-        orbit.InitializeAsPlanet (scale);
-        orbitRenderer.InitializeAsPlanet ();
+        if (planet)
+            planet.InitializeAsPlanet (scale, resolution, texture);
+        if (orbit)
+            orbit.InitializeAsPlanet (scale);
+        if (orbitRenderer)
+            orbitRenderer.InitializeAsPlanet ();
+
+        orbit.transform.localEulerAngles = new Vector3 (0, 0, planet.data.inclination);
     }
 
     public void InitializeAsMoon (float resolution)
@@ -82,7 +89,14 @@ public class LocalController : MonoBehaviour
 
     public override string ToString ()
     {
-        return this.planet.planetName;
+        return this.planet.data.name;
+    }
+
+    public bool Equals (LocalController other)
+    {
+        if (planet.data.name.Equals (other.ToString ()))
+            return true;
+        return false;
     }
 }
 

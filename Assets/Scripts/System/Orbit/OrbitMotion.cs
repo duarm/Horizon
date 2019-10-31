@@ -17,7 +17,7 @@ public class OrbitMotion : MonoBehaviour
     [Tooltip ("How much time in seconds to complete the orbit")]
     [SerializeField] float period = 3f;
 
-    public bool lockOrbit = false;
+    public bool lockOrbit = true;
     [SerializeField] bool debug = false;
 
     float timeScale = 1f;
@@ -58,16 +58,23 @@ public class OrbitMotion : MonoBehaviour
     {
         CalculateScales (scale);
         SetOrbitingObjectPosition ();
-        StartCoroutine (AnimateOrbit ());
+        Toggle (true);
     }
 
     public void InitializeAsMoon ()
     {
         SetOrbitingObjectPosition ();
-        StartCoroutine (AnimateOrbit ());
+        Toggle (false);
     }
 
-    public void OutOfLocalSpace ()
+    public void Toggle (bool on)
+    {
+        lockOrbit = !on;
+        if (on)
+            StartCoroutine (AnimateOrbit ());
+    }
+
+    public void Disable ()
     {
 
     }
@@ -122,10 +129,12 @@ public class OrbitMotion : MonoBehaviour
             progress %= 1f;
 
             if (lockOrbit)
-                continue;
+                break;
 
             SetOrbitingObjectPosition ();
             yield return new WaitForEndOfFrame ();
         }
+
+        yield return null;
     }
 }

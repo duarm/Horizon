@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class Planet : MonoBehaviour, IEquatable<Planet>
+public class Planet : MonoBehaviour
 {
-    public string planetName;
+    public PlanetData data;
     [SerializeField] Camera mainCamera;
-    [SerializeField] Transform moonsParent;
-    [SerializeField] List<LocalController> moons;
+    [SerializeField] LocalController[] moons;
 
     bool showName = true;
     bool beingFocused = false;
@@ -28,19 +27,22 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
         if (mesh == null)
             mesh = GetComponent<MeshRenderer> ();
 
-        if (moonsParent != null)
+        int i = 0;
+        if (data.moonCount != 0)
         {
-            if (moonsParent.childCount != moons.Count)
+            moons = new LocalController[data.moonCount];
+            foreach (Transform moon in transform)
             {
-                foreach (Transform moon in moonsParent)
-                {
-                    moons.Add (moon.GetComponent<LocalController> ());
-                }
+                if (moons.Length == i)
+                    break;
+
+                moons[i++] = moon.GetComponent<LocalController> ();
             }
         }
     }
 
-    private void Start() {
+    private void Start ()
+    {
         guiStyle.normal.textColor = new Color (1, 0.53f, 0);
     }
 
@@ -56,11 +58,14 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
     {
         foreach (var moon in moons)
         {
+            if (moon == null)
+                break;
+                
             moon.InitializeAsMoon (resolution);
         }
     }
 
-    public void StateAsMoon (bool on)
+    public void Toggle (bool on)
     {
         SetNameVisilibity (on);
     }
@@ -122,8 +127,14 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
 
     public void SetMoonsVisibility (bool on)
     {
-        for (int i = 0; i < moons.Count; i++)
+        if (moons == null)
+            return;
+
+        for (int i = 0; i < moons.Length; i++)
         {
+            if (moons[i] == null)
+                break;
+
             moons[i].SetMoonVisibility (on);
         }
     }
@@ -135,7 +146,7 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
         {
             if (planetPos.z > 0)
             {
-                GUI.Label (new Rect (planetPos.x, Screen.height - planetPos.y - 20, 40, 20), planetName, guiStyle);
+                GUI.Label (new Rect (planetPos.x, Screen.height - planetPos.y - 20, 40, 20), data.name, guiStyle);
             }
         }
 
@@ -143,10 +154,5 @@ public class Planet : MonoBehaviour, IEquatable<Planet>
         {
             GUI.DrawTexture (new Rect (planetPos.x - 20, Screen.height - planetPos.y - 20, 30, 30), focusTexture);
         }
-    }
-
-    public bool Equals (Planet other)
-    {
-        return this.planetName.Equals (other.planetName);
     }
 }
