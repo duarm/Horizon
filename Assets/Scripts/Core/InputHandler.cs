@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Horizon.Input;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputHandler : MonoBehaviour, InputMaster.IGameplayActions
+public class InputHandler : MonoBehaviour, InputMaster.IGameActions
 {
     protected static InputHandler s_Instance;
     public CameraController cameraController;
@@ -16,7 +17,7 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameplayActions
     private void Awake ()
     {
         inputMaster = new InputMaster ();
-        inputMaster.Gameplay.SetCallbacks (this);
+        inputMaster.Game.SetCallbacks (this);
 
         if (s_Instance == null)
             s_Instance = this;
@@ -54,6 +55,11 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameplayActions
     {
         if (context.performed)
             cameraController.Focus ();
+    }
+
+    public void OnEscape(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
     }
 
     /* public static Vector2 GetDirectionalInput()

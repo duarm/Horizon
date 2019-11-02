@@ -2,7 +2,7 @@
     "name": "InputMaster",
     "maps": [
         {
-            "name": "Gameplay",
+            "name": "Game",
             "id": "e523de6a-ece7-4128-8f2a-3bbdc8368693",
             "actions": [
                 {
@@ -25,6 +25,14 @@
                     "name": "Focus",
                     "type": "Button",
                     "id": "14c6de3c-4cfd-4ac2-8590-35ee70db2665",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "9f8a043e-bdac-4894-b337-9db5a47f5c33",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -138,6 +146,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Focus",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "137e06fa-a2d9-4389-94c1-2c6aaf989ab3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

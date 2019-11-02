@@ -5,16 +5,18 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class InputMaster : IInputActionCollection
+namespace Horizon.Input
 {
-    private InputActionAsset asset;
-    public InputMaster()
+    public class InputMaster : IInputActionCollection
     {
-        asset = InputActionAsset.FromJson(@"{
+        private InputActionAsset asset;
+        public InputMaster()
+        {
+            asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputMaster"",
     ""maps"": [
         {
-            ""name"": ""Gameplay"",
+            ""name"": ""Game"",
             ""id"": ""e523de6a-ece7-4128-8f2a-3bbdc8368693"",
             ""actions"": [
                 {
@@ -37,6 +39,14 @@ public class InputMaster : IInputActionCollection
                     ""name"": ""Focus"",
                     ""type"": ""Button"",
                     ""id"": ""14c6de3c-4cfd-4ac2-8590-35ee70db2665"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f8a043e-bdac-4894-b337-9db5a47f5c33"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -152,6 +162,17 @@ public class InputMaster : IInputActionCollection
                     ""action"": ""Focus"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""137e06fa-a2d9-4389-94c1-2c6aaf989ab3"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -175,118 +196,129 @@ public class InputMaster : IInputActionCollection
         }
     ]
 }");
-        // Gameplay
-        m_Gameplay = asset.GetActionMap("Gameplay");
-        m_Gameplay_CameraMovement = m_Gameplay.GetAction("CameraMovement");
-        m_Gameplay_Zoom = m_Gameplay.GetAction("Zoom");
-        m_Gameplay_Focus = m_Gameplay.GetAction("Focus");
-    }
+            // Game
+            m_Game = asset.GetActionMap("Game");
+            m_Game_CameraMovement = m_Game.GetAction("CameraMovement");
+            m_Game_Zoom = m_Game.GetAction("Zoom");
+            m_Game_Focus = m_Game.GetAction("Focus");
+            m_Game_Escape = m_Game.GetAction("Escape");
+        }
 
-    ~InputMaster()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
-
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
-
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
-
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
-
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public void Enable()
-    {
-        asset.Enable();
-    }
-
-    public void Disable()
-    {
-        asset.Disable();
-    }
-
-    // Gameplay
-    private readonly InputActionMap m_Gameplay;
-    private IGameplayActions m_GameplayActionsCallbackInterface;
-    private readonly InputAction m_Gameplay_CameraMovement;
-    private readonly InputAction m_Gameplay_Zoom;
-    private readonly InputAction m_Gameplay_Focus;
-    public struct GameplayActions
-    {
-        private InputMaster m_Wrapper;
-        public GameplayActions(InputMaster wrapper) { m_Wrapper = wrapper; }
-        public InputAction @CameraMovement => m_Wrapper.m_Gameplay_CameraMovement;
-        public InputAction @Zoom => m_Wrapper.m_Gameplay_Zoom;
-        public InputAction @Focus => m_Wrapper.m_Gameplay_Focus;
-        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
-        public void SetCallbacks(IGameplayActions instance)
+        ~InputMaster()
         {
-            if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
+            UnityEngine.Object.Destroy(asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            asset.Enable();
+        }
+
+        public void Disable()
+        {
+            asset.Disable();
+        }
+
+        // Game
+        private readonly InputActionMap m_Game;
+        private IGameActions m_GameActionsCallbackInterface;
+        private readonly InputAction m_Game_CameraMovement;
+        private readonly InputAction m_Game_Zoom;
+        private readonly InputAction m_Game_Focus;
+        private readonly InputAction m_Game_Escape;
+        public struct GameActions
+        {
+            private InputMaster m_Wrapper;
+            public GameActions(InputMaster wrapper) { m_Wrapper = wrapper; }
+            public InputAction @CameraMovement => m_Wrapper.m_Game_CameraMovement;
+            public InputAction @Zoom => m_Wrapper.m_Game_Zoom;
+            public InputAction @Focus => m_Wrapper.m_Game_Focus;
+            public InputAction @Escape => m_Wrapper.m_Game_Escape;
+            public InputActionMap Get() { return m_Wrapper.m_Game; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(GameActions set) { return set.Get(); }
+            public void SetCallbacks(IGameActions instance)
             {
-                CameraMovement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovement;
-                CameraMovement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovement;
-                CameraMovement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCameraMovement;
-                Zoom.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
-                Zoom.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
-                Zoom.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
-                Focus.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFocus;
-                Focus.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFocus;
-                Focus.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFocus;
-            }
-            m_Wrapper.m_GameplayActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                CameraMovement.started += instance.OnCameraMovement;
-                CameraMovement.performed += instance.OnCameraMovement;
-                CameraMovement.canceled += instance.OnCameraMovement;
-                Zoom.started += instance.OnZoom;
-                Zoom.performed += instance.OnZoom;
-                Zoom.canceled += instance.OnZoom;
-                Focus.started += instance.OnFocus;
-                Focus.performed += instance.OnFocus;
-                Focus.canceled += instance.OnFocus;
+                if (m_Wrapper.m_GameActionsCallbackInterface != null)
+                {
+                    CameraMovement.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraMovement;
+                    CameraMovement.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraMovement;
+                    CameraMovement.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCameraMovement;
+                    Zoom.started -= m_Wrapper.m_GameActionsCallbackInterface.OnZoom;
+                    Zoom.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnZoom;
+                    Zoom.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnZoom;
+                    Focus.started -= m_Wrapper.m_GameActionsCallbackInterface.OnFocus;
+                    Focus.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnFocus;
+                    Focus.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnFocus;
+                    Escape.started -= m_Wrapper.m_GameActionsCallbackInterface.OnEscape;
+                    Escape.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnEscape;
+                    Escape.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnEscape;
+                }
+                m_Wrapper.m_GameActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    CameraMovement.started += instance.OnCameraMovement;
+                    CameraMovement.performed += instance.OnCameraMovement;
+                    CameraMovement.canceled += instance.OnCameraMovement;
+                    Zoom.started += instance.OnZoom;
+                    Zoom.performed += instance.OnZoom;
+                    Zoom.canceled += instance.OnZoom;
+                    Focus.started += instance.OnFocus;
+                    Focus.performed += instance.OnFocus;
+                    Focus.canceled += instance.OnFocus;
+                    Escape.started += instance.OnEscape;
+                    Escape.performed += instance.OnEscape;
+                    Escape.canceled += instance.OnEscape;
+                }
             }
         }
-    }
-    public GameplayActions @Gameplay => new GameplayActions(this);
-    private int m_KeyboardandMouseSchemeIndex = -1;
-    public InputControlScheme KeyboardandMouseScheme
-    {
-        get
+        public GameActions @Game => new GameActions(this);
+        private int m_KeyboardandMouseSchemeIndex = -1;
+        public InputControlScheme KeyboardandMouseScheme
         {
-            if (m_KeyboardandMouseSchemeIndex == -1) m_KeyboardandMouseSchemeIndex = asset.GetControlSchemeIndex("Keyboard and Mouse");
-            return asset.controlSchemes[m_KeyboardandMouseSchemeIndex];
+            get
+            {
+                if (m_KeyboardandMouseSchemeIndex == -1) m_KeyboardandMouseSchemeIndex = asset.GetControlSchemeIndex("Keyboard and Mouse");
+                return asset.controlSchemes[m_KeyboardandMouseSchemeIndex];
+            }
         }
-    }
-    public interface IGameplayActions
-    {
-        void OnCameraMovement(InputAction.CallbackContext context);
-        void OnZoom(InputAction.CallbackContext context);
-        void OnFocus(InputAction.CallbackContext context);
+        public interface IGameActions
+        {
+            void OnCameraMovement(InputAction.CallbackContext context);
+            void OnZoom(InputAction.CallbackContext context);
+            void OnFocus(InputAction.CallbackContext context);
+            void OnEscape(InputAction.CallbackContext context);
+        }
     }
 }
