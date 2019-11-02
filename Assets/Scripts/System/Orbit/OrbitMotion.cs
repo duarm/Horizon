@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (Rigidbody))]
@@ -54,14 +53,14 @@ public class OrbitMotion : MonoBehaviour
 
     // STATE
 
-    public void InitializeAsPlanet (float scale)
+    public void InitializeAsPlanet (PlanetData data, float scale)
     {
         CalculateScales (scale);
         SetOrbitingObjectPosition ();
         Toggle (true);
     }
 
-    public void InitializeAsMoon ()
+    public void InitializeAsMoon (PlanetData data)
     {
         SetOrbitingObjectPosition ();
         Toggle (false);
@@ -74,7 +73,12 @@ public class OrbitMotion : MonoBehaviour
             StartCoroutine (AnimateOrbit ());
     }
 
-    public void Disable ()
+    public void OnEnterLocalSpace ()
+    {
+
+    }
+
+    public void OnExitLocalSpace ()
     {
 
     }

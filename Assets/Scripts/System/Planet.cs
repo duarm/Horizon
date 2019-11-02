@@ -99,20 +99,21 @@ public class Planet : MonoBehaviour
         transform.localScale = new Vector3 (newSize, newSize, newSize);
     }
 
-    public void OnLocalSpace (bool value)
+    public void OnEnterLocalSpace ()
     {
-        SetNameVisilibity (value);
+        SetMoonsVisibility (true);
+        SetMeshVisibility (true);
     }
 
-    public void EnterLocalSpace (bool value)
+    public void OnExitLocalSpace()
     {
-        SetMoonsVisibility (value);
-        SetMeshVisibility (value);
+        SetMoonsVisibility (false);
+        SetMeshVisibility (false);
     }
 
     public void SetMeshVisibility (bool show)
     {
-        if(mesh)
+        if (mesh)
             mesh.enabled = show;
     }
 

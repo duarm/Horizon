@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 public class SolarSystemController : MonoBehaviour
 {
     [Header ("References")]
@@ -15,22 +16,8 @@ public class SolarSystemController : MonoBehaviour
     [Space]
     [SerializeField] Texture2D focusTexture;
 
-    bool showingOrbit = true;
     bool upwardMotion = true;
     float resolution;
-
-    public bool ShowingOrbit
-    {
-        set
-        {
-            showingOrbit = value;
-            SetOrbitVisiblity (showingOrbit);
-        }
-        private get
-        {
-            return showingOrbit;
-        }
-    }
 
     public LocalController Sun { get { return sun; } }
 
@@ -52,13 +39,24 @@ public class SolarSystemController : MonoBehaviour
         }
 
         sun.InitializeAsPlanet (scale, resolution, focusTexture);
+
+        if (upwardMotion)
+            StartCoroutine (UpwardMotion ());
     }
 
-
-    private void FixedUpdate ()
+    IEnumerator UpwardMotion ()
     {
-        if (upwardMotion)
-            ToggleUpwardMotion ();
+        while (upwardMotion)
+        {
+            sun.SetPosition (new Vector3 (0, sun.transform.localPosition.y + (upwardMotionSpeed * Time.fixedDeltaTime), 0));
+
+            for (int i = 0; i < planets.Length; i++)
+            {
+                planets[i].Redraw ();
+            }
+
+            yield return null;
+        }
     }
 
     [ContextMenu ("Update Speed Scale")]
@@ -67,16 +65,6 @@ public class SolarSystemController : MonoBehaviour
         for (int i = 0; i < planets.Length; i++)
         {
             planets[i].SetTimeScale (timeScale);
-        }
-    }
-
-    public void ToggleUpwardMotion ()
-    {
-        sun.orbit.SetPosition (new Vector3 (0, sun.transform.localPosition.y + (upwardMotionSpeed * Time.fixedDeltaTime), 0));
-
-        for (int i = 0; i < planets.Length; i++)
-        {
-            planets[i].orbitRenderer.Redraw ();
         }
     }
 
@@ -89,47 +77,31 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    /*public void SetAllNamesVisibility (bool value)
-    {
-        for (int i = 0; i < planets.Length; i++)
-        {
-            planets[i].planet.SetNameVisilibity (value);
-        }
-    }
-
-    public void HideAllNamesExcept (Planet planet)
-    {
-        for (int i = 0; i < planets.Length; i++)
-        {
-            if (planets[i].planet.Equals (planet))
-                continue;
-
-            planets[i].planet.SetNameVisilibity (false);
-        }
-    }
-
-    public void HideAllOrbitsExcept (Planet planet)
-    {
-        for (int i = 0; i < planets.Length; i++)
-        {
-            if (planets[i].planet.Equals (planet))
-                continue;
-
-            planets[i].orbitRenderer.SetOrbitVisiblity (false);
-        }
-    }*/
-
-    public void EnterLocalSpace (LocalController local, bool value)
+    public void EnterLocalSpace (LocalController local)
     {
         for (int i = 0; i < planets.Length; i++)
         {
             if (planets[i].Equals (local))
             {
-                local.EnterLocalSpace (value);
+                local.OnEnterLocalSpace ();
                 continue;
             }
 
-            planets[i].OnLocalSpace (!value);
+            planets[i].SetVisibility (false);
+        }
+    }
+
+    public void ExitLocalSpace (LocalController local)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].Equals (local))
+            {
+                local.OnExitLocalSpace ();
+                continue;
+            }
+
+            planets[i].SetVisibility (true);
         }
     }
 

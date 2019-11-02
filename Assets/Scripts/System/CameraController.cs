@@ -83,7 +83,7 @@ public class CameraController : MonoBehaviour
 
         if (follower)
         {
-            var target = follower.orbit.transform.position;
+            var target = follower.OrbitPosition;
             transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, target, ref currentVelocity, transitionSmoothTime), currentRotation);
             //transition = transition ?? StartCoroutine (Transition ());
         }
@@ -106,6 +106,10 @@ public class CameraController : MonoBehaviour
 
     public void MoveCamera (Vector3 input)
     {
+        //cannot move while zoomed
+        if (zoomLevel < zoomMin)
+            return;
+
         //slow down the movement as the zoom level increases to give the impression of a bigger universe
         var speed = (movementSpeed - (zoomLevel * movementSlowDownRate));
         speed = speed < 0 ? 0 : speed;
@@ -122,7 +126,7 @@ public class CameraController : MonoBehaviour
         Vector3 velocity = Vector3.zero;
         while (follower != null)
         {
-            var target = follower.orbit.transform.position;
+            var target = follower.OrbitPosition;
             transform.SetPositionAndRotation (target, currentRotation);
             yield return 0;
         }
@@ -146,7 +150,8 @@ public class CameraController : MonoBehaviour
         follower?.SetFocus (false);
         follower = planet;
         follower?.SetFocus (true);
-        //EventManager.TriggerEvent ("OnFocus");
+        
+        EventManager.OnFocus?.Invoke(planet.Data);
     }
 
     public void HandleZoom ()
@@ -163,9 +168,14 @@ public class CameraController : MonoBehaviour
             else
             {
                 if (zoomLevel == zoomMax && follower)
-                    solarSystem.EnterLocalSpace (follower, true);
+                    solarSystem.EnterLocalSpace (follower);
 
-                if ((zoomMax + zoomThreshold) > zoomLevel)
+                if ((zoomMax + zoomThreshold) > zoomLevel && follower)
+                {
+                    velocity = 1;
+                    Zoom (velocity);
+                }
+                else if (zoomLevel < zoomMin)
                 {
                     velocity = 1;
                     Zoom (velocity);
@@ -182,7 +192,7 @@ public class CameraController : MonoBehaviour
             else
             {
                 if (zoomLevel == (zoomMax + 1))
-                    solarSystem.EnterLocalSpace (follower, false);
+                    solarSystem.ExitLocalSpace (follower);
 
                 if ((zoomMin - zoomThreshold) < zoomLevel)
                 {

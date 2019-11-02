@@ -1,13 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Kurenaiz.Management.Events
 {
-    public class EventManager : MonoBehaviour {
+    public class EventManager : MonoBehaviour
+    {
 
-        private Dictionary <string, UnityEvent> unityEventDictionary;
-        private Dictionary <string, UnityEvent> eventDictionary;
+        private Dictionary<string, Action> eventDictionary;
+
+        public static Action<PlanetData> OnFocus { get; private set; }
 
         private static EventManager eventManager;
 
@@ -25,7 +28,7 @@ namespace Kurenaiz.Management.Events
                     }
                     else
                     {
-                        eventManager.Init (); 
+                        eventManager.Init ();
                     }
                 }
 
@@ -35,41 +38,45 @@ namespace Kurenaiz.Management.Events
 
         void Init ()
         {
-            if (unityEventDictionary == null)
+            if (eventDictionary == null)
             {
-                unityEventDictionary = new Dictionary<string, UnityEvent>();
+                eventDictionary = new Dictionary<string, Action> ();
             }
         }
 
-        public static void StartListening (string eventName, UnityAction listener)
+        public static void SubscribeToFocus(Action<PlanetData> action)
         {
-            UnityEvent thisEvent = null;
-            if (instance.unityEventDictionary.TryGetValue (eventName, out thisEvent))
+            OnFocus += action;
+        }
+
+        public static void StartListening (string eventName, Action listener)
+        {
+            Action thisEvent = null;
+            if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
             {
-                thisEvent.AddListener (listener);
-            } 
+                thisEvent += listener;
+            }
             else
             {
-                thisEvent = new UnityEvent ();
-                thisEvent.AddListener (listener);
-                instance.unityEventDictionary.Add (eventName, thisEvent);
+                thisEvent += listener;
+                instance.eventDictionary.Add (eventName, thisEvent);
             }
         }
 
-        public static void StopListening (string eventName, UnityAction listener)
+        public static void StopListening (string eventName, Action listener)
         {
             if (eventManager == null) return;
-            UnityEvent thisEvent = null;
-            if (instance.unityEventDictionary.TryGetValue (eventName, out thisEvent))
+            Action thisEvent = null;
+            if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
             {
-                thisEvent.RemoveListener (listener);
+                thisEvent -= listener;
             }
         }
 
         public static void TriggerEvent (string eventName)
         {
-            UnityEvent thisEvent = null;
-            if (instance.unityEventDictionary.TryGetValue (eventName, out thisEvent))
+            Action thisEvent = null;
+            if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
             {
                 thisEvent.Invoke ();
             }

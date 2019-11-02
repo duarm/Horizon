@@ -24,17 +24,17 @@ public class OrbitRenderer : MonoBehaviour
         CalculateOrbit (segments);
     }
 
-// DYNAMIC SIMULATION PUT ON HOLD
-/*
-    void Awake ()
-    {
-        if (orbitRenderer || trailRenderer)
+    // DYNAMIC SIMULATION PUT ON HOLD
+    /*
+        void Awake ()
         {
-            anyRenderer = true;
-            orbitMotion.orbit.OnOrbitUpdate += CalculateOrbit;
+            if (orbitRenderer || trailRenderer)
+            {
+                anyRenderer = true;
+                orbitMotion.orbit.OnOrbitUpdate += CalculateOrbit;
+            }
         }
-    }
-*/
+    */
     //STATE
 
     public void InitializeAsPlanet ()
@@ -48,9 +48,14 @@ public class OrbitRenderer : MonoBehaviour
 
     }
 
-    public void OnLocalSpace (bool value)
+    public void OnEnterLocalSpace ()
     {
-        SetOrbitVisiblity (value);
+
+    }
+
+    public void OnExitLocalSpace ()
+    {
+
     }
 
     public void Toggle (bool on)
@@ -69,16 +74,16 @@ public class OrbitRenderer : MonoBehaviour
     {
         if (trailRenderer)
         {
-            if(on)
-                trailRenderer.Clear();
-                
+            if (on)
+                trailRenderer.Clear ();
+
             trailRenderer.enabled = on;
         }
     }
 
     //RENDERER
 
-    public void Redraw (int segments = 0)
+    public void OnRedraw (int segments = 0)
     {
         CalculateOrbit (segments);
     }
@@ -88,7 +93,7 @@ public class OrbitRenderer : MonoBehaviour
         if (!orbitRenderer)
             return;
 
-        if(segments == 0)
+        if (segments == 0)
             segments = this.segments;
 
         //+1 to close the circle
