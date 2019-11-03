@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Moon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Planet planet;
+    [SerializeField] OrbitMotion orbit;
+    [SerializeField] OrbitRenderer orbitRenderer;
+
+    public void Initialize (float resolution)
     {
-        
+        if (planet)
+            planet.InitializeAsMoon (resolution);
+        if (orbit)
+            orbit.InitializeAsMoon (planet.data);
+        if (orbitRenderer)
+            orbitRenderer.InitializeAsMoon ();
+
+        orbit.transform.localEulerAngles = new Vector3 (0, 0, planet.data.inclination);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMoonVisibility (bool on)
     {
-        
+        gameObject.SetActive (on);
+        planet.Toggle (on);
+        orbitRenderer.Toggle (on);
+        orbit.Toggle (on);
     }
 }

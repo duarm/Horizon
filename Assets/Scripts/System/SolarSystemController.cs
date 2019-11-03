@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Kurenaiz.Management.Events;
 using UnityEngine;
 public class SolarSystemController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class SolarSystemController : MonoBehaviour
     [SerializeField] Texture2D focusTexture;
 
     bool upwardMotion = true;
+    bool timeStopped = false;
     float resolution;
 
     public LocalController Sun { get { return sun; } }
@@ -31,6 +33,9 @@ public class SolarSystemController : MonoBehaviour
 
     public void Initialize (float scale)
     {
+        EventManager.SubscribeToShowOrbits(ToggleOrbit);
+        EventManager.SubscribeToSetOrbitType(SetOrbitType);
+
         resolution = UIController.Scale;
 
         for (int i = 0; i < planets.Length; i++)
@@ -59,6 +64,14 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
+    public void SetOrbitType(OrbitType type)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            planets[i].SetOrbitType(type);
+        }
+    }
+
     [ContextMenu ("Update Speed Scale")]
     public void SetSpeedScale ()
     {
@@ -68,13 +81,18 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    public void SetSpeedScale (string value)
+    public void SetSpeedScale (float value)
     {
-        var timeScale = float.Parse (value);
+        timeScale = value;
         for (int i = 0; i < planets.Length; i++)
         {
-            planets[i].SetTimeScale (timeScale);
+            planets[i].SetTimeScale (timeStopped ? 0 : timeScale);
         }
+    }
+
+    public void ZaWarudo(bool stop)
+    {
+        timeStopped = stop;
     }
 
     public void EnterLocalSpace (LocalController local)
@@ -112,6 +130,14 @@ public class SolarSystemController : MonoBehaviour
             planets[i].Zoom (direction, percentage);
         }
         sun.Zoom (direction, percentage);
+    }
+
+    public void ToggleOrbit(bool value)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            planets[i].ToggleOrbit(value);
+        }
     }
 
     void SetOrbitVisiblity (bool value)

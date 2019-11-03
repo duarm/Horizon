@@ -4,19 +4,22 @@
 public class OrbitRenderer : MonoBehaviour
 {
     [SerializeField] OrbitMotion orbitMotion;
-    [SerializeField] LineRenderer orbitRenderer;
+    [SerializeField] LineRenderer lineRenderer;
     [SerializeField] TrailRenderer trailRenderer;
 
     [Range (3, 360)]
     public int segments;
+
+    bool showOrbit = true;
+    OrbitType type = OrbitType.LINE;
 
     private void OnValidate ()
     {
         if (!orbitMotion)
             orbitMotion = GetComponent<OrbitMotion> ();
 
-        if (!orbitRenderer)
-            orbitRenderer = GetComponent<LineRenderer> ();
+        if (!lineRenderer)
+            lineRenderer = GetComponent<LineRenderer> ();
 
         if (!trailRenderer)
             trailRenderer = GetComponent<TrailRenderer> ();
@@ -24,17 +27,6 @@ public class OrbitRenderer : MonoBehaviour
         CalculateOrbit (segments);
     }
 
-    // DYNAMIC SIMULATION PUT ON HOLD
-    /*
-        void Awake ()
-        {
-            if (orbitRenderer || trailRenderer)
-            {
-                anyRenderer = true;
-                orbitMotion.orbit.OnOrbitUpdate += CalculateOrbit;
-            }
-        }
-    */
     //STATE
 
     public void InitializeAsPlanet ()
@@ -64,10 +56,39 @@ public class OrbitRenderer : MonoBehaviour
         SetTrailVisiblity (on);
     }
 
+    public void SetOrbitType (OrbitType type)
+    {
+        switch (type)
+        {
+            case OrbitType.LINE:
+                SetOrbitVisiblity (true);
+                SetTrailVisiblity (false);
+                type = OrbitType.LINE;
+                break;
+            case OrbitType.TRAIL:
+                SetTrailVisiblity (true);
+                SetOrbitVisiblity (false);
+                type = OrbitType.TRAIL;
+                break;
+        }
+    }
+
+    public void ToggleOrbit (bool value)
+    {
+        showOrbit = value;
+        SetOrbitVisiblity (value);
+    }
+
     public void SetOrbitVisiblity (bool value)
     {
-        if (orbitRenderer)
-            orbitRenderer.enabled = value;
+        if (!showOrbit)
+        {
+            lineRenderer.enabled = showOrbit;
+            return;
+        }
+
+        if (lineRenderer)
+            lineRenderer.enabled = value;
     }
 
     public void SetTrailVisiblity (bool on)
@@ -90,7 +111,7 @@ public class OrbitRenderer : MonoBehaviour
 
     void CalculateOrbit (int segments)
     {
-        if (!orbitRenderer)
+        if (!lineRenderer)
             return;
 
         if (segments == 0)
@@ -106,13 +127,13 @@ public class OrbitRenderer : MonoBehaviour
         }
 
         points[segments] = points[0];
-        orbitRenderer.positionCount = segments + 1;
-        orbitRenderer.SetPositions (points);
+        lineRenderer.positionCount = segments + 1;
+        lineRenderer.SetPositions (points);
     }
 
     void CalculateOrbit ()
     {
-        if (!orbitRenderer)
+        if (!lineRenderer)
             return;
 
         //+1 to close the circle
@@ -125,8 +146,8 @@ public class OrbitRenderer : MonoBehaviour
         }
 
         points[this.segments] = points[0];
-        orbitRenderer.positionCount = this.segments + 1;
-        orbitRenderer.SetPositions (points);
+        lineRenderer.positionCount = this.segments + 1;
+        lineRenderer.SetPositions (points);
     }
 
 }

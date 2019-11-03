@@ -10,7 +10,7 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
 
     bool getRenderer;
 
-    public Vector3 OrbitPosition { get { return orbit.transform.position; } }
+    public Vector3 OrbitPosition { get { return orbit.rb.position; } }
     public PlanetData Data { get { return planet.data; } }
 
     private void OnValidate ()
@@ -88,6 +88,16 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
     public void Redraw (int segments = 0)
     {
         orbitRenderer.OnRedraw (segments);
+    }
+
+    public void ToggleOrbit(bool value)
+    {
+        orbitRenderer.ToggleOrbit(value);
+    }
+
+    public void SetOrbitType(OrbitType type)
+    {
+        orbitRenderer.SetOrbitType(type);
     }
 
     public void SetOrbitVisiblity (bool value)

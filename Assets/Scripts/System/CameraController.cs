@@ -85,7 +85,6 @@ public class CameraController : MonoBehaviour
         {
             var target = follower.OrbitPosition;
             transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, target, ref currentVelocity, transitionSmoothTime), currentRotation);
-            //transition = transition ?? StartCoroutine (Transition ());
         }
         else
         {
@@ -119,19 +118,6 @@ public class CameraController : MonoBehaviour
 
         if (input != Vector3.zero)
             FocusOn (null);
-    }
-
-    IEnumerator Transition ()
-    {
-        Vector3 velocity = Vector3.zero;
-        while (follower != null)
-        {
-            var target = follower.OrbitPosition;
-            transform.SetPositionAndRotation (target, currentRotation);
-            yield return 0;
-        }
-
-        transition = null;
     }
 
     public void Focus ()

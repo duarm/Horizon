@@ -1,4 +1,5 @@
 ﻿using Horizon.Input;
+using Kurenaiz.Management.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,10 +9,10 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameActions
     public CameraController cameraController;
     InputMaster inputMaster;
 
-    private void OnValidate()
+    private void OnValidate ()
     {
-        if(cameraController == null)
-            cameraController = GetComponent<CameraController>();
+        if (cameraController == null)
+            cameraController = GetComponent<CameraController> ();
     }
 
     private void Awake ()
@@ -28,7 +29,7 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameActions
     private void Update ()
     {
         var wheel = Input.GetAxis ("Mouse ScrollWheel");
-        cameraController.ZoomCamera(wheel);
+        cameraController.ZoomCamera (wheel);
     }
 
     private void OnEnable ()
@@ -57,23 +58,8 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameActions
             cameraController.Focus ();
     }
 
-    public void OnEscape(InputAction.CallbackContext context)
+    public void OnEscape (InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        EventManager.TriggerEvent("OnEscape");
     }
-
-    /* public static Vector2 GetDirectionalInput()
-    {
-        return s_Instance.directionalInput;
-    }
-
-    public static float GetVerticalInput()
-    {
-        return s_Instance.directionalInput.y;
-    }
-
-    public static float GetHorizontalInput()
-    {
-        return s_Instance.directionalInput.x;
-    } */
 }

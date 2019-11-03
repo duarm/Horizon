@@ -5,7 +5,6 @@ using UnityEngine;
 public class OrbitMotion : MonoBehaviour
 {
     //[SerializeField] Transform velocityHandle;
-    [SerializeField] Rigidbody rb;
     public Orbit orbit;
 
     [Header ("Debug")]
@@ -15,6 +14,7 @@ public class OrbitMotion : MonoBehaviour
 
     [Tooltip ("How much time in seconds to complete the orbit")]
     [SerializeField] float period = 3f;
+    [SerializeField] float smoothTime = .5f;
 
     public bool lockOrbit = true;
     [SerializeField] bool debug = false;
@@ -25,23 +25,19 @@ public class OrbitMotion : MonoBehaviour
     float orbitDifference;
 
     Vector3 velocity;
-    [SerializeField] float smoothTime = .5f;
+    public Rigidbody rb { get; private set; }
 
     private void OnValidate ()
     {
-        if (!rb)
-        {
-            //rb = GetComponent<Rigidbody>();
-            //rb.isKinematic = true;
-            //rb.useGravity = false;
-        }
-
         if (debug)
             SetOrbitingObjectPosition ();
     }
 
     private void Awake ()
     {
+        if(!rb)
+            rb = GetComponent<Rigidbody>();
+
         transform.localPosition = Vector3.zero;
 
         if (!rb)

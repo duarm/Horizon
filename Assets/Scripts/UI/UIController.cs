@@ -3,16 +3,12 @@
 public class UIController : MonoBehaviour
 {
     private static UIController Instance;
+
     [SerializeField] Vector2 referenceResolution;
     [SerializeField] float scalerMatchWidthOrHeight = .5f;
 
     [SerializeField, ReadOnly] float scale;
     public static float Scale { get { return Instance.scale; } }
-
-    private void OnValidate ()
-    {
-        RecalculateScale ();
-    }
 
     private void Awake ()
     {
