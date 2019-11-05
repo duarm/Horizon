@@ -13,11 +13,11 @@ public class Moon : MonoBehaviour
         if (planet)
             planet.InitializeAsMoon (resolution);
         if (orbit)
-            orbit.InitializeAsMoon (planet.data);
+            orbit.InitializeAsMoon (planet.Data);
         if (orbitRenderer)
             orbitRenderer.InitializeAsMoon ();
 
-        orbit.transform.localEulerAngles = new Vector3 (0, 0, planet.data.inclination);
+        orbit.transform.localEulerAngles = new Vector3 (0, 0, planet.Data.inclination);
     }
 
     public void SetMoonVisibility (bool on)

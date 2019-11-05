@@ -73,7 +73,7 @@ public class SolarSystemController : MonoBehaviour
     }
 
     [ContextMenu ("Update Speed Scale")]
-    public void SetSpeedScale ()
+    public void SetTimeScale ()
     {
         for (int i = 0; i < planets.Length; i++)
         {
@@ -81,7 +81,7 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    public void SetSpeedScale (float value)
+    public void SetTimeScale (float value)
     {
         timeScale = value;
         for (int i = 0; i < planets.Length; i++)
@@ -93,6 +93,7 @@ public class SolarSystemController : MonoBehaviour
     public void ZaWarudo(bool stop)
     {
         timeStopped = stop;
+        SetTimeScale(timeScale);
     }
 
     public void EnterLocalSpace (LocalController local)

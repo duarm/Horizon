@@ -11,7 +11,7 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
     bool getRenderer;
 
     public Vector3 OrbitPosition { get { return orbit.rb.position; } }
-    public PlanetData Data { get { return planet.data; } }
+    public PlanetData Data { get { return planet.Data; } }
 
     private void OnValidate ()
     {
@@ -60,11 +60,11 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
         if (planet)
             planet.InitializeAsPlanet (scale, resolution, texture);
         if (orbit)
-            orbit.InitializeAsPlanet (planet.data, scale);
+            orbit.InitializeAsPlanet (Data, scale);
         if (orbitRenderer)
             orbitRenderer.InitializeAsPlanet ();
 
-        orbit.transform.localEulerAngles = new Vector3 (0, 0, planet.data.inclination);
+        orbit.transform.localEulerAngles = new Vector3 (0, 0, Data.inclination);
     }
 
     public void InitializeAsMoon (float resolution)
@@ -72,11 +72,11 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
         if (planet)
             planet.InitializeAsMoon (resolution);
         if (orbit)
-            orbit.InitializeAsMoon (planet.data);
+            orbit.InitializeAsMoon (Data);
         if (orbitRenderer)
             orbitRenderer.InitializeAsMoon ();
 
-        orbit.transform.localEulerAngles = new Vector3 (0, 0, planet.data.inclination);
+        orbit.transform.localEulerAngles = new Vector3 (0, 0, Data.inclination);
     }
 
     public void Zoom (float direction, float percentage)
@@ -113,6 +113,7 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
 
     public void SetFocus (bool value)
     {
+        planet.ToggleDisplayPlanet(value);
         planet.SetFocus (value);
     }
 
@@ -126,14 +127,14 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
 
     public override string ToString ()
     {
-        return this.planet.data.name;
+        return Data.name;
     }
 
     public bool Equals (LocalController other)
     {
         if (other == null)
             return false;
-        if (planet.data.name.Equals (other.ToString ()))
+        if (Data.name.Equals (other.ToString ()))
             return true;
         return false;
     }

@@ -78,10 +78,6 @@ namespace Kurenaiz.Management.Events
         {
             if (instance.eventDictionary.TryGetValue (eventName, out Action thisEvent))
             {
-                foreach (Action subscriber in thisEvent.GetInvocationList ())
-                {
-                    Debug.Log (subscriber.Method);
-                }
                 thisEvent.Invoke ();
             }
         }

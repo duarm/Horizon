@@ -5,12 +5,10 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Planet : MonoBehaviour
 {
-    public PlanetData data;
+    [SerializeField] PlanetData data;
+    [SerializeField] GameObject displayPlanet;
     [SerializeField] Camera mainCamera;
     [SerializeField] LocalController[] moons;
-
-    bool showName = true;
-    bool beingFocused = false;
 
     [SerializeField, ReadOnly] float minSize;
     [SerializeField, ReadOnly] float maxSize;
@@ -18,7 +16,13 @@ public class Planet : MonoBehaviour
 
     MeshRenderer mesh;
     Texture2D focusTexture;
+    bool showName = true;
+    bool beingFocused = false;
+
     static readonly GUIStyle guiStyle = new GUIStyle ();
+
+    public PlanetData Data { get { return data; } }
+    public GameObject DisplayPlanet { get { return displayPlanet; } }
 
     private void OnValidate ()
     {
@@ -99,13 +103,18 @@ public class Planet : MonoBehaviour
         transform.localScale = new Vector3 (newSize, newSize, newSize);
     }
 
+    public void ToggleDisplayPlanet (bool value)
+    {
+        displayPlanet.SetActive(value);
+    }
+
     public void OnEnterLocalSpace ()
     {
         SetMoonsVisibility (true);
         SetMeshVisibility (true);
     }
 
-    public void OnExitLocalSpace()
+    public void OnExitLocalSpace ()
     {
         SetMoonsVisibility (false);
         SetMeshVisibility (false);
