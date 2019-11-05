@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class LeftTabController : MonoBehaviour
 {
+    [SerializeField] GameObject leftBar;
     [SerializeField] Animator leftTabAnimator;
     [SerializeField] Dropdown orbitTypeDropdown;
 
@@ -15,9 +16,19 @@ public class LeftTabController : MonoBehaviour
 
     #region LeftTab
 
-    public void ToggleLeftBar ()
-    {
+    private void OnValidate() {
+        if (!leftBar)
+            leftBar = transform.GetChild(0).gameObject;
+    }
 
+    private void Start ()
+    {
+        EventManager.StartListening ("OnEscape", OpenLeftBar);
+    }
+
+    public void OpenLeftBar ()
+    {
+        leftBar.SetActive (true);
     }
 
     public void HideLeftTab ()

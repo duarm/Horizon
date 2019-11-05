@@ -44,6 +44,17 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameActions
 
     public void OnCameraMovement (InputAction.CallbackContext context)
     {
+        /*
+        if(context.performed)
+        {
+            EventManager.TriggerEvent("OnRightClickDown");
+        }
+
+        if(context.canceled)
+        {
+            EventManager.TriggerEvent("OnRightClickUp");
+        }*/
+
         cameraController.MoveCamera (context.ReadValue<Vector2> ());
     }
 
@@ -60,6 +71,8 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameActions
 
     public void OnEscape (InputAction.CallbackContext context)
     {
-        EventManager.TriggerEvent("OnEscape");
+        if(context.performed)
+            EventManager.TriggerEvent("OnEscape");
     }
+
 }

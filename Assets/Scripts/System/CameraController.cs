@@ -136,8 +136,8 @@ public class CameraController : MonoBehaviour
         follower?.SetFocus (false);
         follower = planet;
         follower?.SetFocus (true);
-        
-        EventManager.OnFocus?.Invoke(planet.Data);
+
+        EventManager.OnFocus?.Invoke (planet?.Data);
     }
 
     public void HandleZoom ()
@@ -206,6 +206,12 @@ public class CameraController : MonoBehaviour
 
     public void HandleRotation ()
     {
+        if (Input.GetKeyDown (KeyCode.Mouse1))
+            EventManager.TriggerEvent ("OnRightClickDown");
+
+        if (Input.GetKeyUp (KeyCode.Mouse1))
+            EventManager.TriggerEvent ("OnRightClickUp");
+
         if (Input.GetKey (KeyCode.Mouse1))
         {
             velocityX += xSpeed * Input.GetAxis ("Mouse X") * 0.02f;

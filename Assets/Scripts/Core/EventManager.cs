@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Kurenaiz.Management.Events
 {
@@ -51,10 +52,10 @@ namespace Kurenaiz.Management.Events
 
         public static void StartListening (string eventName, Action listener)
         {
-            Action thisEvent = null;
-            if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
+            if (instance.eventDictionary.TryGetValue (eventName, out Action thisEvent))
             {
                 thisEvent += listener;
+                instance.eventDictionary[eventName] = thisEvent;
             }
             else
             {
@@ -66,18 +67,21 @@ namespace Kurenaiz.Management.Events
         public static void StopListening (string eventName, Action listener)
         {
             if (eventManager == null) return;
-            Action thisEvent = null;
-            if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
+            if (instance.eventDictionary.TryGetValue (eventName, out Action thisEvent))
             {
                 thisEvent -= listener;
+                instance.eventDictionary[eventName] = thisEvent;
             }
         }
 
         public static void TriggerEvent (string eventName)
         {
-            Action thisEvent = null;
-            if (instance.eventDictionary.TryGetValue (eventName, out thisEvent))
+            if (instance.eventDictionary.TryGetValue (eventName, out Action thisEvent))
             {
+                foreach (Action subscriber in thisEvent.GetInvocationList ())
+                {
+                    Debug.Log (subscriber.Method);
+                }
                 thisEvent.Invoke ();
             }
         }

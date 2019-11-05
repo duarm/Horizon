@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class RightTabController : MonoBehaviour
 {
+    [SerializeField] GameObject rightTab;
     [SerializeField] Animator rightTabAnimator;
 
     [SerializeField] TextMeshProUGUI nameField;
@@ -24,12 +25,28 @@ public class RightTabController : MonoBehaviour
     [SerializeField] TextMeshProUGUI massField;
     [SerializeField] TextMeshProUGUI densityField;
 
-    private void Start() {
-        EventManager.SubscribeToFocus(SetValues);
-    }
-    
-    public void SetValues(PlanetData data)
+    private void OnValidate ()
     {
+        if (!rightTab)
+            rightTab = transform.GetChild (0).gameObject;
+    }
+
+    private void Start ()
+    {
+        EventManager.SubscribeToFocus (OpenRightBar);
+    }
+
+    public void OpenRightBar (PlanetData data)
+    {
+        rightTab.SetActive (true);
+        SetValues (data);
+    }
+
+    void SetValues (PlanetData data)
+    {
+        if (data == null)
+            return;
+
         nameField.text = data.name;
         inclinationField.text = data.inclination + "°";
         perihelionField.text = data.perihelion + " km";

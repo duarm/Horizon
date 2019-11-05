@@ -8,7 +8,6 @@ public class TriggerNotifier : MonoBehaviour
     {
         if(startUpdate)
         {
-            //Debug.Log("Exiting " + this.gameObject.name);
             EventManager.TriggerEvent("UpdateLineRenderer");
         }
         else
@@ -21,7 +20,6 @@ public class TriggerNotifier : MonoBehaviour
     {
         if(startUpdate)
         {
-            //Debug.Log("Exiting " + this.gameObject.name);
             EventManager.TriggerEvent("UpdateLineRenderer");
         }
         else
