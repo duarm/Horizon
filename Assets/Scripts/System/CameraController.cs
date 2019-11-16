@@ -106,7 +106,7 @@ public class CameraController : MonoBehaviour
     public void MoveCamera (Vector3 input)
     {
         //cannot move while zoomed
-        if (zoomLevel < zoomMin)
+        if (zoomLevel > zoomMax)
             return;
 
         //slow down the movement as the zoom level increases to give the impression of a bigger universe

@@ -63,7 +63,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - ifms_sized
   - circle
-  - Play
+  - play
   - LightMask
   - back
   - Square

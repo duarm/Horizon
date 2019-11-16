@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using System.Collections.Generic;
+
+[System.Serializable]
 public class PlanetData
 {
     public string name;
@@ -17,5 +19,6 @@ public class PlanetData
     public float minTemperature;
     public float maxTemperature;
     public float gravity;
-    public float mass;
+    public string mass;
+    public List<string> trivias;
 }
