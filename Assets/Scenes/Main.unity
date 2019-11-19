@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusTexture: {fileID: 2800000, guid: 331de250aba2ed24d8d8e4e09a2c11ff, type: 3}
   localOrbitResolutionIncreasing: 64
-  upwardMotionSpeed: 10
+  upwardMotionSpeed: 7
   camera: {fileID: 1467817174}
   planets:
   - {fileID: 789840102}
@@ -4650,6 +4650,7 @@ MonoBehaviour:
   orbit:
     xAxis: 2087.4
     yAxis: 2087.4
+  rb: {fileID: 462952846}
   progress: 0
   debug: 0
 --- !u!54 &462952846
@@ -5213,6 +5214,7 @@ MonoBehaviour:
   orbit:
     xAxis: 306.2
     yAxis: 306.2
+  rb: {fileID: 503747256}
   progress: 0
   debug: 0
 --- !u!135 &503747254
@@ -7246,6 +7248,7 @@ MonoBehaviour:
   orbit:
     xAxis: 6129
     yAxis: 6129
+  rb: {fileID: 626801733}
   progress: 0
   debug: 0
 --- !u!54 &626801733
@@ -10625,6 +10628,7 @@ MonoBehaviour:
   orbit:
     xAxis: 158.49
     yAxis: 158.49
+  rb: {fileID: 877128590}
   progress: 0
   debug: 0
 --- !u!54 &877128590
@@ -11075,6 +11079,7 @@ MonoBehaviour:
   orbit:
     xAxis: 6300
     yAxis: 6300
+  rb: {fileID: 943379644}
   progress: 0
   debug: 0
 --- !u!1 &948530889
@@ -12124,6 +12129,7 @@ MonoBehaviour:
   orbit:
     xAxis: 400
     yAxis: 400
+  rb: {fileID: 1023391656}
   progress: 0
   debug: 0
 --- !u!54 &1023391656
@@ -12862,6 +12868,7 @@ MonoBehaviour:
   orbit:
     xAxis: 4321
     yAxis: 4321
+  rb: {fileID: 1042749835}
   progress: 0
   debug: 0
 --- !u!54 &1042749835
@@ -13204,6 +13211,7 @@ MonoBehaviour:
   orbit:
     xAxis: 0
     yAxis: 0
+  rb: {fileID: 1063620453}
   progress: 0
   debug: 0
 --- !u!1 &1065335727
@@ -13628,6 +13636,7 @@ MonoBehaviour:
   orbit:
     xAxis: 20
     yAxis: 20
+  rb: {fileID: 1082922695}
   progress: 0
   debug: 0
 --- !u!114 &1082922698
@@ -13930,7 +13939,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0.0000014977738
+    Value: 0.000003502301
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
@@ -14779,6 +14788,7 @@ MonoBehaviour:
   orbit:
     xAxis: 40
     yAxis: 40
+  rb: {fileID: 1137635399}
   progress: 0
   debug: 0
 --- !u!114 &1137635402
@@ -19359,6 +19369,7 @@ MonoBehaviour:
   orbit:
     xAxis: 87.97
     yAxis: 87.97
+  rb: {fileID: 1449127918}
   progress: 0
   debug: 0
 --- !u!96 &1449127914
@@ -22616,6 +22627,7 @@ MonoBehaviour:
   orbit:
     xAxis: 191
     yAxis: 191
+  rb: {fileID: 1670278382}
   progress: 0
   debug: 0
 --- !u!54 &1670278382
@@ -23762,6 +23774,7 @@ MonoBehaviour:
   orbit:
     xAxis: 1329.3
     yAxis: 1329.3
+  rb: {fileID: 1819923339}
   progress: 0
   debug: 0
 --- !u!54 &1819923339

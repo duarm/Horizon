@@ -5,6 +5,7 @@ using UnityEngine;
 public class OrbitMotion : MonoBehaviour
 {
     public Orbit orbit;
+    [SerializeField] Rigidbody rb;
     [Range (0f, 1f)]
     [Tooltip ("Current orbit progress. (0 to 1)")]
     [SerializeField] float progress = 0f;
@@ -22,7 +23,6 @@ public class OrbitMotion : MonoBehaviour
     public float Progress { get { return progress; } }
     public Vector3 Position { get { return rb.position; } }
 
-    Rigidbody rb;
 
     private void OnValidate ()
     {

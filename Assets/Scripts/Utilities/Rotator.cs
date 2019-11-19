@@ -19,7 +19,7 @@ public class Rotator : MonoBehaviour
     {
         for (int i = 0; i < rotate.Length; i++)
         {
-            rotate[i].transform.Rotate(axis * speed * timeScale);     
+            rotate[i].transform.Rotate(axis * speed * timeScale * Time.fixedDeltaTime);     
         } 
     }
 }
