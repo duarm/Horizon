@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 9f69d571a9cb54943b5a80ccd6b19e96, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 246d4b1ad4a63004d8fcf3949494e5b3, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -350,6 +350,157 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 35599400}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &38087168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 38087169}
+  - component: {fileID: 38087171}
+  - component: {fileID: 38087170}
+  m_Layer: 5
+  m_Name: BG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &38087169
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38087168}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056247058}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 160.99202, y: 0}
+  m_SizeDelta: {x: -321.98404, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &38087170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38087168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0.9019608}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &38087171
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38087168}
+  m_CullTransparentMesh: 0
+--- !u!1 &57950525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57950526}
+  - component: {fileID: 57950528}
+  - component: {fileID: 57950527}
+  m_Layer: 11
+  m_Name: Pluto Display
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &57950526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57950525}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 458670503}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &57950527
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57950525}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a0c4bfa65fac779408ac5de76f1993a2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &57950528
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57950525}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &63213111
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +816,137 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!1 &82537686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82537687}
+  - component: {fileID: 82537690}
+  - component: {fileID: 82537689}
+  - component: {fileID: 82537688}
+  m_Layer: 5
+  m_Name: EyeOpen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &82537687
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82537686}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 370909690}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -343.0999, y: -85.89989}
+  m_SizeDelta: {x: 30, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &82537688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82537686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 82537689}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1886318217}
+        m_MethodName: ToggleAtmosphere
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &82537689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82537686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.49411765, g: 0.49411765, b: 0.49411765, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 88f63c5e9dae4a24c998eae1a7244b78, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &82537690
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82537686}
+  m_CullTransparentMesh: 0
 --- !u!1 &97727387
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +976,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &97727389
 MonoBehaviour:
@@ -989,7 +1271,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &123825903
 GameObject:
@@ -1020,7 +1302,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &123825905
 MonoBehaviour:
@@ -1034,6 +1316,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1715742e8a858d44083c5df744c73458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  focusTexture: {fileID: 2800000, guid: 331de250aba2ed24d8d8e4e09a2c11ff, type: 3}
+  localOrbitResolutionIncreasing: 64
+  upwardMotionSpeed: 10
   camera: {fileID: 1467817174}
   planets:
   - {fileID: 789840102}
@@ -1046,10 +1331,6 @@ MonoBehaviour:
   - {fileID: 586278742}
   - {fileID: 865296075}
   sun: {fileID: 803631787}
-  upwardMotionSpeed: 10
-  timeScale: 1
-  focusTexture: {fileID: 2800000, guid: 331de250aba2ed24d8d8e4e09a2c11ff, type: 3}
-  localOrbitResolutionIncreasing: 64
 --- !u!1 &137594831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,27 +1623,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: 
-    moonCount: 0
-    inclination: 0
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias: []
   displayPlanet: {fileID: 0}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons: []
   minSize: 0
@@ -2043,19 +2305,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232904267}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1039672175}
   - {fileID: 666987863}
-  m_Father: {fileID: 1056247058}
+  m_Father: {fileID: 1547025330}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.63151854}
   m_AnchorMax: {x: 1, y: 0.70487326}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000091552734}
+  m_SizeDelta: {x: 0.4000244, y: 0.0000076293945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &232904269
 MonoBehaviour:
@@ -2076,12 +2338,12 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
-  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
 --- !u!222 &232904270
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2394,29 +2656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Uranus
-    moonCount: 0
-    inclination: 6.48
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias:
-    - "\xDAnico planeta do sistema solar que recebeu o nome de um deus grego. Na mitologia,
-      ele era o deus primordial e personificava o c\xE9u. "
   displayPlanet: {fileID: 1038770285}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons:
   - {fileID: 0}
@@ -2803,7 +3044,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Infor
+  m_text: "Informa\xE7\xF5es"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2872,7 +3113,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 10, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 272493396}
-    characterCount: 5
+    characterCount: 11
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -3531,21 +3772,22 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370909689}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1131904598}
   - {fileID: 786320449}
   - {fileID: 655951627}
   - {fileID: 1183580056}
-  m_Father: {fileID: 1056247058}
+  - {fileID: 82537687}
+  - {fileID: 1916749389}
+  m_Father: {fileID: 1547025330}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.7}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_SizeDelta: {x: 0.4000244, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &370909691
 MonoBehaviour:
@@ -4196,6 +4438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 458670503}
+  - component: {fileID: 458670504}
   m_Layer: 11
   m_Name: Display Planets
   m_TagString: Untagged
@@ -4215,16 +4458,40 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 2052692184}
-  - {fileID: 731726703}
+  - {fileID: 1266517999}
   - {fileID: 1997598748}
   - {fileID: 1954571155}
   - {fileID: 1541819547}
   - {fileID: 506252292}
   - {fileID: 1038770286}
   - {fileID: 340151662}
+  - {fileID: 57950526}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &458670504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458670502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d37c21f314e1544acb7f874c1f000b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotate:
+  - {fileID: 2052692183}
+  - {fileID: 1266517998}
+  - {fileID: 1997598747}
+  - {fileID: 1954571154}
+  - {fileID: 1541819546}
+  - {fileID: 1038770285}
+  - {fileID: 340151661}
+  - {fileID: 57950525}
+  axis: {x: 0, y: -1, z: 0}
+  speed: 0.5
 --- !u!1 &462952839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4384,9 +4651,6 @@ MonoBehaviour:
     xAxis: 2087.4
     yAxis: 2087.4
   progress: 0
-  period: 10755.7
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!54 &462952846
 Rigidbody:
@@ -4950,9 +5214,6 @@ MonoBehaviour:
     xAxis: 306.2
     yAxis: 306.2
   progress: 0
-  period: 686.98
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!135 &503747254
 SphereCollider:
@@ -5048,6 +5309,7 @@ GameObject:
   - component: {fileID: 506252292}
   - component: {fileID: 506252294}
   - component: {fileID: 506252293}
+  - component: {fileID: 506252295}
   m_Layer: 11
   m_Name: Saturn Display
   m_TagString: Untagged
@@ -5115,6 +5377,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506252291}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &506252295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506252291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d37c21f314e1544acb7f874c1f000b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotate:
+  - {fileID: 2724334196007039532}
+  axis: {x: 0, y: 0, z: 1}
+  speed: 1
 --- !u!1 &511330282
 GameObject:
   m_ObjectHideFlags: 0
@@ -5260,7 +5538,7 @@ RectTransform:
   m_Children:
   - {fileID: 1745482834}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5359,7 +5637,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 123825905}
+      - m_Target: {fileID: 1325347571}
         m_MethodName: ZaWarudo
         m_Mode: 6
         m_Arguments:
@@ -5628,6 +5906,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tip: 
   direction: 3
+--- !u!1 &571446675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 571446676}
+  m_Layer: 5
+  m_Name: SideBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &571446676
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571446675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1131904598}
+  m_Father: {fileID: 1056247058}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.86, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &572659038
 GameObject:
   m_ObjectHideFlags: 0
@@ -5677,6 +5991,26 @@ MonoBehaviour:
   planet: {fileID: 602214473}
   orbit: {fileID: 1670278380}
   orbitRenderer: {fileID: 572659041}
+  data:
+    name: Terra
+    moonCount: 1
+    orbitDistance: 0
+    inclination: 7.155
+    orbitInclination: 0
+    perihelion: 147098290
+    aphelion: 152098232
+    orbitPeriod: 365.25
+    rotationPeriod: 0.997
+    orbitalSpeed: 29.78
+    diameter: 12756.2
+    surfaceArea: 510072000
+    density: 5.515
+    averageTemperature: 14
+    minTemperature: -93.2
+    maxTemperature: 57.8
+    gravity: 9.78
+    mass: 
+    trivias: []
 --- !u!114 &572659041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5689,10 +6023,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 24
   orbitMotion: {fileID: 1670278380}
   lineRenderer: {fileID: 572659043}
   trailRenderer: {fileID: 1670278377}
-  segments: 26
 --- !u!120 &572659043
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -5732,57 +6066,53 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 191}
-  - {x: 23.022507, y: 0, z: 189.60739}
-  - {x: 45.709293, y: 0, z: 185.44989}
-  - {x: 67.72954, y: 0, z: 178.5881}
-  - {x: 88.76213, y: 0, z: 169.1221}
-  - {x: 108.50037, y: 0, z: 157.18991}
-  - {x: 126.656425, y: 0, z: 142.96556}
-  - {x: 142.96556, y: 0, z: 126.65642}
-  - {x: 157.18991, y: 0, z: 108.50036}
-  - {x: 169.12212, y: 0, z: 88.762115}
-  - {x: 178.5881, y: 0, z: 67.72953}
-  - {x: 185.44989, y: 0, z: 45.70928}
-  - {x: 189.60739, y: 0, z: 23.022507}
+  - {x: 24.930504, y: 0, z: 189.36597}
+  - {x: 49.434437, y: 0, z: 184.49184}
+  - {x: 73.09254, y: 0, z: 176.46098}
+  - {x: 95.5, y: 0, z: 165.41084}
+  - {x: 116.27343, y: 0, z: 151.53049}
+  - {x: 135.05739, y: 0, z: 135.05739}
+  - {x: 151.53049, y: 0, z: 116.27343}
+  - {x: 165.41086, y: 0, z: 95.49999}
+  - {x: 176.46098, y: 0, z: 73.09254}
+  - {x: 184.49184, y: 0, z: 49.434444}
+  - {x: 189.36597, y: 0, z: 24.93049}
   - {x: 191, y: 0, z: -0.000008348875}
-  - {x: 189.60739, y: 0, z: -23.022524}
-  - {x: 185.44989, y: 0, z: -45.709297}
-  - {x: 178.5881, y: 0, z: -67.729546}
-  - {x: 169.12209, y: 0, z: -88.762146}
-  - {x: 157.1899, y: 0, z: -108.50039}
-  - {x: 142.96556, y: 0, z: -126.656425}
-  - {x: 126.656425, y: 0, z: -142.96556}
-  - {x: 108.50036, y: 0, z: -157.18993}
-  - {x: 88.7621, y: 0, z: -169.12212}
-  - {x: 67.72954, y: 0, z: -178.5881}
-  - {x: 45.709293, y: 0, z: -185.44989}
-  - {x: 23.0225, y: 0, z: -189.60739}
+  - {x: 189.36597, y: 0, z: -24.93053}
+  - {x: 184.49184, y: 0, z: -49.434437}
+  - {x: 176.46098, y: 0, z: -73.09255}
+  - {x: 165.41084, y: 0, z: -95.50001}
+  - {x: 151.53049, y: 0, z: -116.27343}
+  - {x: 135.05739, y: 0, z: -135.05739}
+  - {x: 116.2734, y: 0, z: -151.53052}
+  - {x: 95.50001, y: 0, z: -165.41084}
+  - {x: 73.09251, y: 0, z: -176.46101}
+  - {x: 49.434414, y: 0, z: -184.49184}
+  - {x: 24.930481, y: 0, z: -189.36597}
   - {x: -0.00001669775, y: 0, z: -191}
-  - {x: -23.022532, y: 0, z: -189.60739}
-  - {x: -45.709324, y: 0, z: -185.44987}
-  - {x: -67.72953, y: 0, z: -178.5881}
-  - {x: -88.76213, y: 0, z: -169.1221}
-  - {x: -108.50038, y: 0, z: -157.18991}
-  - {x: -126.65645, y: 0, z: -142.96553}
-  - {x: -142.96555, y: 0, z: -126.65644}
-  - {x: -157.18994, y: 0, z: -108.500336}
-  - {x: -169.12212, y: 0, z: -88.76208}
-  - {x: -178.58812, y: 0, z: -67.72948}
-  - {x: -185.44987, y: 0, z: -45.70931}
-  - {x: -189.60739, y: 0, z: -23.022512}
+  - {x: -24.930515, y: 0, z: -189.36597}
+  - {x: -49.43449, y: 0, z: -184.49182}
+  - {x: -73.09254, y: 0, z: -176.46098}
+  - {x: -95.49999, y: 0, z: -165.41084}
+  - {x: -116.27347, y: 0, z: -151.53046}
+  - {x: -135.05742, y: 0, z: -135.05737}
+  - {x: -151.53047, y: 0, z: -116.273445}
+  - {x: -165.41086, y: 0, z: -95.499985}
+  - {x: -176.46101, y: 0, z: -73.092476}
+  - {x: -184.49184, y: 0, z: -49.434425}
+  - {x: -189.36597, y: 0, z: -24.93045}
   - {x: -191, y: 0, z: 0.0000022776521}
-  - {x: -189.60739, y: 0, z: 23.022518}
-  - {x: -185.44987, y: 0, z: 45.709312}
-  - {x: -178.5881, y: 0, z: 67.72956}
-  - {x: -169.12209, y: 0, z: 88.76216}
-  - {x: -157.1899, y: 0, z: 108.50041}
-  - {x: -142.96552, y: 0, z: 126.65647}
-  - {x: -126.65645, y: 0, z: 142.96553}
-  - {x: -108.50038, y: 0, z: 157.18991}
-  - {x: -88.76213, y: 0, z: 169.1221}
-  - {x: -67.72945, y: 0, z: 178.58813}
-  - {x: -45.70928, y: 0, z: 185.44989}
-  - {x: -23.022482, y: 0, z: 189.60739}
+  - {x: -189.36597, y: 0, z: 24.930544}
+  - {x: -184.4918, y: 0, z: 49.434517}
+  - {x: -176.46097, y: 0, z: 73.09257}
+  - {x: -165.41086, y: 0, z: 95.499985}
+  - {x: -151.53047, y: 0, z: 116.27345}
+  - {x: -135.05734, y: 0, z: 135.05743}
+  - {x: -116.27342, y: 0, z: 151.5305}
+  - {x: -95.499954, y: 0, z: 165.41089}
+  - {x: -73.09254, y: 0, z: 176.461}
+  - {x: -49.4344, y: 0, z: 184.49184}
+  - {x: -24.930418, y: 0, z: 189.36598}
   - {x: 0, y: 0, z: 191}
   m_Parameters:
     serializedVersion: 3
@@ -5925,6 +6255,26 @@ MonoBehaviour:
   planet: {fileID: 1373198989}
   orbit: {fileID: 626801731}
   orbitRenderer: {fileID: 586278743}
+  data:
+    name: Netuno
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 6.43
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 60190.03
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!114 &586278743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5937,10 +6287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 48
   orbitMotion: {fileID: 626801731}
   lineRenderer: {fileID: 586278745}
   trailRenderer: {fileID: 626801728}
-  segments: 48
 --- !u!120 &586278745
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -6363,8 +6713,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1274, y: 0.1274, z: 0.1274}
-  m_Children:
-  - {fileID: 730807268}
+  m_Children: []
   m_Father: {fileID: 1670278376}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6380,30 +6729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Earth
-    moonCount: 0
-    inclination: 7.155
-    orbitInclination: 0
-    perihelion: 147098290
-    aphelion: 152098232
-    orbitPeriod: 365.25
-    rotationPeriod: 0.997
-    orbitalSpeed: 29.78
-    size: 0
-    diameter: 12756.2
-    surfaceArea: 510072000
-    density: 5.515
-    averageTemperature: 14
-    minTemperature: -93.2
-    maxTemperature: 57.8
-    gravity: 9.78
-    mass: "5,9736\xD710\xB2\u2074 kg"
-    trivias:
-    - "\xDAnico local conhecido no universo que abriga vida. Apesar de seu tamanho,
-      n\xE3o \xE9 nada al\xE9m de \"um p\xE1lido ponto azul\"."
-    - A terra contem o maior numero de negros do sistema solar.
   displayPlanet: {fileID: 1997598747}
+  atmosphere: {fileID: 737509819}
   mainCamera: {fileID: 963194227}
   moons:
   - {fileID: 730807276}
@@ -6920,9 +7247,6 @@ MonoBehaviour:
     xAxis: 6129
     yAxis: 6129
   progress: 0
-  period: 60190.03
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!54 &626801733
 Rigidbody:
@@ -7158,11 +7482,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 370909690}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -30, y: -30}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 30, y: -30}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &655951628
@@ -7208,9 +7532,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1056247057}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1886318217}
+        m_MethodName: CloseRightBar
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7303,29 +7627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Venus
-    moonCount: 0
-    inclination: 3.86
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias:
-    - "Por ser um dos objetos mais brilhantes no c\xE9u noturno, V\xEAnus teve grande
-      influ\xEAncia na cultura humana ao longo dos s\xE9culos. "
-  displayPlanet: {fileID: 731726702}
+  displayPlanet: {fileID: 1266517998}
+  atmosphere: {fileID: 731726702}
   mainCamera: {fileID: 963194227}
   moons: []
   minSize: 0
@@ -7489,7 +7792,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 185, y: 75}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666987864
 MonoBehaviour:
@@ -7794,10 +8097,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 26
   orbitMotion: {fileID: 503747252}
   lineRenderer: {fileID: 694140939}
   trailRenderer: {fileID: 503747251}
-  segments: 26
 --- !u!114 &694140937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7813,6 +8116,26 @@ MonoBehaviour:
   planet: {fileID: 1185248368}
   orbit: {fileID: 503747252}
   orbitRenderer: {fileID: 694140936}
+  data:
+    name: Marte
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 5.65
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 686.98
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!120 &694140939
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8048,7 +8371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &706565522
 GameObject:
@@ -8265,13 +8588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 730807268}
-  - component: {fileID: 730807274}
-  - component: {fileID: 730807273}
   - component: {fileID: 730807276}
-  - component: {fileID: 730807271}
-  - component: {fileID: 730807269}
-  - component: {fileID: 730807275}
-  - component: {fileID: 730807272}
   - component: {fileID: 730807270}
   - component: {fileID: 730807277}
   m_Layer: 12
@@ -8289,50 +8606,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730807267}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1499.2152}
-  m_LocalScale: {x: 0.78492945, y: 0.78492945, z: 0.78492945}
-  m_Children: []
-  m_Father: {fileID: 602214472}
-  m_RootOrder: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.10000002, y: 0.10000002, z: 0.10000002}
+  m_Children:
+  - {fileID: 1023391653}
+  m_Father: {fileID: 1670278376}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &730807269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730807267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    name: Moon
-    moonCount: 0
-    inclination: -5
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias: []
-  displayPlanet: {fileID: 0}
-  mainCamera: {fileID: 963194227}
-  moons: []
-  minSize: 0
-  maxSize: 0
-  sizeDifference: 0
 --- !u!114 &730807270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8345,186 +8625,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitMotion: {fileID: 730807271}
-  lineRenderer: {fileID: 730807277}
-  trailRenderer: {fileID: 730807272}
   segments: 24
---- !u!114 &730807271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730807267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ead1ca3c5b89c5941872f3ead1254957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbit:
-    xAxis: 100
-    yAxis: 100
-  progress: 0
-  period: 27.53
-  smoothTime: 0.5
-  lockOrbit: 0
-  debug: 0
---- !u!96 &730807272
-TrailRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730807267}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Time: 25
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
-  m_Emitting: 1
---- !u!23 &730807273
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730807267}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &730807274
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730807267}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &730807275
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730807267}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  orbitMotion: {fileID: 1023391655}
+  lineRenderer: {fileID: 730807277}
+  trailRenderer: {fileID: 1023391659}
 --- !u!114 &730807276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8537,9 +8641,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e249e1ab25762e40924daf05035ba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planet: {fileID: 730807269}
-  orbit: {fileID: 730807271}
+  planet: {fileID: 1023391654}
+  orbit: {fileID: 1023391655}
   orbitRenderer: {fileID: 730807270}
+  data:
+    name: Lua
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 0
+    orbitInclination: -5.14
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 27.32
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!120 &730807277
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8557,7 +8681,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e756ac196ebe8d249a961958c2cdd4b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8578,58 +8702,58 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 100}
-  - {x: 13.05262, y: 0, z: 99.144485}
-  - {x: 25.881905, y: 0, z: 96.59258}
-  - {x: 38.268345, y: 0, z: 92.38795}
-  - {x: 50, y: 0, z: 86.60254}
-  - {x: 60.876144, y: 0, z: 79.335335}
-  - {x: 70.71068, y: 0, z: 70.71068}
-  - {x: 79.335335, y: 0, z: 60.876144}
-  - {x: 86.60255, y: 0, z: 49.999996}
-  - {x: 92.38795, y: 0, z: 38.26834}
-  - {x: 96.59258, y: 0, z: 25.881907}
-  - {x: 99.144485, y: 0, z: 13.052612}
-  - {x: 100, y: 0, z: -0.000004371139}
-  - {x: 99.144485, y: 0, z: -13.052633}
-  - {x: 96.59258, y: 0, z: -25.881905}
-  - {x: 92.38795, y: 0, z: -38.268353}
-  - {x: 86.60254, y: 0, z: -50.000008}
-  - {x: 79.335335, y: 0, z: -60.876144}
-  - {x: 70.71068, y: 0, z: -70.71068}
-  - {x: 60.876125, y: 0, z: -79.33535}
-  - {x: 50.000008, y: 0, z: -86.60254}
-  - {x: 38.268326, y: 0, z: -92.38796}
-  - {x: 25.881893, y: 0, z: -96.59259}
-  - {x: 13.0526085, y: 0, z: -99.144485}
-  - {x: -0.000008742278, y: 0, z: -100}
-  - {x: -13.052626, y: 0, z: -99.144485}
-  - {x: -25.881931, y: 0, z: -96.592575}
-  - {x: -38.26834, y: 0, z: -92.38795}
-  - {x: -49.999996, y: 0, z: -86.60254}
-  - {x: -60.87616, y: 0, z: -79.33532}
-  - {x: -70.710686, y: 0, z: -70.71066}
-  - {x: -79.33533, y: 0, z: -60.87615}
-  - {x: -86.60255, y: 0, z: -49.999992}
-  - {x: -92.38797, y: 0, z: -38.268314}
-  - {x: -96.59259, y: 0, z: -25.881899}
-  - {x: -99.144485, y: 0, z: -13.052591}
-  - {x: -100, y: 0, z: 0.0000011924881}
-  - {x: -99.144485, y: 0, z: 13.052641}
-  - {x: -96.59257, y: 0, z: 25.881947}
-  - {x: -92.38795, y: 0, z: 38.26836}
-  - {x: -86.60255, y: 0, z: 49.999992}
-  - {x: -79.33533, y: 0, z: 60.876156}
-  - {x: -70.710655, y: 0, z: 70.7107}
-  - {x: -60.876137, y: 0, z: 79.335335}
-  - {x: -49.999977, y: 0, z: 86.602554}
-  - {x: -38.26834, y: 0, z: 92.387955}
-  - {x: -25.881884, y: 0, z: 96.59259}
-  - {x: -13.052575, y: 0, z: 99.14449}
-  - {x: 0, y: 0, z: 100}
+  - {x: 0, y: 0, z: 400}
+  - {x: 52.21048, y: 0, z: 396.57794}
+  - {x: 103.52762, y: 0, z: 386.37033}
+  - {x: 153.07338, y: 0, z: 369.5518}
+  - {x: 200, y: 0, z: 346.41016}
+  - {x: 243.50458, y: 0, z: 317.34134}
+  - {x: 282.8427, y: 0, z: 282.8427}
+  - {x: 317.34134, y: 0, z: 243.50458}
+  - {x: 346.4102, y: 0, z: 199.99998}
+  - {x: 369.5518, y: 0, z: 153.07336}
+  - {x: 386.37033, y: 0, z: 103.527626}
+  - {x: 396.57794, y: 0, z: 52.21045}
+  - {x: 400, y: 0, z: -0.000017484555}
+  - {x: 396.57794, y: 0, z: -52.210533}
+  - {x: 386.37033, y: 0, z: -103.52762}
+  - {x: 369.5518, y: 0, z: -153.07341}
+  - {x: 346.41016, y: 0, z: -200.00003}
+  - {x: 317.34134, y: 0, z: -243.50458}
+  - {x: 282.8427, y: 0, z: -282.8427}
+  - {x: 243.5045, y: 0, z: -317.3414}
+  - {x: 200.00003, y: 0, z: -346.41016}
+  - {x: 153.0733, y: 0, z: -369.55185}
+  - {x: 103.52757, y: 0, z: -386.37036}
+  - {x: 52.210434, y: 0, z: -396.57794}
+  - {x: -0.00003496911, y: 0, z: -400}
+  - {x: -52.210503, y: 0, z: -396.57794}
+  - {x: -103.527725, y: 0, z: -386.3703}
+  - {x: -153.07336, y: 0, z: -369.5518}
+  - {x: -199.99998, y: 0, z: -346.41016}
+  - {x: -243.50464, y: 0, z: -317.34128}
+  - {x: -282.84274, y: 0, z: -282.84265}
+  - {x: -317.3413, y: 0, z: -243.5046}
+  - {x: -346.4102, y: 0, z: -199.99997}
+  - {x: -369.55188, y: 0, z: -153.07326}
+  - {x: -386.37036, y: 0, z: -103.527596}
+  - {x: -396.57794, y: 0, z: -52.210365}
+  - {x: -400, y: 0, z: 0.0000047699523}
+  - {x: -396.57794, y: 0, z: 52.210564}
+  - {x: -386.37027, y: 0, z: 103.52779}
+  - {x: -369.5518, y: 0, z: 153.07344}
+  - {x: -346.4102, y: 0, z: 199.99997}
+  - {x: -317.3413, y: 0, z: 243.50462}
+  - {x: -282.84262, y: 0, z: 282.8428}
+  - {x: -243.50455, y: 0, z: 317.34134}
+  - {x: -199.99991, y: 0, z: 346.41022}
+  - {x: -153.07336, y: 0, z: 369.55182}
+  - {x: -103.527534, y: 0, z: 386.37036}
+  - {x: -52.2103, y: 0, z: 396.57797}
+  - {x: 0, y: 0, z: 400}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.4
+    widthMultiplier: 0.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -8694,12 +8818,12 @@ GameObject:
   - component: {fileID: 731726705}
   - component: {fileID: 731726704}
   m_Layer: 11
-  m_Name: Venus Display
+  m_Name: Venus Atmos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &731726703
 Transform:
   m_ObjectHideFlags: 0
@@ -8709,10 +8833,10 @@ Transform:
   m_GameObject: {fileID: 731726702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0101011, y: 1.0101011, z: 1.0101011}
   m_Children: []
-  m_Father: {fileID: 458670503}
-  m_RootOrder: 1
+  m_Father: {fileID: 1266517999}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &731726704
 MeshRenderer:
@@ -8758,6 +8882,83 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731726702}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &737509819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 737509820}
+  - component: {fileID: 737509822}
+  - component: {fileID: 737509821}
+  m_Layer: 11
+  m_Name: Earth Atmos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &737509820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737509819}
+  m_LocalRotation: {x: -0.61149186, y: 0.4314394, z: -0.29649705, w: -0.5933189}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
+  m_Children: []
+  m_Father: {fileID: 1997598748}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 78.95, y: 231.19, z: -66.53}
+--- !u!23 &737509821
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737509819}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a3f90a878b188d346aaf4e0bebebda13, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &737509822
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737509819}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &750194486
 GameObject:
@@ -9170,7 +9371,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 370909690}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -9246,6 +9447,27 @@ MonoBehaviour:
   planet: {fileID: 7335486784101977008}
   orbit: {fileID: 1449127913}
   orbitRenderer: {fileID: 789840106}
+  data:
+    name: Mercurio
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 0
+    orbitInclination: 0
+    perihelion: 57909050
+    aphelion: 46001200
+    orbitPeriod: 87.97
+    rotationPeriod: 0
+    orbitalSpeed: 47.362
+    diameter: 4879.4
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias:
+    - 
 --- !u!4 &789840104
 Transform:
   m_ObjectHideFlags: 0
@@ -9415,10 +9637,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 24
   orbitMotion: {fileID: 1449127913}
   lineRenderer: {fileID: 789840105}
   trailRenderer: {fileID: 1449127914}
-  segments: 24
 --- !u!1 &803631785
 GameObject:
   m_ObjectHideFlags: 0
@@ -9459,7 +9681,7 @@ Transform:
   - {fileID: 586278741}
   - {fileID: 865296074}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &803631787
 MonoBehaviour:
@@ -9476,6 +9698,26 @@ MonoBehaviour:
   planet: {fileID: 198917676}
   orbit: {fileID: 1063620454}
   orbitRenderer: {fileID: 0}
+  data:
+    name: 
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 0
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 0
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!1001 &805631127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9906,13 +10148,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 937967087}
-  m_Father: {fileID: 1056247058}
+  m_Father: {fileID: 1547025330}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.7}
-  m_AnchoredPosition: {x: 0, y: -35.75003}
-  m_SizeDelta: {x: 0, y: -71.5}
+  m_AnchoredPosition: {x: 0, y: -35.749985}
+  m_SizeDelta: {x: 0.4000244, y: -71.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &865125571
 GameObject:
@@ -9999,6 +10241,26 @@ MonoBehaviour:
   planet: {fileID: 1816684042}
   orbit: {fileID: 943379648}
   orbitRenderer: {fileID: 865296076}
+  data:
+    name: "Plut\xE3o"
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 0
+    orbitInclination: -17
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 30000
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!114 &865296076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10011,10 +10273,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 48
   orbitMotion: {fileID: 943379648}
   lineRenderer: {fileID: 865296078}
   trailRenderer: {fileID: 943379646}
-  segments: 48
 --- !u!120 &865296078
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -10364,9 +10626,6 @@ MonoBehaviour:
     xAxis: 158.49
     yAxis: 158.49
   progress: 0
-  period: 224.7
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!54 &877128590
 Rigidbody:
@@ -10412,7 +10671,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &898922314
 GameObject:
@@ -10524,7 +10783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &937967088
@@ -10817,9 +11076,6 @@ MonoBehaviour:
     xAxis: 6300
     yAxis: 6300
   progress: 0
-  period: 60190.03
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!1 &948530889
 GameObject:
@@ -11798,6 +12054,234 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012980569}
   m_CullTransparentMesh: 0
+--- !u!1 &1023391652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023391653}
+  - component: {fileID: 1023391658}
+  - component: {fileID: 1023391657}
+  - component: {fileID: 1023391656}
+  - component: {fileID: 1023391655}
+  - component: {fileID: 1023391654}
+  - component: {fileID: 1023391659}
+  m_Layer: 12
+  m_Name: Moon Orbit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1023391653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023391652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_Children: []
+  m_Father: {fileID: 730807268}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1023391654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023391652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayPlanet: {fileID: 0}
+  atmosphere: {fileID: 0}
+  mainCamera: {fileID: 963194227}
+  moons: []
+  minSize: 0
+  maxSize: 0
+  sizeDifference: 0
+--- !u!114 &1023391655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023391652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead1ca3c5b89c5941872f3ead1254957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbit:
+    xAxis: 400
+    yAxis: 400
+  progress: 0
+  debug: 0
+--- !u!54 &1023391656
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023391652}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!33 &1023391657
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023391652}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1023391658
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023391652}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!96 &1023391659
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023391652}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e756ac196ebe8d249a961958c2cdd4b7, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 25
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
 --- !u!1 &1035452576
 GameObject:
   m_ObjectHideFlags: 0
@@ -12073,7 +12557,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 185, y: 75}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1039672176
 MonoBehaviour:
@@ -12379,9 +12863,6 @@ MonoBehaviour:
     xAxis: 4321
     yAxis: 4321
   progress: 0
-  period: 30687.15
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!54 &1042749835
 Rigidbody:
@@ -12603,10 +13084,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1056247058}
   - component: {fileID: 1056247060}
-  - component: {fileID: 1056247059}
   - component: {fileID: 1056247061}
   m_Layer: 5
-  m_Name: Right Tab
+  m_Name: RightBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12623,10 +13103,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 370909690}
-  - {fileID: 232904268}
-  - {fileID: 1759429997}
-  - {fileID: 847319385}
+  - {fileID: 38087169}
+  - {fileID: 1547025330}
+  - {fileID: 571446676}
   m_Father: {fileID: 1886318216}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12635,35 +13114,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1056247059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056247057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0.9019608}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
 --- !u!222 &1056247060
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12682,7 +13132,7 @@ Animator:
   m_GameObject: {fileID: 1056247057}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: d3bdc799c93a1a24083259e19199e7f0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -12755,9 +13205,6 @@ MonoBehaviour:
     xAxis: 0
     yAxis: 0
   progress: 0
-  period: 3
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!1 &1065335727
 GameObject:
@@ -13032,10 +13479,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 24
   orbitMotion: {fileID: 1082922697}
   lineRenderer: {fileID: 1082922701}
   trailRenderer: {fileID: 1082922694}
-  segments: 24
 --- !u!96 &1082922694
 TrailRenderer:
   serializedVersion: 2
@@ -13159,27 +13606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Phobos
-    moonCount: 0
-    inclination: 0
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias: []
   displayPlanet: {fileID: 0}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons: []
   minSize: 0
@@ -13201,9 +13629,6 @@ MonoBehaviour:
     xAxis: 20
     yAxis: 20
   progress: 0
-  period: 0.344
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!114 &1082922698
 MonoBehaviour:
@@ -13220,6 +13645,26 @@ MonoBehaviour:
   planet: {fileID: 1082922696}
   orbit: {fileID: 1082922697}
   orbitRenderer: {fileID: 1082922693}
+  data:
+    name: 
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 0
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 0
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!23 &1082922699
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13485,7 +13930,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0.000005181187
+    Value: 0.0000014977738
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
@@ -13859,7 +14304,7 @@ GameObject:
   - component: {fileID: 1131904600}
   - component: {fileID: 1131904599}
   m_Layer: 5
-  m_Name: HideIcon (1)
+  m_Name: HideIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13876,13 +14321,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 370909690}
+  m_Father: {fileID: 571446676}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.035, y: 0.8477602}
-  m_AnchorMax: {x: 0.110871814, y: 0.9672489}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.25214043, y: 0.95400006}
+  m_AnchorMax: {x: 0.809, y: 0.99000007}
+  m_AnchoredPosition: {x: -0.10000038, y: 0.34246826}
+  m_SizeDelta: {x: -0.77518845, y: -0.0053100586}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131904599
 MonoBehaviour:
@@ -13926,7 +14371,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1131904600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1886318217}
+        m_MethodName: HideLeftBar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1131904600
@@ -14174,10 +14630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 24
   orbitMotion: {fileID: 1137635401}
   lineRenderer: {fileID: 1137635405}
   trailRenderer: {fileID: 1137635398}
-  segments: 24
 --- !u!96 &1137635398
 TrailRenderer:
   serializedVersion: 2
@@ -14301,27 +14757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Deimos
-    moonCount: 0
-    inclination: 0
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias: []
   displayPlanet: {fileID: 0}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons: []
   minSize: 0
@@ -14343,9 +14780,6 @@ MonoBehaviour:
     xAxis: 40
     yAxis: 40
   progress: 0
-  period: 1.2625
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!114 &1137635402
 MonoBehaviour:
@@ -14362,6 +14796,26 @@ MonoBehaviour:
   planet: {fileID: 1137635400}
   orbit: {fileID: 1137635401}
   orbitRenderer: {fileID: 1137635397}
+  data:
+    name: 
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 0
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 0
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!23 &1137635403
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14657,7 +15111,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1149483361
 GameObject:
@@ -14920,7 +15374,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 370909690}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -15094,29 +15548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Mars
-    moonCount: 0
-    inclination: 5.65
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias:
-    - "Pode facilmente ser visto da Terra a olho nu, assim como sua caracter\xEDstica
-      cor vermelha resultante de sua composi\xE7\xE3o de \xF3xido de ferro."
   displayPlanet: {fileID: 1954571154}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons:
   - {fileID: 1137635402}
@@ -16014,6 +16447,84 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tip: 
   direction: 3
+--- !u!1 &1266517998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266517999}
+  - component: {fileID: 1266518001}
+  - component: {fileID: 1266518000}
+  m_Layer: 11
+  m_Name: Venus Display
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1266517999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266517998}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.98999995, y: 0.98999995, z: 0.98999995}
+  m_Children:
+  - {fileID: 731726703}
+  m_Father: {fileID: 458670503}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1266518000
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266517998}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b2b4505eb8031c94597ba3793767d722, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1266518001
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266517998}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1274351368
 GameObject:
   m_ObjectHideFlags: 0
@@ -16746,6 +17257,7 @@ GameObject:
   - component: {fileID: 1325347568}
   - component: {fileID: 1325347567}
   - component: {fileID: 1325347571}
+  - component: {fileID: 1325347572}
   m_Layer: 5
   m_Name: BottomTabCanvas
   m_TagString: Untagged
@@ -16826,7 +17338,7 @@ RectTransform:
   m_Children:
   - {fileID: 1778107207}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16848,6 +17360,22 @@ MonoBehaviour:
   bottomTabAnimator: {fileID: 1778107210}
   timeInput: {fileID: 1600194516}
   maxValue: 1000
+--- !u!114 &1325347572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325347566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f747ec0cb2c7ed74ea70fd76e93a9c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referencePlanet: {fileID: 572659040}
+  dateText: {fileID: 616293498}
+  timeText: {fileID: 117540863}
+  startingYear: 2019
 --- !u!1 &1327179692
 GameObject:
   m_ObjectHideFlags: 0
@@ -16897,6 +17425,26 @@ MonoBehaviour:
   planet: {fileID: 1456839045}
   orbit: {fileID: 462952844}
   orbitRenderer: {fileID: 1327179695}
+  data:
+    name: Saturno
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 5.51
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 10755.7
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!114 &1327179695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16909,10 +17457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 40
   orbitMotion: {fileID: 462952844}
   lineRenderer: {fileID: 1327179697}
   trailRenderer: {fileID: 462952841}
-  segments: 40
 --- !u!120 &1327179697
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -17689,29 +18237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Neptune
-    moonCount: 0
-    inclination: 6.43
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias:
-    - "Planeta mais distante do Sol, tamb\xE9m conhecido como Gigante de Gelo, tem
-      uma das temperaturas mais baixas do sistema solar. "
   displayPlanet: {fileID: 340151661}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons:
   - {fileID: 0}
@@ -18001,7 +18528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000057513716}
+  m_AnchoredPosition: {x: 0, y: -0.000052637268}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1389511422
@@ -18396,7 +18923,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427035846
 GameObject:
@@ -18780,7 +19307,7 @@ Transform:
   - {fileID: 1092955207}
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1449127911
 GameObject:
@@ -18833,9 +19360,6 @@ MonoBehaviour:
     xAxis: 87.97
     yAxis: 87.97
   progress: 0
-  period: 87.97
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!96 &1449127914
 TrailRenderer:
@@ -19005,7 +19529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456839043
 GameObject:
@@ -19052,29 +19576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Saturn
-    moonCount: 0
-    inclination: 5.51
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias:
-    - "Pela sua composi\xE7\xE3o atmosf\xE9rica, j\xE1 foi proposto que talvez ocorra
-      chuvas de diamantes no planeta. "
   displayPlanet: {fileID: 506252291}
+  atmosphere: {fileID: 2724334196007039532}
   mainCamera: {fileID: 963194227}
   moons:
   - {fileID: 0}
@@ -19396,7 +19899,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1467817172
 MonoBehaviour:
@@ -19442,7 +19945,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   worldCoordinatesOverride: {fileID: 123268375}
-  movementSpeed: 500
+  normalSpeed: 500
+  speedMultiplier: 2
   movementSlowDownRate: 23
   transitionSmoothTime: 0.5
   xSpeed: 1000
@@ -19451,7 +19955,7 @@ MonoBehaviour:
   yMaxLimit: 90
   smoothTime: 10
   zoomInThreshold: 90
-  zoomOutThreshold: 90
+  zoomOutThreshold: 0
   zoomSpeed: 10
   circularOrbitScalePercentage: 0.05
   scale: 9
@@ -19912,6 +20416,26 @@ MonoBehaviour:
   planet: {fileID: 1864047940}
   orbit: {fileID: 1819923337}
   orbitRenderer: {fileID: 1506379878}
+  data:
+    name: Jupiter
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 6.09
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 4332.82
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!114 &1506379878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19924,10 +20448,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 38
   orbitMotion: {fileID: 1819923337}
   lineRenderer: {fileID: 1506379880}
   trailRenderer: {fileID: 1819923334}
-  segments: 38
 --- !u!120 &1506379880
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -20421,6 +20945,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546599585}
   m_CullTransparentMesh: 0
+--- !u!1 &1547025329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547025330}
+  - component: {fileID: 1547025332}
+  - component: {fileID: 1547025331}
+  m_Layer: 5
+  m_Name: Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1547025330
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547025329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 370909690}
+  - {fileID: 232904268}
+  - {fileID: 1759429997}
+  - {fileID: 847319385}
+  m_Father: {fileID: 1056247058}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1547025331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547025329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0.9019608}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1547025332
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547025329}
+  m_CullTransparentMesh: 0
 --- !u!1 &1548869296
 GameObject:
   m_ObjectHideFlags: 0
@@ -20671,7 +21273,7 @@ RectTransform:
   m_Children:
   - {fileID: 19794639}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -21220,7 +21822,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1624472825
 GameObject:
@@ -21882,14 +22484,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670278375}
-  m_LocalRotation: {x: 0, y: 0, z: -0.20278728, w: 0.97922283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 191}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 602214472}
+  - {fileID: 730807268}
   m_Father: {fileID: 572659039}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -23.4}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &1670278377
 TrailRenderer:
   serializedVersion: 2
@@ -22014,9 +22617,6 @@ MonoBehaviour:
     xAxis: 191
     yAxis: 191
   progress: 0
-  period: 365.26
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!54 &1670278382
 Rigidbody:
@@ -22510,7 +23110,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 898922316}
   m_HandleRect: {fileID: 898922315}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22668,18 +23268,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759429996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 718453309}
-  m_Father: {fileID: 1056247058}
+  m_Father: {fileID: 1547025330}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.7}
   m_AnchoredPosition: {x: 0, y: -35.75}
-  m_SizeDelta: {x: 0, y: -71.5}
+  m_SizeDelta: {x: 0.4000244, y: -71.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1778107206
 GameObject:
@@ -22853,7 +23453,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788320264
 GameObject:
@@ -22952,27 +23552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Pluto
-    moonCount: 0
-    inclination: 0
-    orbitInclination: -17
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias: []
-  displayPlanet: {fileID: 340151661}
+  displayPlanet: {fileID: 57950525}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons: []
   minSize: 0
@@ -23182,9 +23763,6 @@ MonoBehaviour:
     xAxis: 1329.3
     yAxis: 1329.3
   progress: 0
-  period: 4332.82
-  smoothTime: 0.5
-  lockOrbit: 0
   debug: 0
 --- !u!54 &1819923339
 Rigidbody:
@@ -23453,29 +24031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Jupiter
-    moonCount: 0
-    inclination: 6.09
-    orbitInclination: 0
-    perihelion: 0
-    aphelion: 0
-    orbitPeriod: 0
-    rotationPeriod: 0
-    orbitalSpeed: 0
-    size: 0
-    diameter: 0
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias:
-    - "Maior planeta do sistema solar. Em sua superf\xEDcie pode ser vista a Grande
-      Mancha Vermelha, uma tempestade que tem existido por no m\xEDnimo 350 anos. "
   displayPlanet: {fileID: 1541819546}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons:
   - {fileID: 0}
@@ -23698,7 +24255,7 @@ RectTransform:
   m_Children:
   - {fileID: 355222099}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23774,6 +24331,7 @@ GameObject:
   - component: {fileID: 1886318217}
   - component: {fileID: 1886318218}
   - component: {fileID: 1886318219}
+  - component: {fileID: 1886318220}
   m_Layer: 5
   m_Name: RightTabCanvas
   m_TagString: Untagged
@@ -23854,7 +24412,7 @@ RectTransform:
   m_Children:
   - {fileID: 1056247058}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23878,6 +24436,7 @@ MonoBehaviour:
   rightTabAnimator: {fileID: 1056247061}
   information: {fileID: 1886318218}
   trivia: {fileID: 1886318219}
+  displayPlanet: {fileID: 1886318220}
   infoContent: {fileID: 1759429996}
   triviaContent: {fileID: 847319384}
   infoSelected: {fileID: 1249804836}
@@ -23923,6 +24482,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triviaParent: {fileID: 1389511421}
   triviaTexts: []
+--- !u!114 &1886318220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886318212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632e015357fca2843ac0bcac1204f524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeOpen: {fileID: 82537686}
+  eyeClosed: {fileID: 1916749388}
 --- !u!1 &1908144928
 GameObject:
   m_ObjectHideFlags: 0
@@ -24199,7 +24772,7 @@ PrefabInstance:
     - target: {fileID: 224153425668364128, guid: 5814e191475da55449e996c6052e2ef7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -100
+      value: -174.3
       objectReference: {fileID: 0}
     - target: {fileID: 224153425668364128, guid: 5814e191475da55449e996c6052e2ef7,
         type: 3}
@@ -24308,6 +24881,137 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5814e191475da55449e996c6052e2ef7, type: 3}
+--- !u!1 &1916749388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916749389}
+  - component: {fileID: 1916749392}
+  - component: {fileID: 1916749391}
+  - component: {fileID: 1916749390}
+  m_Layer: 5
+  m_Name: EyeClosed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1916749389
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916749388}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 370909690}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -343.1, y: -85.9}
+  m_SizeDelta: {x: 30, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1916749390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916749388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1916749391}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1886318217}
+        m_MethodName: ToggleAtmosphere
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1916749391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916749388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.49411765, g: 0.49411765, b: 0.49411765, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 08d37773c8b72c042b3fa1d97a49e758, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1916749392
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916749388}
+  m_CullTransparentMesh: 0
 --- !u!1 &1938614369
 GameObject:
   m_ObjectHideFlags: 0
@@ -24342,7 +25046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00024414062, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1938614371
@@ -24814,7 +25518,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 737509820}
   m_Father: {fileID: 458670503}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25149,7 +25854,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 123825905}
+      - m_Target: {fileID: 1325347571}
         m_MethodName: ZaWarudo
         m_Mode: 6
         m_Arguments:
@@ -25310,6 +26015,26 @@ MonoBehaviour:
   planet: {fileID: 656416565}
   orbit: {fileID: 877128588}
   orbitRenderer: {fileID: 2046886080}
+  data:
+    name: Venus
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 3.86
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 224.7
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!114 &2046886080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25322,10 +26047,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 24
   orbitMotion: {fileID: 877128588}
   lineRenderer: {fileID: 2046886082}
   trailRenderer: {fileID: 877128585}
-  segments: 24
 --- !u!120 &2046886082
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -25602,7 +26327,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7abd0ba876d3eec47a97c7aadc380210, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 014ce2431d432924ab6b624c5cb0f2dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26125,6 +26850,26 @@ MonoBehaviour:
   planet: {fileID: 245412571}
   orbit: {fileID: 1042749833}
   orbitRenderer: {fileID: 2116921386}
+  data:
+    name: Uranos
+    moonCount: 0
+    orbitDistance: 0
+    inclination: 6.48
+    orbitInclination: 0
+    perihelion: 0
+    aphelion: 0
+    orbitPeriod: 30687.15
+    rotationPeriod: 0
+    orbitalSpeed: 0
+    diameter: 0
+    surfaceArea: 0
+    density: 0
+    averageTemperature: 0
+    minTemperature: 0
+    maxTemperature: 0
+    gravity: 0
+    mass: 
+    trivias: []
 --- !u!114 &2116921386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26137,10 +26882,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4977e0508b48d5142bc1ff0dc06690c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segments: 44
   orbitMotion: {fileID: 1042749833}
   lineRenderer: {fileID: 2116921388}
   trailRenderer: {fileID: 1042749830}
-  segments: 44
 --- !u!120 &2116921388
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -26598,6 +27343,65 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2724334196007039532}
   m_Mesh: {fileID: -8264766115119967290, guid: 7397e07d27b443e4c8ba9e85aadf4631, type: 3}
+--- !u!4 &235013977807061677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221506422463595488}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 231, y: -52.749725, z: 47}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1487031586806411101
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221506422463595488}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1851904960692476643
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221506422463595488}
+  m_Mesh: {fileID: -5495902117074765545, guid: 0b86c26dd8fecdc43b0ff37a2a0f4fd1, type: 3}
 --- !u!4 &2345902482131218574
 Transform:
   m_ObjectHideFlags: 0
@@ -26630,6 +27434,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &5221506422463595488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 235013977807061677}
+  - component: {fileID: 1851904960692476643}
+  - component: {fileID: 1487031586806411101}
+  m_Layer: 12
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!33 &7335486784101977000
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -26720,29 +27542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e74be18be1b3042ab4597bbe23917a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    name: Mercury
-    moonCount: 0
-    inclination: 0
-    orbitInclination: 0
-    perihelion: 57909050
-    aphelion: 46001200
-    orbitPeriod: 87.969
-    rotationPeriod: 0
-    orbitalSpeed: 47.362
-    size: 0
-    diameter: 4879.4
-    surfaceArea: 0
-    density: 0
-    averageTemperature: 0
-    minTemperature: 0
-    maxTemperature: 0
-    gravity: 0
-    mass: 
-    trivias:
-    - "Sua proximidade ao sol resulta em apenas poder ser visto pr\xF3ximo do horizonte
-      oeste depois do p\xF4r do sol ou ao nascer do sol no horizonte leste. "
   displayPlanet: {fileID: 2052692183}
+  atmosphere: {fileID: 0}
   mainCamera: {fileID: 963194227}
   moons: []
   minSize: 0

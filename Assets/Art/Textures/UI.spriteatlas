@@ -42,13 +42,14 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 7cd446e7463479141a0f17d41d9e0035, type: 3}
-    totalSpriteSurfaceArea: 3909374
+    totalSpriteSurfaceArea: 4433662
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 2763a13075c153044a98ce019c29a553, type: 3}
   - {fileID: 21300000, guid: 331de250aba2ed24d8d8e4e09a2c11ff, type: 3}
   - {fileID: 21300000, guid: 2340c4e1f50730645b2b62164031c420, type: 3}
+  - {fileID: 21300000, guid: 08d37773c8b72c042b3fa1d97a49e758, type: 3}
   - {fileID: 21300000, guid: 49688d947e4eb1149b732bca5681392f, type: 3}
   - {fileID: 21300000, guid: ecc220550bba45e4bb83b4b3edc41140, type: 3}
   - {fileID: 21300000, guid: dc2e2f8745e265a45a6e7934bbc25c5a, type: 3}
@@ -57,6 +58,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 43e6dcb9b8370d547b8695520b880b8c, type: 3}
   - {fileID: 21300000, guid: d4a8a32b3d3294a438531dca1aaa85d5, type: 3}
   - {fileID: 21300000, guid: 743a4b2ef9504df418a0ad0d2c14583a, type: 3}
+  - {fileID: 21300000, guid: 88f63c5e9dae4a24c998eae1a7244b78, type: 3}
   - {fileID: 21300000, guid: 9a6354ee64df3f44a8a3dcd2a9c4d535, type: 3}
   - {fileID: 21300000, guid: 590f303ffc4ce2449a8106576ccedbc4, type: 3}
   - {fileID: 21300000, guid: fb636bef25696254482c2e4867aa67ac, type: 3}
@@ -65,6 +67,7 @@ SpriteAtlas:
   - ifms_sized
   - circle
   - play
+  - eye-icon-closed
   - LightMask
   - back
   - Square
@@ -73,6 +76,7 @@ SpriteAtlas:
   - 3-bars
   - clock
   - gear
+  - eye-icon
   - x
   - pause
   - github

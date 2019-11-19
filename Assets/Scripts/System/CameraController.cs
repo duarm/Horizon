@@ -10,7 +10,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] Transform worldCoordinatesOverride;
 
     [Header ("Movement")]
-    [SerializeField] float movementSpeed = 5f;
+    [SerializeField] float normalSpeed = 500f;
+    [SerializeField] float speedMultiplier = 2f;
     [SerializeField] float movementSlowDownRate = .25f;
     [SerializeField] float transitionSmoothTime = .5f;
 
@@ -83,7 +84,7 @@ public class CameraController : MonoBehaviour
 
         if (follower)
         {
-            var target = follower.OrbitPosition;
+            var target = follower.Orbit.Position;
             transform.SetPositionAndRotation (Vector3.SmoothDamp (transform.position, target, ref currentVelocity, transitionSmoothTime), currentRotation);
         }
         else
@@ -109,14 +110,14 @@ public class CameraController : MonoBehaviour
             return;
 
         //slow down the movement as the zoom level increases to give the impression of a bigger universe
-        var speed = (movementSpeed - (zoomLevel * movementSlowDownRate));
+        var speed = (normalSpeed - (zoomLevel * movementSlowDownRate));
         speed = speed < 0 ? 0 : speed;
         Vector3 fowardMovement = worldCoordinatesOverride.forward * speed * input.y;
         Vector3 rightMovement = transform.right * speed * input.x;
         newPos = (fowardMovement + rightMovement) * Time.deltaTime;
 
         if (input != Vector3.zero && follower)
-            FocusOn (null);
+            Unfocus ();
     }
 
     public void Focus ()
@@ -136,7 +137,13 @@ public class CameraController : MonoBehaviour
         follower = planet;
         follower?.SetFocus (true);
 
-        EventManager.OnFocus?.Invoke (planet?.Data);
+        EventManager.OnFocus?.Invoke (planet);
+    }
+
+    public void Unfocus ()
+    {
+        follower?.SetFocus (false);
+        follower = null;
     }
 
     public void HandleZoom ()
@@ -198,8 +205,9 @@ public class CameraController : MonoBehaviour
 
     public void HandleMovement ()
     {
+        var speeding = Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift);
         oldPos = transform.localPosition;
-        var pos = oldPos + newPos;
+        var pos = oldPos + newPos * (speeding ? speedMultiplier : 1);
         currentPosition = new Vector3 (pos.x, sun.transform.position.y, pos.z);
     }
 

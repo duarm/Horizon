@@ -23,12 +23,6 @@ public class Orbit
         yAxis = newOrbit;
     }
 
-    public void SetOrbit (float x, float y)
-    {
-        xAxis = x;
-        yAxis = y;
-    }
-
     public Vector2 Evaluate (float t)
     {
         var angle = Mathf.Deg2Rad * 360 * t;

@@ -13,8 +13,9 @@ public class LeftTabController : MonoBehaviour
     [SerializeField] Material skybox3;
     [SerializeField] Material skybox4;
 
-    #region LeftTab
+    readonly int pressedHash = Animator.StringToHash("Pressed");
 
+    #region LeftTab
     private void OnValidate ()
     {
         if (!leftBar)
@@ -33,7 +34,7 @@ public class LeftTabController : MonoBehaviour
 
     public void HideLeftTab ()
     {
-        leftTabAnimator.SetTrigger ("Pressed");
+        leftTabAnimator.SetTrigger (pressedHash);
     }
 
     public void ShowOrbits (bool show)

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TriviaController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] Transform triviaParent;
     [SerializeField] TextMeshProUGUI[] triviaTexts;
 
@@ -13,7 +14,12 @@ public class TriviaController : MonoBehaviour
         triviaTexts = triviaParent.GetComponentsInChildren<TextMeshProUGUI> (true);
     }
 
-    public void ShowTrivias (PlanetData data)
+    public void OnUpdateBar(PlanetData data)
+    {
+        ShowTrivias(data);
+    }
+
+    void ShowTrivias (PlanetData data)
     {
         for (int i = 0; i < triviaTexts.Length; i++)
         {

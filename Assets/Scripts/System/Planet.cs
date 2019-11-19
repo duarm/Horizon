@@ -5,8 +5,9 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Planet : MonoBehaviour
 {
-    [SerializeField] PlanetData data;
+    [Header("References")]
     [SerializeField] GameObject displayPlanet;
+    [SerializeField] GameObject atmosphere;
     [SerializeField] Camera mainCamera;
     [SerializeField] LocalController[] moons;
 
@@ -16,13 +17,12 @@ public class Planet : MonoBehaviour
 
     MeshRenderer mesh;
     Texture2D focusTexture;
+    string planetName;
     bool showName = true;
     bool beingFocused = false;
 
     static readonly GUIStyle guiStyle = new GUIStyle ();
-
-    public PlanetData Data { get { return data; } }
-    public GameObject DisplayPlanet { get { return displayPlanet; } }
+    public bool HasAtmosphere { get { return atmosphere != null; } }
 
     private void OnValidate ()
     {
@@ -31,18 +31,8 @@ public class Planet : MonoBehaviour
         if (mesh == null)
             mesh = GetComponent<MeshRenderer> ();
 
-        int i = 0;
-        if (data.moonCount != 0)
-        {
-            moons = new LocalController[data.moonCount];
-            foreach (Transform moon in transform)
-            {
-                if (moons.Length == i)
-                    break;
-
-                moons[i++] = moon.GetComponent<LocalController> ();
-            }
-        }
+        if(!atmosphere)
+            atmosphere = displayPlanet && displayPlanet.transform.childCount > 0 ? displayPlanet.transform.GetChild(0)?.gameObject : null;
     }
 
     private void Start ()
@@ -50,12 +40,30 @@ public class Planet : MonoBehaviour
         guiStyle.normal.textColor = new Color (1, 0.53f, 0);
     }
 
-    public void InitializeAsPlanet (float scale, float resolution, Texture2D texture)
+    // Common initialization logic
+    private void Initialize (PlanetData data, float resolution)
     {
-        Initialize (scale, resolution, texture);
+        guiStyle.fontSize = Mathf.FloorToInt (15 * resolution);
+        planetName = data.name;
+    }
+
+    public void InitializeAsPlanet (PlanetData data, float scale, float resolution, Texture2D texture)
+    {
+        Initialize (data, resolution);
+
         CalculateScales (scale);
         focusTexture = texture;
+        transform.localEulerAngles = new Vector3 (0, 0, data.inclination);
+
         InitializeMoons (resolution);
+    }
+
+    public void InitializeAsMoon (PlanetData data, float resolution)
+    {
+        Initialize (data, resolution);
+        
+        showName = false;
+        SetMeshVisibility (false);
     }
 
     private void InitializeMoons (float resolution)
@@ -72,17 +80,6 @@ public class Planet : MonoBehaviour
     public void Toggle (bool on)
     {
         SetNameVisilibity (on);
-    }
-
-    public void InitializeAsMoon (float resolution)
-    {
-        showName = false;
-        SetMeshVisibility (false);
-    }
-
-    private void Initialize (float scale, float resolution, Texture2D texture)
-    {
-        guiStyle.fontSize = Mathf.FloorToInt (15 * resolution);
     }
 
     void CalculateScales (float scale)
@@ -105,7 +102,12 @@ public class Planet : MonoBehaviour
 
     public void ToggleDisplayPlanet (bool value)
     {
-        displayPlanet.SetActive(value);
+        displayPlanet.SetActive (value);
+    }
+
+    public void ToggleAtmosphere (bool value)
+    {
+        atmosphere?.SetActive (value);
     }
 
     public void OnEnterLocalSpace ()
@@ -136,11 +138,11 @@ public class Planet : MonoBehaviour
         beingFocused = value;
     }
 
-    public void SetTimeScale(float value)
+    public void SetTimeScale (float value)
     {
         for (int i = 0; i < moons.Length; i++)
         {
-            moons[i]?.SetTimeScale(value);
+            moons[i]?.SetTimeScale (value);
         }
     }
 
@@ -153,7 +155,7 @@ public class Planet : MonoBehaviour
         {
             if (moons[i] == null)
             {
-                Debug.LogWarning($"The planet {Data.name} has a null moon.");
+                Debug.LogWarning ($"The planet {planetName} has a null moon.");
                 break;
             }
 
@@ -168,7 +170,7 @@ public class Planet : MonoBehaviour
         {
             if (planetPos.z > 0)
             {
-                GUI.Label (new Rect (planetPos.x, Screen.height - planetPos.y - 20, 40, 20), data.name, guiStyle);
+                GUI.Label (new Rect (planetPos.x, Screen.height - planetPos.y - 20, 40, 20), planetName, guiStyle);
             }
         }
 

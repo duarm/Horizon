@@ -4,41 +4,63 @@ using UnityEngine;
 [RequireComponent (typeof (LineRenderer))]
 public class OrbitRenderer : MonoBehaviour
 {
+    [Header("Configuration")]
+    [Range (3, 360)]
+    [SerializeField] int segments;
+    [Header("References")]
     [SerializeField] OrbitMotion orbitMotion;
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] TrailRenderer trailRenderer;
 
-    [Range (3, 360)]
-    [SerializeField] int segments;
 
     bool showOrbit = true;
-    OrbitType type = OrbitType.LINE;
 
     private void OnValidate ()
     {
         if (!orbitMotion)
-            orbitMotion = transform.parent.GetComponent<OrbitMotion> ();
+            orbitMotion = GetComponentInChildren<OrbitMotion> ();
 
         if (!lineRenderer)
             lineRenderer = GetComponent<LineRenderer> ();
 
         if (!trailRenderer)
+        {
             trailRenderer = orbitMotion.GetComponent<TrailRenderer> ();
+            if(trailRenderer == null)
+            {
+                trailRenderer = orbitMotion.gameObject.AddComponent(typeof(TrailRenderer)) as TrailRenderer;
+            }
+
+            trailRenderer.receiveShadows = false;
+            trailRenderer.time = 25;
+        }
 
         CalculateOrbit (segments);
     }
 
     //STATE
-
-    public void InitializeAsPlanet ()
+    //Common Initialization Logic
+    public void Initialize(PlanetData data)
     {
+        
+    }
+
+    public void InitializeAsPlanet (PlanetData data)
+    {
+        Initialize(data);
+
+        trailRenderer.widthMultiplier = 1f;
+
         SetOrbitVisiblity (true);
         SetTrailVisiblity (false);
     }
 
-    public void InitializeAsMoon ()
+    public void InitializeAsMoon (PlanetData data)
     {
+        Initialize(data);
 
+        lineRenderer.widthMultiplier = .2f;
+        trailRenderer.widthMultiplier = .3f;
     }
 
     public void OnEnterLocalSpace ()

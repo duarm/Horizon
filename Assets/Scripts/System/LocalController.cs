@@ -7,24 +7,23 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
     [SerializeField] Planet planet;
     [SerializeField] OrbitMotion orbit;
     [SerializeField] OrbitRenderer orbitRenderer;
+    [SerializeField] PlanetData data;
 
-    bool getRenderer;
-
-    public Vector3 OrbitPosition { get { return orbit.rb.position; } }
-    public PlanetData Data { get { return planet.Data; } }
+    public Planet Planet { get { return planet; } }
+    public OrbitMotion Orbit { get { return orbit; } }
+    public OrbitRenderer OrbitRenderer { get { return orbitRenderer; } }
+    public PlanetData Data { get { return data; } }
 
     private void OnValidate ()
     {
         if (!planet)
             planet = GetComponentInChildren<Planet> ();
+
         if (!orbit)
             orbit = GetComponentInChildren<OrbitMotion> ();
 
-        if (!orbitRenderer && !getRenderer)
-        {
+        if (!orbitRenderer)
             orbitRenderer = GetComponent<OrbitRenderer> ();
-            getRenderer = true;
-        }
     }
 
     public void OnEnterLocalSpace (int orbitRes)
@@ -58,24 +57,25 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
 
     private void Initialize ()
     {
-        transform.localEulerAngles = new Vector3 (0, 0, Data.orbitInclination);
-        planet.transform.localEulerAngles = new Vector3 (0, 0, Data.inclination);
+        transform.localEulerAngles = new Vector3 (0, 0, data.orbitInclination);
     }
 
     public void InitializeAsPlanet (float scale, float resolution, Texture2D texture)
     {
         Initialize ();
-        planet?.InitializeAsPlanet (scale, resolution, texture);
-        orbit?.InitializeAsPlanet (Data, scale);
-        orbitRenderer?.InitializeAsPlanet ();
+
+        planet?.InitializeAsPlanet (data, scale, resolution, texture);
+        orbit?.InitializeAsPlanet (data, scale);
+        orbitRenderer?.InitializeAsPlanet (data);
     }
 
     public void InitializeAsMoon (float resolution)
     {
         Initialize ();
-        planet?.InitializeAsMoon (resolution);
-        orbit?.InitializeAsMoon (Data);
-        orbitRenderer?.InitializeAsMoon ();
+
+        planet?.InitializeAsMoon (data, resolution);
+        orbit?.InitializeAsMoon (data);
+        orbitRenderer?.InitializeAsMoon (data);
     }
 
     public void Zoom (float direction, float percentage)
@@ -122,7 +122,6 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
 
     public void SetFocus (bool value)
     {
-        planet.ToggleDisplayPlanet (value);
         planet.SetFocus (value);
     }
 
@@ -134,14 +133,14 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
 
     public override string ToString ()
     {
-        return Data.name;
+        return data.name;
     }
 
     public bool Equals (LocalController other)
     {
         if (other == null)
             return false;
-        if (Data.name.Equals (other.ToString ()))
+        if (data.name.Equals (other.ToString ()))
             return true;
         return false;
     }

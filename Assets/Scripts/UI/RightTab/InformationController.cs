@@ -1,10 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class InformationController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] TextMeshProUGUI nameField;
     [SerializeField] TextMeshProUGUI inclinationField;
     [SerializeField] TextMeshProUGUI perihelionField;
@@ -21,7 +22,12 @@ public class InformationController : MonoBehaviour
     [SerializeField] TextMeshProUGUI massField;
     [SerializeField] TextMeshProUGUI densityField;
 
-    public void SetValues (PlanetData data)
+    public void OnUpdateBar(PlanetData data)
+    {
+        SetValues(data);
+    }
+
+    void SetValues (PlanetData data)
     {
         if (data == null)
             return;

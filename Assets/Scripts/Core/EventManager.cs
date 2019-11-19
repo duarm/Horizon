@@ -10,7 +10,7 @@ namespace Kurenaiz.Management.Events
 
         private Dictionary<string, Action> eventDictionary;
 
-        public static Action<PlanetData> OnFocus { get; private set; }
+        public static Action<LocalController> OnFocus { get; private set; }
         public static Action<float> OnTimeScaleChanged { get; private set; }
         public static Action<bool> OnShowOrbits { get; private set; }
         public static Action<OrbitType> SetOrbitType { get; private set; }
@@ -47,7 +47,7 @@ namespace Kurenaiz.Management.Events
             }
         }
 
-        public static void SubscribeToFocus (Action<PlanetData> action) => OnFocus += action;
+        public static void SubscribeToFocus (Action<LocalController> action) => OnFocus += action;
         public static void SubscribeToTimeScaleChanged (Action<float> action) => OnTimeScaleChanged += action;
         public static void SubscribeToShowOrbits (Action<bool> action) => OnShowOrbits += action;
         public static void SubscribeToSetOrbitType (Action<OrbitType> action) => SetOrbitType += action;

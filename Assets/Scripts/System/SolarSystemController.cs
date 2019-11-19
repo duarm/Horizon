@@ -3,25 +3,22 @@ using Kurenaiz.Management.Events;
 using UnityEngine;
 public class SolarSystemController : MonoBehaviour
 {
+    [Header ("Configuration")]
+    [Space]
+    [SerializeField] Texture2D focusTexture;
+    [SerializeField] int localOrbitResolutionIncreasing = 64;
+    [SerializeField] float upwardMotionSpeed = 10f;
+
     [Header ("References")]
     [SerializeField] new CameraController camera;
     [SerializeField] LocalController[] planets;
     [Space]
     [SerializeField] LocalController sun;
 
-    [Header ("Simulation")]
-    [SerializeField] float upwardMotionSpeed = 10f;
-    [SerializeField] float timeScale = 1;
-
-    [Header ("Configuration")]
-    [Space]
-    [SerializeField] Texture2D focusTexture;
-    [SerializeField] int localOrbitResolutionIncreasing = 64;
-
     Coroutine upwardMotionCoroutine;
     bool upwardMotion = false;
-    bool timeStopped = false;
     float resolution;
+    float timeScale = 1;
 
     public LocalController Sun { get { return sun; } }
 
@@ -48,10 +45,6 @@ public class SolarSystemController : MonoBehaviour
         }
 
         sun.InitializeAsPlanet (scale, resolution, focusTexture);
-    }
-
-    private void Start() {
-        EventManager.OnTimeScaleChanged?.Invoke(timeScale);
     }
 
     public void ToggleUpwardMotion ()
@@ -95,16 +88,11 @@ public class SolarSystemController : MonoBehaviour
     public void SetTimeScale (float value)
     {
         timeScale = value;
+
         for (int i = 0; i < planets.Length; i++)
         {
-            planets[i].SetTimeScale (timeStopped ? 0 : timeScale);
+            planets[i].SetTimeScale (timeScale);
         }
-    }
-
-    public void ZaWarudo (bool stop)
-    {
-        timeStopped = stop;
-        SetTimeScale (timeScale);
     }
 
     public void EnterLocalSpace (LocalController local)

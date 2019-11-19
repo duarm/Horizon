@@ -4,40 +4,41 @@ using UnityEngine;
 [RequireComponent (typeof (Rigidbody))]
 public class OrbitMotion : MonoBehaviour
 {
-    //[SerializeField] Transform velocityHandle;
     public Orbit orbit;
-
-    [Header ("Debug")]
     [Range (0f, 1f)]
     [Tooltip ("Current orbit progress. (0 to 1)")]
     [SerializeField] float progress = 0f;
-
     [Tooltip ("How much time in seconds to complete the orbit")]
-    [SerializeField] float period = 3f;
-    [SerializeField] float smoothTime = .5f;
-
-    public bool lockOrbit = true;
     [SerializeField] bool debug = false;
 
     float timeScale = 1f;
     float minOrbit;
     float maxOrbit;
     float orbitDifference;
+    float period;
+    bool lockOrbit = true;
 
     Vector3 velocity;
-    public Rigidbody rb { get; private set; }
+    public float Progress { get { return progress; } }
+    public Vector3 Position { get { return rb.position; } }
+
+    Rigidbody rb;
 
     private void OnValidate ()
     {
         if (debug)
             SetOrbitingObjectPosition ();
+
+        if (!rb)
+        {
+            rb = GetComponent<Rigidbody> ();
+            rb.useGravity = false;
+            rb.isKinematic = true;
+        }
     }
 
     private void Awake ()
     {
-        if(!rb)
-            rb = GetComponent<Rigidbody>();
-
         transform.localPosition = Vector3.zero;
 
         if (!rb)
@@ -49,16 +50,23 @@ public class OrbitMotion : MonoBehaviour
 
     // STATE
 
+    //Common initialization logic
+    public void Initialize (PlanetData data)
+    {
+        period = data.orbitPeriod;
+        SetOrbitingObjectPosition ();
+    }
+
     public void InitializeAsPlanet (PlanetData data, float scale)
     {
         CalculateScales (scale);
-        SetOrbitingObjectPosition ();
+        Initialize (data);
         Toggle (true);
     }
 
     public void InitializeAsMoon (PlanetData data)
     {
-        SetOrbitingObjectPosition ();
+        Initialize (data);
         Toggle (false);
     }
 
@@ -125,16 +133,14 @@ public class OrbitMotion : MonoBehaviour
 
         while (true)
         {
-            progress += Time.fixedDeltaTime * orbitVelocity * timeScale;
+            progress += Time.deltaTime * orbitVelocity * timeScale;
             progress %= 1f;
 
             if (lockOrbit)
                 break;
 
             SetOrbitingObjectPosition ();
-            yield return new WaitForEndOfFrame ();
+            yield return null;
         }
-
-        yield return null;
     }
 }
