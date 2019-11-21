@@ -89,25 +89,13 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
         }
     }
 
-    public void OnUpwardMotion ()
-    {
-        orbitRenderer?.ClearTrail ();
-    }
+    public void OnUpwardMotion() => orbitRenderer?.ClearTrail();
 
-    public void OnRedraw (int segments = 0)
-    {
-        orbitRenderer.Redraw (segments);
-    }
+    public void OnRedraw(int segments = 0) => orbitRenderer.Redraw(segments);
 
-    public void ToggleOrbit (bool value)
-    {
-        orbitRenderer.ToggleOrbit (value);
-    }
+    public void ToggleOrbit(bool value) => orbitRenderer.ToggleOrbit(value);
 
-    public void SetOrbitType (OrbitType type)
-    {
-        orbitRenderer.SetOrbitType (type);
-    }
+    public void SetOrbitType(OrbitType type) => orbitRenderer.SetOrbitType(type);
 
     public void SetOrbitVisiblity (bool value)
     {
@@ -115,15 +103,9 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
             orbitRenderer.SetOrbitVisiblity (value);
     }
 
-    public void SetPosition (Vector3 newPosition)
-    {
-        transform.localPosition = newPosition;
-    }
+    public void SetPosition(Vector3 newPosition) => transform.localPosition = newPosition;
 
-    public void SetFocus (bool value)
-    {
-        planet.SetFocus (value);
-    }
+    public void SetFocus(bool value) => planet.SetFocus(value);
 
     public void SetTimeScale (float value)
     {
@@ -131,10 +113,7 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
         planet.SetTimeScale (value);
     }
 
-    public override string ToString ()
-    {
-        return data.name;
-    }
+    public override string ToString() => data.name;
 
     public bool Equals (LocalController other)
     {

@@ -13,21 +13,14 @@ public class DisplayPlanetController : MonoBehaviour
     public void OnUpdateBar (Planet planet)
     {
         this.planet?.ToggleDisplayPlanet (false);
-
         this.planet = planet;
         TogglePlanet ();
         ToggleAtmosphere ();
     }
 
-    void TogglePlanet ()
-    {
-        planet.ToggleDisplayPlanet (true);
-    }
+    public void TogglePlanet() => planet.ToggleDisplayPlanet(true);
 
-    public void OnToggleAtmosphere ()
-    {
-        ToggleAtmosphere ();
-    }
+    public void OnToggleAtmosphere() => ToggleAtmosphere();
 
     void ToggleAtmosphere ()
     {

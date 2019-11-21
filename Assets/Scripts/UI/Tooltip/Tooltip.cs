@@ -13,13 +13,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         tooltipBox = FindObjectOfType<TooltipBox> ();
     }
 
-    public void OnPointerEnter (PointerEventData eventData)
-    {
-        tooltipBox.ShowTip (tip, direction);
-    }
+    public void OnPointerEnter(PointerEventData eventData) => tooltipBox.ShowTip(tip, direction);
 
-    public void OnPointerExit (PointerEventData eventData)
-    {
-        tooltipBox.HideTip ();
-    }
+    public void OnPointerExit(PointerEventData eventData) => tooltipBox.HideTip();
 }

@@ -9,9 +9,10 @@ public class TriviaController : MonoBehaviour
     [SerializeField] Transform triviaParent;
     [SerializeField] TextMeshProUGUI[] triviaTexts;
 
-    private void Awake ()
+    private void OnValidate()
     {
-        triviaTexts = triviaParent.GetComponentsInChildren<TextMeshProUGUI> (true);
+        if(triviaTexts.Length == 0)
+            triviaTexts = triviaParent.GetComponentsInChildren<TextMeshProUGUI> (true);
     }
 
     public void OnUpdateBar(PlanetData data)

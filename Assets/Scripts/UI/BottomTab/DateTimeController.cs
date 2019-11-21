@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+using Kurenaiz.Management.Core;
 using Kurenaiz.Management.Events;
 using TMPro;
 using UnityEngine;
 
-public class DateTimeController : MonoBehaviour
+public class DateTimeController : MonoBehaviour, IFixedUpdate
 {
     [SerializeField] LocalController referencePlanet;
     [SerializeField] TextMeshProUGUI dateText;
@@ -22,20 +21,28 @@ public class DateTimeController : MonoBehaviour
         EventManager.SubscribeToTimeScaleChanged (OnTimeScaleChanged);
     }
 
+    private void OnEnable ()
+    {
+        UpdateManager.Subscribe (this);
+    }
+
+    private void OnDisable ()
+    {
+        UpdateManager.Unsubscribe (this);
+    }
+
     public void OnTimeScaleChanged (float value) => timeScale = value;
 
-    private void FixedUpdate ()
+    void IFixedUpdate.MFixedUpdate ()
     {
         var value = referencePlanet.Orbit.Progress * referencePlanet.Data.orbitPeriod;
         int dayOfYear = Mathf.CeilToInt (value);
-        var today = new DateTime(year, 1, 1).AddDays(dayOfYear -1);
-        dateText.text = today.ToString("yyyy-MM-dd");
+        var today = new DateTime (year, 1, 1).AddDays (dayOfYear - 1);
+        dateText.text = today.ToString ("yyyy-MM-dd");
 
-        if(lastMonth == 12 && today.Month == 1)
+        if (lastMonth == 12 && today.Month == 1)
             year++;
 
         lastMonth = today.Month;
     }
-
-
 }

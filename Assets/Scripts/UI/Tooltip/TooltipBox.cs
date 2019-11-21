@@ -1,15 +1,8 @@
-﻿using TMPro;
+﻿using Kurenaiz.Management.Core;
+using TMPro;
 using UnityEngine;
 
-public enum Direction
-{
-    TOP_LEFT,
-    TOP_RIGHT,
-    BOTTOM_LEFT,
-    BOTTOM_RIGHT
-}
-
-public class TooltipBox : MonoBehaviour
+public class TooltipBox : MonoBehaviour, IUpdate
 {
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] RectTransform box;
@@ -25,7 +18,18 @@ public class TooltipBox : MonoBehaviour
             box = transform.GetChild (0).GetComponent<RectTransform> ();
     }
 
-    private void Update ()
+    private void OnEnable()
+    {
+        UpdateManager.Subscribe(this);
+    }
+
+    private void OnDisable()
+    {
+        UpdateManager.Unsubscribe(this);
+    }
+
+    
+    void IUpdate.MUpdate()
     {
         if (on)
             box.transform.position = Input.mousePosition;

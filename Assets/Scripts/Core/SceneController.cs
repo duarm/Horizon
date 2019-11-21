@@ -12,13 +12,7 @@ public class SceneController : MonoBehaviour
         EventManager.StartListening ("OnRightClickUp", NormalCursor);
     }
 
-    public void GrabCursor ()
-    {
-        Cursor.SetCursor (grabCursor, hotspot, CursorMode.Auto);
-    }
+    public void GrabCursor() => Cursor.SetCursor(grabCursor, hotspot, CursorMode.Auto);
 
-    public void NormalCursor ()
-    {
-        Cursor.SetCursor (normalCursor, hotspot, CursorMode.Auto);
-    }
+    public void NormalCursor() => Cursor.SetCursor(normalCursor, hotspot, CursorMode.Auto);
 }

@@ -1,9 +1,9 @@
 ﻿using System.Collections;
+using Kurenaiz.Management.Core;
 using Kurenaiz.Management.Events;
 using UnityEngine;
-using UnityEngine.Profiling;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, IStart
 {
     [SerializeField] SolarSystemController solarSystem;
     [SerializeField] LayerMask focusMask;
@@ -61,13 +61,27 @@ public class CameraController : MonoBehaviour
             solarSystem = FindObjectOfType<SolarSystemController> ();
     }
 
-    private void Start ()
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody> ();
+    }
+
+    private void OnEnable()
+    {
+        UpdateManager.Subscribe(this);
+    }
+
+    private void OnDisable()
+    {
+        UpdateManager.Unsubscribe(this);
+    }
+
+    void IStart.MStart ()
     {
         currentPosition = transform.localPosition;
         currentZoomPos = transform.localPosition;
         oldPos = transform.localPosition;
         camera = Camera.main;
-        rigidbody = GetComponent<Rigidbody> ();
         sun = solarSystem.Sun;
 
         solarSystem.Initialize (scale);
@@ -75,8 +89,7 @@ public class CameraController : MonoBehaviour
         zoomMin = 0;
         zoomMax = Mathf.CeilToInt (1 / circularOrbitScalePercentage);
     }
-
-    //TODO: UPDATE MANAGER
+    
     void LateUpdate ()
     {
         HandleRotation ();
