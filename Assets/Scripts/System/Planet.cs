@@ -136,6 +136,14 @@ public class Planet : MonoBehaviour
         beingFocused = value;
     }
 
+    public void SetTimeScale(float value)
+    {
+        for (int i = 0; i < moons.Length; i++)
+        {
+            moons[i]?.SetTimeScale(value);
+        }
+    }
+
     public void SetMoonsVisibility (bool on)
     {
         if (moons == null)
@@ -144,7 +152,10 @@ public class Planet : MonoBehaviour
         for (int i = 0; i < moons.Length; i++)
         {
             if (moons[i] == null)
+            {
+                Debug.LogWarning($"The planet {Data.name} has a null moon.");
                 break;
+            }
 
             moons[i].SetMoonVisibility (on);
         }

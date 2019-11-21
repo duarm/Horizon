@@ -22,16 +22,17 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
 
         if (!orbitRenderer && !getRenderer)
         {
-            orbitRenderer = orbit?.GetComponent<OrbitRenderer> ();
+            orbitRenderer = GetComponent<OrbitRenderer> ();
             getRenderer = true;
         }
     }
 
-    public void OnEnterLocalSpace ()
+    public void OnEnterLocalSpace (int orbitRes)
     {
         planet.OnEnterLocalSpace ();
         orbit.OnEnterLocalSpace ();
         orbitRenderer.OnEnterLocalSpace ();
+        orbitRenderer.Redraw (orbitRes);
     }
 
     public void OnExitLocalSpace ()
@@ -55,49 +56,57 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
         planet.Toggle (on);
     }
 
+    private void Initialize ()
+    {
+        transform.localEulerAngles = new Vector3 (0, 0, Data.orbitInclination);
+        planet.transform.localEulerAngles = new Vector3 (0, 0, Data.inclination);
+    }
+
     public void InitializeAsPlanet (float scale, float resolution, Texture2D texture)
     {
-        if (planet)
-            planet.InitializeAsPlanet (scale, resolution, texture);
-        if (orbit)
-            orbit.InitializeAsPlanet (Data, scale);
-        if (orbitRenderer)
-            orbitRenderer.InitializeAsPlanet ();
-
-        orbit.transform.localEulerAngles = new Vector3 (0, 0, Data.inclination);
+        Initialize ();
+        planet?.InitializeAsPlanet (scale, resolution, texture);
+        orbit?.InitializeAsPlanet (Data, scale);
+        orbitRenderer?.InitializeAsPlanet ();
     }
 
     public void InitializeAsMoon (float resolution)
     {
-        if (planet)
-            planet.InitializeAsMoon (resolution);
-        if (orbit)
-            orbit.InitializeAsMoon (Data);
-        if (orbitRenderer)
-            orbitRenderer.InitializeAsMoon ();
-
-        orbit.transform.localEulerAngles = new Vector3 (0, 0, Data.inclination);
+        Initialize ();
+        planet?.InitializeAsMoon (resolution);
+        orbit?.InitializeAsMoon (Data);
+        orbitRenderer?.InitializeAsMoon ();
     }
 
     public void Zoom (float direction, float percentage)
     {
         orbit.IncreaseOrbit (direction, percentage);
         planet.Scale (direction, percentage);
+        if (orbitRenderer)
+        {
+            orbitRenderer.Redraw ();
+            orbitRenderer.ClearTrail ();
+        }
     }
 
-    public void Redraw (int segments = 0)
+    public void OnUpwardMotion ()
     {
-        orbitRenderer.OnRedraw (segments);
+        orbitRenderer?.ClearTrail ();
     }
 
-    public void ToggleOrbit(bool value)
+    public void OnRedraw (int segments = 0)
     {
-        orbitRenderer.ToggleOrbit(value);
+        orbitRenderer.Redraw (segments);
     }
 
-    public void SetOrbitType(OrbitType type)
+    public void ToggleOrbit (bool value)
     {
-        orbitRenderer.SetOrbitType(type);
+        orbitRenderer.ToggleOrbit (value);
+    }
+
+    public void SetOrbitType (OrbitType type)
+    {
+        orbitRenderer.SetOrbitType (type);
     }
 
     public void SetOrbitVisiblity (bool value)
@@ -108,21 +117,19 @@ public class LocalController : MonoBehaviour, IEquatable<LocalController>
 
     public void SetPosition (Vector3 newPosition)
     {
-        orbit.SetPosition (newPosition);
+        transform.localPosition = newPosition;
     }
 
     public void SetFocus (bool value)
     {
-        planet.ToggleDisplayPlanet(value);
+        planet.ToggleDisplayPlanet (value);
         planet.SetFocus (value);
     }
 
     public void SetTimeScale (float value)
     {
-        if (orbit != null)
-        {
-            orbit.SetTimeScale (value);
-        }
+        orbit?.SetTimeScale (value);
+        planet.SetTimeScale (value);
     }
 
     public override string ToString ()

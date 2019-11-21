@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-[RequireComponent (typeof (OrbitMotion))]
+[RequireComponent (typeof (LineRenderer))]
 public class OrbitRenderer : MonoBehaviour
 {
     [SerializeField] OrbitMotion orbitMotion;
@@ -8,7 +9,7 @@ public class OrbitRenderer : MonoBehaviour
     [SerializeField] TrailRenderer trailRenderer;
 
     [Range (3, 360)]
-    public int segments;
+    [SerializeField] int segments;
 
     bool showOrbit = true;
     OrbitType type = OrbitType.LINE;
@@ -16,13 +17,13 @@ public class OrbitRenderer : MonoBehaviour
     private void OnValidate ()
     {
         if (!orbitMotion)
-            orbitMotion = GetComponent<OrbitMotion> ();
+            orbitMotion = transform.parent.GetComponent<OrbitMotion> ();
 
         if (!lineRenderer)
             lineRenderer = GetComponent<LineRenderer> ();
 
         if (!trailRenderer)
-            trailRenderer = GetComponent<TrailRenderer> ();
+            trailRenderer = orbitMotion.GetComponent<TrailRenderer> ();
 
         CalculateOrbit (segments);
     }
@@ -102,9 +103,20 @@ public class OrbitRenderer : MonoBehaviour
         }
     }
 
-    //RENDERER
+    public void ClearTrail ()
+    {
+        if (trailRenderer.enabled)
+            StartCoroutine (Clear ());
+    }
 
-    public void OnRedraw (int segments = 0)
+    IEnumerator Clear ()
+    {
+        yield return new WaitForEndOfFrame ();
+        trailRenderer.Clear ();
+    }
+
+    //RENDERER
+    public void Redraw (int segments = 0)
     {
         CalculateOrbit (segments);
     }
@@ -114,8 +126,7 @@ public class OrbitRenderer : MonoBehaviour
         if (!lineRenderer)
             return;
 
-        if (segments == 0)
-            segments = this.segments;
+        segments += this.segments;
 
         //+1 to close the circle
         var points = new Vector3[segments + 1];

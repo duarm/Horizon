@@ -8,9 +8,6 @@ public class Orbit
     [SerializeField] float xAxis = 5;
     [SerializeField] float yAxis = 5;
 
-    public delegate void OnOrbitUpdateEvent ();
-    public OnOrbitUpdateEvent OnOrbitUpdate;
-
     public float XAxis { get { return xAxis; } }
     public float YAxis { get { return yAxis; } }
 
@@ -24,14 +21,12 @@ public class Orbit
     {
         xAxis = newOrbit;
         yAxis = newOrbit;
-        OnOrbitUpdate?.Invoke ();
     }
 
     public void SetOrbit (float x, float y)
     {
         xAxis = x;
         yAxis = y;
-        OnOrbitUpdate?.Invoke ();
     }
 
     public Vector2 Evaluate (float t)

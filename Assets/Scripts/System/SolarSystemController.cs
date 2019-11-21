@@ -16,8 +16,10 @@ public class SolarSystemController : MonoBehaviour
     [Header ("Configuration")]
     [Space]
     [SerializeField] Texture2D focusTexture;
+    [SerializeField] int localOrbitResolutionIncreasing = 64;
 
-    bool upwardMotion = true;
+    Coroutine upwardMotionCoroutine;
+    bool upwardMotion = false;
     bool timeStopped = false;
     float resolution;
 
@@ -33,8 +35,10 @@ public class SolarSystemController : MonoBehaviour
 
     public void Initialize (float scale)
     {
-        EventManager.SubscribeToShowOrbits(ToggleOrbit);
-        EventManager.SubscribeToSetOrbitType(SetOrbitType);
+        EventManager.SubscribeToShowOrbits (ToggleOrbit);
+        EventManager.SubscribeToSetOrbitType (SetOrbitType);
+        EventManager.SubscribeToTimeScaleChanged (SetTimeScale);
+        EventManager.StartListening ("UpwardMotion", ToggleUpwardMotion);
 
         resolution = UIController.Scale;
 
@@ -44,40 +48,43 @@ public class SolarSystemController : MonoBehaviour
         }
 
         sun.InitializeAsPlanet (scale, resolution, focusTexture);
+    }
+
+    public void ToggleUpwardMotion ()
+    {
+        upwardMotion = !upwardMotion;
+
+        for (int i = 0; i < planets.Length; i++)
+        {
+            planets[i].OnUpwardMotion ();
+        }
 
         if (upwardMotion)
-            StartCoroutine (UpwardMotion ());
+            upwardMotionCoroutine = StartCoroutine (UpwardMotion ());
+        else
+            StopCoroutine (upwardMotionCoroutine);
     }
 
     IEnumerator UpwardMotion ()
     {
         while (upwardMotion)
         {
-            sun.SetPosition (new Vector3 (0, sun.transform.localPosition.y + (upwardMotionSpeed * Time.fixedDeltaTime), 0));
+            sun.SetPosition (new Vector3 (0, sun.transform.localPosition.y + (upwardMotionSpeed * timeScale * Time.fixedDeltaTime), 0));
 
             for (int i = 0; i < planets.Length; i++)
             {
-                planets[i].Redraw ();
+                planets[i].OnRedraw ();
             }
 
             yield return null;
         }
     }
 
-    public void SetOrbitType(OrbitType type)
+    public void SetOrbitType (OrbitType type)
     {
         for (int i = 0; i < planets.Length; i++)
         {
-            planets[i].SetOrbitType(type);
-        }
-    }
-
-    [ContextMenu ("Update Speed Scale")]
-    public void SetTimeScale ()
-    {
-        for (int i = 0; i < planets.Length; i++)
-        {
-            planets[i].SetTimeScale (timeScale);
+            planets[i].SetOrbitType (type);
         }
     }
 
@@ -90,10 +97,10 @@ public class SolarSystemController : MonoBehaviour
         }
     }
 
-    public void ZaWarudo(bool stop)
+    public void ZaWarudo (bool stop)
     {
         timeStopped = stop;
-        SetTimeScale(timeScale);
+        SetTimeScale (timeScale);
     }
 
     public void EnterLocalSpace (LocalController local)
@@ -102,7 +109,7 @@ public class SolarSystemController : MonoBehaviour
         {
             if (planets[i].Equals (local))
             {
-                local.OnEnterLocalSpace ();
+                local.OnEnterLocalSpace (localOrbitResolutionIncreasing);
                 continue;
             }
 
@@ -130,14 +137,15 @@ public class SolarSystemController : MonoBehaviour
         {
             planets[i].Zoom (direction, percentage);
         }
+
         sun.Zoom (direction, percentage);
     }
 
-    public void ToggleOrbit(bool value)
+    public void ToggleOrbit (bool value)
     {
         for (int i = 0; i < planets.Length; i++)
         {
-            planets[i].ToggleOrbit(value);
+            planets[i].ToggleOrbit (value);
         }
     }
 

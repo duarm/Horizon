@@ -6,6 +6,7 @@ public class PlanetData
     public string name;
     public int moonCount;
     public float inclination;
+    public float orbitInclination;
     public double perihelion;
     public double aphelion;
     public float orbitPeriod;

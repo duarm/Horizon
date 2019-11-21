@@ -6,7 +6,6 @@ public class LeftTabController : MonoBehaviour
 {
     [SerializeField] GameObject leftBar;
     [SerializeField] Animator leftTabAnimator;
-    [SerializeField] Dropdown orbitTypeDropdown;
 
     [Header ("Skyboxes")]
     [SerializeField] Material skybox1;
@@ -16,9 +15,10 @@ public class LeftTabController : MonoBehaviour
 
     #region LeftTab
 
-    private void OnValidate() {
+    private void OnValidate ()
+    {
         if (!leftBar)
-            leftBar = transform.GetChild(0).gameObject;
+            leftBar = transform.GetChild (0).gameObject;
     }
 
     private void Start ()
@@ -39,6 +39,11 @@ public class LeftTabController : MonoBehaviour
     public void ShowOrbits (bool show)
     {
         EventManager.OnShowOrbits?.Invoke (show);
+    }
+
+    public void UpwardMotion (bool value)
+    {
+        EventManager.TriggerEvent("UpwardMotion");
     }
 
     public void SetOrbitType (int index)

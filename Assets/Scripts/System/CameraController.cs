@@ -21,8 +21,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] float yMaxLimit = 90f;
     [SerializeField] float smoothTime = 2f;
     [Header ("Zoom")]
-    public int zoomThreshold = 10;
-    public float zoomSpeed = 10f;
+    [SerializeField] int zoomInThreshold = 90;
+    [SerializeField] int zoomOutThreshold = 90;
+    [SerializeField] float zoomSpeed = 10f;
 
     [Range (0, 1)]
     [SerializeField] float circularOrbitScalePercentage = .05f;
@@ -77,7 +78,6 @@ public class CameraController : MonoBehaviour
     //TODO: UPDATE MANAGER
     void LateUpdate ()
     {
-        //Profiler.BeginSample("Camera Movement");
         HandleRotation ();
         HandleZoom ();
 
@@ -100,7 +100,6 @@ public class CameraController : MonoBehaviour
         worldCoordinatesOverride.eulerAngles = new Vector3 (0, currentRotation.eulerAngles.y, 0);
         velocityX = Mathf.Lerp (velocityX, 0, Time.deltaTime * smoothTime);
         velocityY = Mathf.Lerp (velocityY, 0, Time.deltaTime * smoothTime);
-        //Profiler.EndSample();
     }
 
     public void MoveCamera (Vector3 input)
@@ -116,7 +115,7 @@ public class CameraController : MonoBehaviour
         Vector3 rightMovement = transform.right * speed * input.x;
         newPos = (fowardMovement + rightMovement) * Time.deltaTime;
 
-        if (input != Vector3.zero)
+        if (input != Vector3.zero && follower)
             FocusOn (null);
     }
 
@@ -156,7 +155,7 @@ public class CameraController : MonoBehaviour
                 if (zoomLevel == zoomMax && follower)
                     solarSystem.EnterLocalSpace (follower);
 
-                if ((zoomMax + zoomThreshold) > zoomLevel && follower)
+                if ((zoomMax + zoomInThreshold) > zoomLevel && follower)
                 {
                     velocity = 1;
                     Zoom (velocity);
@@ -180,7 +179,7 @@ public class CameraController : MonoBehaviour
                 if (zoomLevel == (zoomMax + 1))
                     solarSystem.ExitLocalSpace (follower);
 
-                if ((zoomMin - zoomThreshold) < zoomLevel)
+                if ((zoomMin - zoomOutThreshold) < zoomLevel)
                 {
                     velocity = -1;
                     Zoom (velocity);

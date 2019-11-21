@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [TextArea]
     [SerializeField] string tip;
     [SerializeField] Direction direction;
     TooltipBox tooltipBox;
@@ -10,7 +11,6 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Awake ()
     {
         tooltipBox = FindObjectOfType<TooltipBox> ();
-        Debug.Log(tooltipBox);
     }
 
     public void OnPointerEnter (PointerEventData eventData)
