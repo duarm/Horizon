@@ -42,7 +42,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 7cd446e7463479141a0f17d41d9e0035, type: 3}
-    totalSpriteSurfaceArea: 3647230
+    totalSpriteSurfaceArea: 3909374
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -59,6 +59,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 743a4b2ef9504df418a0ad0d2c14583a, type: 3}
   - {fileID: 21300000, guid: 9a6354ee64df3f44a8a3dcd2a9c4d535, type: 3}
   - {fileID: 21300000, guid: 590f303ffc4ce2449a8106576ccedbc4, type: 3}
+  - {fileID: 21300000, guid: fb636bef25696254482c2e4867aa67ac, type: 3}
   - {fileID: 21300000, guid: 35d17fffae39fde4d89b1668d907e5a8, type: 3}
   m_PackedSpriteNamesToIndex:
   - ifms_sized
@@ -74,6 +75,7 @@ SpriteAtlas:
   - gear
   - x
   - pause
+  - github
   - scale
   m_Tag: UI
   m_IsVariant: 0

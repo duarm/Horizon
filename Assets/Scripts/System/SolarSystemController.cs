@@ -50,6 +50,10 @@ public class SolarSystemController : MonoBehaviour
         sun.InitializeAsPlanet (scale, resolution, focusTexture);
     }
 
+    private void Start() {
+        EventManager.OnTimeScaleChanged?.Invoke(timeScale);
+    }
+
     public void ToggleUpwardMotion ()
     {
         upwardMotion = !upwardMotion;

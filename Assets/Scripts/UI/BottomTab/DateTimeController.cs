@@ -1,18 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Kurenaiz.Management.Events;
+using TMPro;
 using UnityEngine;
 
 public class DateTimeController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Planet referencePlanet;
+    [SerializeField] TextMeshProUGUI dateText;
+    [SerializeField] TextMeshProUGUI timeText;
+    float timeScale = 1;
+    float currentTime;
+
+    private void Awake ()
     {
-        
+        currentTime = Time.deltaTime;
+        EventManager.SubscribeToTimeScaleChanged (OnTimeScaleChanged);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        var time = referencePlanet.Data.orbitPeriod / currentTime;
+        currentTime += Time.deltaTime;
     }
+
+    public void OnTimeScaleChanged (float value) => timeScale = value;
+
 }
