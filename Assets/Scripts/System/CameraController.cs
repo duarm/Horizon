@@ -89,8 +89,8 @@ public class CameraController : MonoBehaviour, IStart
         zoomMin = 0;
         zoomMax = Mathf.CeilToInt (1 / circularOrbitScalePercentage);
     }
-    
-    void LateUpdate ()
+
+    void FixedUpdate ()
     {
         HandleRotation ();
         HandleZoom ();

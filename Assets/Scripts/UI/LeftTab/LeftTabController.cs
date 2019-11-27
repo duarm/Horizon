@@ -61,7 +61,7 @@ public class LeftTabController : MonoBehaviour, IStart
     {
         if (!popupOpenOptions)
         {
-            PopupController.Popup ("Algumas opções de customização do jogo, passe o mouse sobre a opção para saber mais.", 5);
+            PopupController.Popup ("Algumas opções de customização do jogo, passe o mouse sobre a opção para saber mais.", 6);
             popupOpenOptions = true;
         }
 
@@ -75,7 +75,7 @@ public class LeftTabController : MonoBehaviour, IStart
     {
         if (!popupOpenHelp)
         {
-            PopupController.Popup ("Passe o mouse em cima do interrogação para saber mais sobre a opção", 5);
+            PopupController.Popup ("Passe o mouse em cima do interrogação para saber mais sobre a opção", 6);
             popupOpenHelp = true;
         }
 
@@ -89,8 +89,8 @@ public class LeftTabController : MonoBehaviour, IStart
     {
         if (!popupOpenCredits)
         {
-            PopupController.Popup ("Os criadores do jogo, e os devidos créditos aos autores de assets gratuitos utilizados no projeto.", 5);
-            PopupController.Popup ("Ao clicar no icone do Github, voce sera redirecionado ao repositório do projeto.", 6);
+            PopupController.Popup ("Os criadores do jogo, e os devidos créditos aos autores de assets gratuitos utilizados no projeto.", 8);
+            PopupController.Popup ("Ao clicar no icone do Github, voce sera redirecionado ao repositório do projeto.", 9);
             popupOpenTab = true;
         }
 

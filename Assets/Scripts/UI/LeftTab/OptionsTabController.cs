@@ -8,6 +8,7 @@ public class OptionsTabController : MonoBehaviour
     [SerializeField] Material skybox2;
     [SerializeField] Material skybox3;
     [SerializeField] Material skybox4;
+    [SerializeField] Material secretSkybox;
 
     public void ShowOrbits (bool show)
     {
@@ -29,18 +30,28 @@ public class OptionsTabController : MonoBehaviour
         switch (index)
         {
             case 1:
-                RenderSettings.skybox = skybox1;
+                SetSkybox(skybox1);
                 break;
             case 2:
-                RenderSettings.skybox = skybox2;
+                SetSkybox(skybox2);
                 break;
             case 3:
-                RenderSettings.skybox = skybox3;
+                SetSkybox(skybox3);
                 break;
             case 4:
-                RenderSettings.skybox = skybox4;
+                SetSkybox(skybox4);
+                break;
+            case 999:
+                SetSkybox(secretSkybox);
                 break;
         }
     }
 
+    private void SetSkybox (Material mat)
+    {
+        if (mat != null)
+        {
+            RenderSettings.skybox = mat;
+        }
+    }
 }

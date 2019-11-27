@@ -3,16 +3,36 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField] Texture2D grabCursor;
-    [SerializeField] Texture2D normalCursor;
-    [SerializeField] Vector2 hotspot = Vector2.zero;
+    [Header ("GAME")]
+    [Tooltip ("-1 to platform framerate")]
+    [SerializeField] int InGame_Target_FrameRate = 60;
+    [SerializeField] VsyncType InGame_Vsync_Count = VsyncType.NO_SYNC;
+    [Header ("EDITOR")]
+    [Tooltip ("-1 to platform framerate")]
+    [SerializeField] int Editor_Target_FrameRate = 30;
+    [SerializeField] VsyncType Editor_Vsync_Count = VsyncType.NO_SYNC;
+
     void Start ()
     {
-        EventManager.StartListening ("OnRightClickDown", GrabCursor);
-        EventManager.StartListening ("OnRightClickUp", NormalCursor);
+        UpdateValues ();
     }
 
-    public void GrabCursor() => Cursor.SetCursor(grabCursor, hotspot, CursorMode.Auto);
+    [ContextMenu ("Rerun")]
+    public void UpdateValues ()
+    {
+#if UNITY_EDITOR
+        QualitySettings.vSyncCount = (int) Editor_Vsync_Count; // VSync must be disabled
+        Application.targetFrameRate = Editor_Target_FrameRate;
+#else
+        QualitySettings.vSyncCount = (int) InGame_Vsync_Count; // VSync must be disabled
+        Application.targetFrameRate = InGame_Target_FrameRate;
+#endif
+    }
 
-    public void NormalCursor() => Cursor.SetCursor(normalCursor, hotspot, CursorMode.Auto);
+    enum VsyncType
+    {
+        NO_SYNC,
+        PANEL_REFRESH,
+        HALF_PANEL_REFRESH
+    }
 }

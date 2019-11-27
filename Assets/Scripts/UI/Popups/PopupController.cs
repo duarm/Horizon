@@ -71,6 +71,8 @@ public class PopupController : MonoBehaviour, IStart
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        popupsParent.anchoredPosition = to;
     }
 
     public static void Popup(string message, float timeToExpire) => Instance.Pop(message, timeToExpire);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Kurenaiz.Management.Events;
 using TMPro;
@@ -60,13 +61,14 @@ public class RightTabController : MonoBehaviour
         rightTab.SetActive (true);
 
         if (!openHidden)
-            ExtendTab ();
+            StartCoroutine(ExtendTab ());
     }
 
-    public void HideLeftBar() => ExtendTab();
+    public void HideLeftBar() => StartCoroutine(ExtendTab ());
 
-    void ExtendTab ()
+    IEnumerator ExtendTab ()
     {
+        yield return new WaitForEndOfFrame();
         if (!popup)
         {
             PopupController.Popup ("'X' fecha a aba, o 'olho' esconde a atmosfera de alguns planetas, nesta aba é mostrado as informações do planeta atualmente orbitado.", 10);
@@ -89,6 +91,7 @@ public class RightTabController : MonoBehaviour
 
     public void CloseRightBar ()
     {
+        EventManager.TriggerEvent ("OnHideRightBar");
         rightTab.SetActive (false);
         open = false;
     }
