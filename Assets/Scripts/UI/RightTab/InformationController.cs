@@ -22,10 +22,7 @@ public class InformationController : MonoBehaviour
     [SerializeField] TextMeshProUGUI massField;
     [SerializeField] TextMeshProUGUI densityField;
 
-    public void OnUpdateBar(PlanetData data)
-    {
-        SetValues(data);
-    }
+    public void OnUpdateBar(PlanetData data) => SetValues(data);
 
     void SetValues (PlanetData data)
     {

@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     private void Awake ()
     {
         Instance = this;
-        //resolution change event
+        //>resolution change event
         RecalculateScale ();
     }
 

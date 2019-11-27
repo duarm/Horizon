@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: Horizon
-  defaultCursor: {fileID: 2800000, guid: 2c1fedaea160a56478affadddb0463c5, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -169,7 +169,7 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.Random.Horizon
   buildNumber:
-    Standalone: 11
+    Standalone: 15
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0

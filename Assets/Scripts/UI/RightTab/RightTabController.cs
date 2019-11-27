@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Kurenaiz.Management.Events;
 using TMPro;
@@ -7,11 +8,16 @@ using UnityEngine.Events;
 
 public class RightTabController : MonoBehaviour
 {
+    //TODO: TIGHT SCHEDULE, REFACTOR THIS
+    public RectTransform tab;
+    public RectTransform sideBar;
+
     [Header ("Configuration")]
     [SerializeField] bool infoIsDefaultTab = true;
     [Header ("References")]
     [SerializeField] GameObject rightTab;
     [SerializeField] Animator rightTabAnimator;
+
     [SerializeField] InformationController information;
     [SerializeField] TriviaController trivia;
     [SerializeField] DisplayPlanetController displayPlanet;
@@ -23,6 +29,7 @@ public class RightTabController : MonoBehaviour
     [SerializeField] GameObject triviaSelected;
 
     bool open;
+    bool popup = false;
     readonly int pressedHash = Animator.StringToHash ("Pressed");
 
     private void OnValidate ()
@@ -48,21 +55,34 @@ public class RightTabController : MonoBehaviour
             OpenTriviaTab ();
     }
 
-    public void OpenRightBar ()
+    public void OpenRightBar (bool openHidden)
     {
         open = true;
         rightTab.SetActive (true);
+
+        if (!openHidden)
+            StartCoroutine(ExtendTab ());
     }
 
-    public void HideLeftBar ()
+    public void HideLeftBar() => StartCoroutine(ExtendTab ());
+
+    IEnumerator ExtendTab ()
     {
+        yield return new WaitForEndOfFrame();
+        if (!popup)
+        {
+            PopupController.Popup ("'X' fecha a aba, o 'olho' esconde a atmosfera de alguns planetas, nesta aba é mostrado as informações do planeta atualmente orbitado.", 10);
+            popup = true;
+        }
+
+        EventManager.TriggerEvent ("OnHideRightBar");
         rightTabAnimator.SetTrigger (pressedHash);
     }
 
     public void UpdateBar (LocalController local)
     {
         if (!open)
-            OpenRightBar ();
+            OpenRightBar (false);
 
         displayPlanet.OnUpdateBar (local.Planet);
         information.OnUpdateBar (local.Data);
@@ -71,6 +91,7 @@ public class RightTabController : MonoBehaviour
 
     public void CloseRightBar ()
     {
+        EventManager.TriggerEvent ("OnHideRightBar");
         rightTab.SetActive (false);
         open = false;
     }
@@ -91,8 +112,5 @@ public class RightTabController : MonoBehaviour
         infoContent.SetActive (true);
     }
 
-    public void ToggleAtmosphere ()
-    {
-        displayPlanet.OnToggleAtmosphere ();
-    }
+    public void ToggleAtmosphere() => displayPlanet.OnToggleAtmosphere();
 }

@@ -105,10 +105,7 @@ public class Planet : MonoBehaviour
         displayPlanet.SetActive (value);
     }
 
-    public void ToggleAtmosphere (bool value)
-    {
-        atmosphere?.SetActive (value);
-    }
+    public void ToggleAtmosphere(bool value) => atmosphere?.SetActive(value);
 
     public void OnEnterLocalSpace ()
     {
@@ -128,15 +125,9 @@ public class Planet : MonoBehaviour
             mesh.enabled = show;
     }
 
-    public void SetNameVisilibity (bool show)
-    {
-        showName = show;
-    }
+    public void SetNameVisilibity(bool show) => showName = show;
 
-    public void SetFocus (bool value)
-    {
-        beingFocused = value;
-    }
+    public void SetFocus(bool value) => beingFocused = value;
 
     public void SetTimeScale (float value)
     {

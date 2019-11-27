@@ -1,10 +1,12 @@
 ﻿using Horizon.Input;
+using Kurenaiz.Management.Core;
 using Kurenaiz.Management.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputHandler : MonoBehaviour, InputMaster.IGameActions
+public class InputHandler : MonoBehaviour, InputMaster.IGameActions, IUpdate
 {
+    //TODO: TIGHT SCHEDULE, EXTINGUISH THE OLD INPUT SYSTEM
     protected static InputHandler s_Instance;
     public CameraController cameraController;
     InputMaster inputMaster;
@@ -26,20 +28,21 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameActions
             throw new UnityException ("There cannot be more than one PlayerInput script.  The instances are " + s_Instance.name + " and " + name + ".");
     }
 
-    private void Update ()
-    {
-        var wheel = Input.GetAxis ("Mouse ScrollWheel");
-        cameraController.ZoomCamera (wheel);
-    }
-
     private void OnEnable ()
     {
+        UpdateManager.Subscribe (this);
         inputMaster.Enable ();
     }
 
     private void OnDisable ()
     {
+        UpdateManager.Unsubscribe (this);
         inputMaster.Disable ();
+    }
+
+    void IUpdate.MUpdate ()
+    {
+        cameraController.ZoomCamera (Input.GetAxis ("Mouse ScrollWheel"));
     }
 
     public void OnCameraMovement (InputAction.CallbackContext context)
@@ -71,8 +74,7 @@ public class InputHandler : MonoBehaviour, InputMaster.IGameActions
 
     public void OnEscape (InputAction.CallbackContext context)
     {
-        if(context.performed)
-            EventManager.TriggerEvent("OnEscape");
+        if (context.performed)
+            EventManager.TriggerEvent ("OnEscape");
     }
-
 }
