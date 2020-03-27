@@ -11,6 +11,6 @@ Implementing a simple 'Scale everything but the player' technique to surpass the
 
 ### Acknowledgment
 
-- Student project ( do not expect good code, feel free to destructively criticize my code )
+- Student project ( do not expect good architecture or anything, feel free to destructively criticize my code )
 - Feel free to use anything ( no need for credits )
 
