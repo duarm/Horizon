@@ -1,8 +1,8 @@
 # Horizon
-Full scale solar system in unity (IN DEV)
+Full scale solar system in Unity
 
-Final project to finish IFMS' technical course in Brazil.
-Implementing a simple 'Scale everything but the player' technique to surpass the kraken (Floating Point Arithmetic Imprecision).
+Final project to finish my technical highschool course in Brazil.
+Implementing a simple 'Scale everything' technique to simulate an expansive universe, without suffering from float imprecision.
 
 ### Demonstration
 ![Game Gif](solarsytem.gif)
@@ -11,6 +11,5 @@ Implementing a simple 'Scale everything but the player' technique to surpass the
 
 ### Acknowledgment
 
-- Student project ( do not expect good architecture or anything, feel free to destructively criticize my code )
+- Student project
 - Feel free to use anything ( no need for credits )
-
